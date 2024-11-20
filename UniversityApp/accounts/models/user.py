@@ -14,9 +14,9 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         },
     )
     password = models.CharField(
+        max_length=16,
         validators=[
             MinLengthValidator(4),
-            MaxLengthValidator(10),
             PasswordValidator(),
         ]
     )
