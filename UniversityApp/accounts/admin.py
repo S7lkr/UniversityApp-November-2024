@@ -6,5 +6,5 @@ UserModel = get_user_model()
 
 
 @admin.register(UserModel)
-class UserAdmin(UserAdmin):
+class UserAdmin(admin.ModelAdmin):
     pass
