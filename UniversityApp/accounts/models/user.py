@@ -13,7 +13,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
             'unique': 'This email is already taken. Please enter a different one!',
         },
     )
-    password = models.PositiveIntegerField(
+    password = models.CharField(
         validators=[
             MinLengthValidator(4),
             MaxLengthValidator(10),
