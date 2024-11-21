@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 MY_APPS = [
     'UniversityApp.accounts',
+    'UniversityApp.common',
 ]
 INSTALLED_APPS = [
     'django.contrib.admin',
