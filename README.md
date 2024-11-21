@@ -51,6 +51,15 @@
 
 ## 5. Create and implement templates:
 
-## 6. Create views:
+## 6. Create and implement static files
+  - [ ] CSS
+  - [ ] Pictures
 
-## 7. Create forms:
+## 6. Create forms:
+ - [ ] Register form
+ - [ ] Login Form
+ - [ ] Create Course Form
+ - [ ] Edit Course Form
+ - [ ] Delete Course Form
+
+## 7. Create views:
