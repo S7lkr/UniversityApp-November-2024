@@ -27,6 +27,9 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         default=False
     )
 
+    def __str__(self):
+        return self.email
+
     USERNAME_FIELD = 'email'    # first credential used in auth, required by default
     REQUIRED_FIELDS = []        # so not necessary to place it in REQUIRED_FIELDS
     objects = CustomUserManager()
