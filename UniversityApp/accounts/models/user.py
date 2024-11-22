@@ -26,7 +26,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     is_staff = models.BooleanField(
         default=False
     )
-    # primary credential
-    USERNAME_FIELD = 'email'    # ALWAYS required (by default)
-    REQUIRED_FIELDS = []        # no need to place 'email' field here
+
+    USERNAME_FIELD = 'email'    # first credential used in auth, required by default
+    REQUIRED_FIELDS = []        # so not necessary to place it in REQUIRED_FIELDS
     objects = CustomUserManager()
