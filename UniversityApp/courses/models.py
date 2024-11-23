@@ -1,5 +1,5 @@
 from django.db import models
-from UniversityApp.Courses.course_categories import CourseChoices
+from UniversityApp.courses.course_categories import CourseChoices
 
 
 class Course(models.Model):
