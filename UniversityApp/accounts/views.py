@@ -24,5 +24,9 @@ class ProfileDetailsPage(generic.DetailView):
     pass
 
 
+class ProfileEditPage(generic.UpdateView):
+    pass
+
+
 class ProfileDeletePage(generic.DeleteView):
     pass
