@@ -12,7 +12,7 @@ class Profile(models.Model):
         validators=[
             MinLengthValidator(2),
             AlphabeticValidator(),
-        ]
+        ],
     )
     last_name = models.CharField(
         max_length=20,
@@ -20,6 +20,8 @@ class Profile(models.Model):
             MinLengthValidator(2),
             AlphabeticValidator(),
         ],
+        null=True,
+        blank=True,
 
     )
     age = models.PositiveSmallIntegerField(
