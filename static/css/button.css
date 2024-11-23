@@ -28,10 +28,10 @@
 .btn-square,
 .btn-sm-square,
 .btn-lg-square {
-    padding: 0;
+    padding: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: normal;
-    border-radius: 3px;
+    border-radius: 15px;
 }
