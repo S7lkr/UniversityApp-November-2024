@@ -14,12 +14,6 @@ class UserLoginPage(LoginView):
     template_name = 'registration/login.html'
 
 
-class UserEditPage(generic.UpdateView):
-    form_class = UserEditForm
-    template_name = 'index.html'
-    success_url = reverse_lazy('home')
-
-
 class ProfileDetailsPage(generic.DetailView):
     pass
 
