@@ -6,6 +6,13 @@
     <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
         <span class="navbar-toggler-icon"></span>
     </button>
+
+    {% if request.user.is_authenticated %}
+        <span><strong>User:  </strong>{{ request.user }}</span>
+    {% else %}
+        <span><strong>User:  </strong>Guest</span>
+    {% endif %}
+
     <div class="collapse navbar-collapse" id="navbarCollapse">
         <div class="navbar-nav ms-auto p-4 p-lg-0">
             <a href="index.html" class="nav-item nav-link active">Home</a>
@@ -21,7 +28,8 @@
             </div>
             <a href="contact.html" class="nav-item nav-link">Contact</a>
         </div>
-        <a href="{% url 'register' %}" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Register<i class="fa fa-arrow-right ms-3"></i></a>
+        <a href="{% url 'login' %}" class="btn btn-primary py-3 px-lg-3 d-none d-lg-block">LogIn<i class="fa fa-arrow-right ms-3"></i></a>
+        <a href="{% url 'register' %}" class="btn btn-warning py-3 px-lg-3 d-none d-lg-block">Register</a>
     </div>
 </nav>
 <!-- Navbar End -->
