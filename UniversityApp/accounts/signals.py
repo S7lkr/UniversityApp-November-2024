@@ -11,10 +11,11 @@ User = get_user_model()
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
 def make_profile(sender, instance: User, created: bool, **kwargs):
     if created:                     # when User model created
+        print(instance.email)
         Profile.objects.create(     # a Profile model will be created too
-            first_name='n/a',
-            last_name='n/a',       # initial Profile data
-            age=0,
+            first_name=instance.email.split("@")[0].capitalize(),
+            last_name=None,       # initial Profile data
+            age=None,
             personal_image="http://127.0.0.1:8000/static/img/person.jpg",
             user=instance,
         )
