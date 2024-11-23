@@ -11,3 +11,14 @@
 .fw-semi-bold {
     font-weight: 700 !important;
 }
+
+form li {
+    font-size: 0.8em;
+    color: red;
+}
+
+.helptext li,
+span.helptext {
+    font-size: 0.85em;
+    color: lightskyblue;
+}
