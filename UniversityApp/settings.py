@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 MY_APPS = [
     'UniversityApp.accounts',
     'UniversityApp.common',
+    'UniversityApp.courses'
 ]
 INSTALLED_APPS = [
     'django.contrib.admin',

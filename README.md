@@ -7,7 +7,7 @@
 - [ ] Lectors app
 - [ ] Students app
 - [ ] PersonPhotos app
-- [ ] Courses app
+- [x] Courses app
 - [ ] OnlineLectures app
 - [ ] UniversityPhotos app
 
