@@ -1,65 +1,109 @@
-# UniversityApp-November-2024
+# UniversityApp-November-2024-Project-Defence:
+
 
 ## 1. Create apps:
+- [x] Accounts app (admin, lectors, students)
+- [ ] Common app
+- [ ] Lectors app
+- [ ] Students app
+- [ ] PersonPhotos app
+- [ ] Courses app
+- [ ] OnlineLectures app
+- [ ] UniversityPhotos app
 
-- [x] Accounts (admin, rector, lectors, students)
-- [ ] Common (common functionalities: comments, etc.)
-- [ ] PersonPhotos
-- [ ] UniversityPhotos
-- [ ] Courses
-- [ ] StudentProjects
-- [ ] Comments
 
 ## 2. Create models for:
+- [x] Accounts app:
+    - [x] User model
+    - [x] Profile model
+- [ ] Common app:
+  - [ ] Comment model
+  - [ ] Like model
+- [ ] Lector model
+- [ ] Student model
+- [ ] PersonPhoto model
+- [ ] Course model
+- [ ] OnlineLecture model
+- [ ] UniversityPhoto model
 
-- [x] Accounts
-    - [x] CustomUser
-    - [x] UserProfile
-- [ ] Common (common functionalities: comments, etc.)
-- [ ] PersonPhotos
-- [ ] UniversityPhotos
-- [ ] Courses
-- [ ] StudentProjects
-- [ ] Comments
 
-## Make migrations and migrate to DB:
+## 3. Make migrations and migrate to DB:
+- [x] Accounts app:
+    - [x] User model
+    - [x] Profile model
+- [ ] Common app:
+  - [ ] Comment model
+  - [ ] Like model
+- [ ] Lector model
+- [ ] Student model
+- [ ] PersonPhoto model
+- [ ] Course model
+- [ ] OnlineLecture model
+- [ ] UniversityPhoto model
 
-- [x] Accounts
-    - [x] CustomUser
-    - [x] UserProfile
-- [ ] Common (common functionalities: comments, etc.)
-- [ ] PersonPhotos
-- [ ] UniversityPhotos
-- [ ] Courses
-- [ ] StudentProjects
-- [ ] Comments
 
-## 3. Add validators for models:
+## 4. Add validators for models:
+- [x] Alphabetic validator
+- [x] Password validator
+- [ ] Capitalized name validator
 
-- [ ] Password validator (user)
-- [ ] First and Last names (profile)
 
-## 4. Register UserModel in admin panel
+## 5. Add mixins:
+- [x] Placeholder Mixin
+- [x] ReadOnlyFields Mixin
+- [x] DisabledFields Mixin
 
-- [ ] Customize it:
-    - [ ] implement custom user form
-    - [ ] list display
-    - [ ] ordering
-    - [ ] search functionality
-    - [ ] add fieldsets (categories)
-    - [ ] optional: integrate profile info in user admin panel
-
-## 5. Create and implement templates:
-
-## 6. Create and implement static files
-  - [ ] CSS
-  - [ ] Pictures
-
-## 6. Create forms:
+## 5. Create forms:
  - [ ] Register form
  - [ ] Login Form
  - [ ] Create Course Form
  - [ ] Edit Course Form
  - [ ] Delete Course Form
 
-## 7. Create views:
+## 6. Register UserModel in admin panel:
+- [x] Customize it:
+    - [x] extend django base user -> UserAdmin
+    - [x] list display
+    - [x] ordering
+    - [x] search functionality
+    - [x] add fieldsets (categories)
+    - [ ] optional: integrate profile info in admin panel
+
+
+## 7. Create and implement templates (html-s):
+- [x] base
+- [x] home
+- [x] register
+- [x] login
+- [ ] courses
+- [ ] online lectures
+- [ ] lectors
+- [ ] students
+- [ ] other...
+
+
+## 8. Create and implement static files:
+  - [x] CSS
+  - [x] Pictures
+
+
+## 9. Create views:
+- [x] Accounts views
+  - [x] UserRegisterPage view
+  - [x] UserLoginPage view
+  - [ ] ProfileDetailsPage view
+  - [ ] ProfileEditPage view
+  - [ ] ProfileDeletePage view
+- [ ] Common views
+  - [ ] ...
+- [ ] Lectors views
+  - [ ] ...
+- [ ] Students views
+  - [ ] ...
+- [ ] PersonPhotos views
+  - [ ] ...
+- [ ] Courses views
+  - [ ] ...
+- [ ] OnlineLectures views
+  - [ ]
+- [ ] UniversityPhotos views
