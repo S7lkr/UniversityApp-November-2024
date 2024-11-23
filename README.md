@@ -22,7 +22,7 @@
 - [ ] Lector model
 - [ ] Student model
 - [ ] PersonPhoto model
-- [ ] Course model
+- [x] Course model
 - [ ] OnlineLecture model
 - [ ] UniversityPhoto model
 
