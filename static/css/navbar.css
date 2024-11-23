@@ -35,7 +35,7 @@
 
 .navbar-light .navbar-brand,
 .navbar-light a.btn {
-    height: 75px;
+    height: 56px;
 }
 
 .navbar-light .navbar-nav .nav-link {
@@ -46,6 +46,7 @@
 .navbar-light.sticky-top {
     top: -100px;
     transition: .5s;
+    height: 3.5em;
 }
 
 @media (min-width: 992px) {
