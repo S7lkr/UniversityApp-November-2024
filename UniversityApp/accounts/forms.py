@@ -12,6 +12,17 @@ class UserRegisterForm(PlaceholderMixin, UserCreationForm):
         model = User
         fields = ('email', 'password1', 'password2')
 
+        # widgets = {
+        #     'email': forms.EmailInput(attrs={'id': "email",}),
+        #     'password1': forms.PasswordInput(attrs={'id': "password1"}),
+        #     'password2': forms.PasswordInput(attrs={'id': "password2"}),
+        # }
+        # labels = {
+        #     'username': "Email",
+        #     'password1': "Password",
+        #     'password2': "Repeat password",
+        # }
+
 
 class UserEditForm(UserChangeForm):
     class Meta(UserChangeForm.Meta):
