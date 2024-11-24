@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.text import slugify
 from UniversityApp.courses.course_categories import CourseChoices
 
 
@@ -14,15 +15,30 @@ class Course(models.Model):
         choices=CourseChoices.choices,
         default=CourseChoices.OTHER,
     )
+    slug = models.SlugField(
+        unique=True,
+        null=True,
+        blank=True,
+        editable=False,
+    )
     description = models.TextField(
         null=True,
         blank=True,
     )
     credits = models.PositiveSmallIntegerField(
         default=0,
-        null=True,
-        blank=True,
     )
     photo = models.URLField(
+        null=True,
+        blank=True,
         default="http://localhost:8000/static/img/course.jpg"
     )
+
+    def save(self, *args, **kwargs):    # override save method
+        super().save(*args, **kwargs)   # get all functionalities from parent's "save()" method
+        if not self.slug:
+            self.slug = slugify(self.category)  # Web Design -> web-design
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return self.name
