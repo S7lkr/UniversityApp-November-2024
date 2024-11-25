@@ -1,8 +1,8 @@
-.login-register-section {
+.form-section {
 	margin-top: 5em;
 }
 
-.login-register-container, .second-option {
+.form-container, .second-option {
 	margin: 0 auto;
 	display: block;
 	width: 400px;
@@ -15,18 +15,18 @@
 	box-shadow: 1px 2px 3px #888888;
 }
 
-.login-register-container h1 {
+.form-container h1 {
 	font-family: 'Indie Flower', cursive;
 	font-size: 40px;
 	text-align: center;
 	margin-top: -10px;
 }
 
-.login-register-container label {
+.form-container label {
 	display: none;
 }
 
-.login-register-container input {
+.form-container input, select {
 	background-color: whitesmoke;
 	border: 0.1px solid rgb(186, 184, 184);
 	border-radius: 3px;
@@ -36,7 +36,7 @@
 	margin-top: 10px;
 }
 
-/*.login-register-container button {*/
+/*.form-container button {*/
 /*	background-color: rgb(0, 162, 255);*/
 /*	color: white;*/
 /*	!*font-weight: bold;*!*/
