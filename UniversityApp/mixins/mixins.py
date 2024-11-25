@@ -10,10 +10,17 @@ class PlaceholderMixin:
 
 
 class ReadOnlyFieldsMixin:
-    readonly_fields_set = []
+    readonly_fields_set = (
+        "name",
+        "category",
+        "description",
+        "credits",
+        "duration",
+        "photo",
+    )
 
     def readonly_fields(self):
-        for field_name in self.readonly_fields:     # iterate through the above array
+        for field_name in self.readonly_fields_set:     # iterate through the above array
             if field_name in self.fields:           # check if there really is such a field in the form
                 self.fields[field_name].widget.attrs['readonly'] = True     # attach an attribute "readonly"
 
@@ -23,8 +30,17 @@ class ReadOnlyFieldsMixin:
 
 
 class DisabledFieldsMixin:
+    disabled_fields_set = (
+        "name",
+        "category",
+        "description",
+        "credits",
+        "duration",
+        "photo",
+    )
+
     def disable_fields(self):
-        for field_name, field in self.fields:
+        for field_name in self.disabled_fields_set:
             if field_name in self.fields:
                 self.fields[field_name].widget.attrs['disabled'] = True
 
