@@ -13,7 +13,6 @@ class Course(models.Model):
     category = models.CharField(            # Web Design
         max_length=CATEGORY_MAX_LENGTH,
         choices=CourseChoices.choices,
-        default=CourseChoices.OTHER,
     )
     slug = models.SlugField(
         unique=True,
