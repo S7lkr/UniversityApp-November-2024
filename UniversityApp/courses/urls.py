@@ -6,7 +6,10 @@ urlpatterns = [
         path('', views.CoursesCategoriesPage.as_view(), name='categories'),
         path('Web-Design/', include([
             path('', views.CoursesPage.as_view(), name='courses-wd'),
-            path('create/', views.CourseCreate.as_view(), name='courses-wd-create'),
+            path('create/', views.CourseCreatePage.as_view(), name='courses-wd-create'),
+            path('<int:pk>/', include([
+                path('edit/', views.CourseEditPage.as_view(), name='course-wd-edit'),
+            ]))
         ])),
         path('Graphic-Design/', views.CoursesPage.as_view(), name='courses-gd'),
         path('Video-Editing/', views.CoursesPage.as_view(), name='courses-ve'),
