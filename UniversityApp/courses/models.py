@@ -9,13 +9,13 @@ class Course(models.Model):
 
     name = models.CharField(                # Python Web
         max_length=NAME_MAX_LENGTH,
+        unique=True,
     )
     category = models.CharField(            # Web Design
         max_length=CATEGORY_MAX_LENGTH,
         choices=CourseChoices.choices,
     )
     slug = models.SlugField(
-        unique=True,
         null=True,
         blank=True,
         editable=False,
@@ -25,7 +25,8 @@ class Course(models.Model):
         blank=True,
     )
     credits = models.PositiveSmallIntegerField(
-        default=0,
+        null=True,
+        blank=True,
     )
     photo = models.URLField(
         null=True,
