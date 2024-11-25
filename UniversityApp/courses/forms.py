@@ -14,7 +14,7 @@ class CourseForm(forms.ModelForm):
         }
 
 
-class CourseCreateForm(mixins.PlaceholderMixin, mixins.DisabledFieldsMixin,  CourseForm):
+class CourseCreateForm(mixins.PlaceholderMixin, CourseForm):
     # disabled_fields_set = ('category',)
     pass
 
