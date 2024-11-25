@@ -2,9 +2,9 @@ from django.db import models
 
 
 class CourseChoices(models.TextChoices):
-    WEB_DESIGN = "WD", "Web Design"
-    GRAPHIC_DESIGN = "GD", "Graphic Design"
-    VIDEO_EDITING = "VE", "Video Editing"
-    ONLINE_MARKETING = "OM", "Online Marketing"
-    SOFTWARE_DEVELOPMENT = "SD", "Software Development"
-    OTHER = "OTH", "Other"
+    WEB_DESIGN = "Web Design", "Web Design"
+    GRAPHIC_DESIGN = "Graphic Design", "Graphic Design"
+    VIDEO_EDITING = "Video Editing", "Video Editing"
+    ONLINE_MARKETING = "Online Marketing", "Online Marketing"
+    SOFTWARE_DEVELOPMENT = "Software Development", "Software Development"
+    OTHER = "Other", "Other"
