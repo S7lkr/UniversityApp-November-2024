@@ -37,13 +37,13 @@
 - [ ] Lector model
 - [ ] Student model
 - [ ] PersonPhoto model
-- [ ] Course model
+- [x] Course model
 - [ ] OnlineLecture model
 - [ ] UniversityPhoto model
 
 
 ## 4. Add validators for models:
-- [x] Alphabetic validator
+- [x] Alphabetic name validator
 - [x] Password validator
 - [ ] Capitalized name validator
 
@@ -56,7 +56,7 @@
 ## 5. Create forms:
  - [ ] Register form
  - [ ] Login Form
- - [ ] Create Course Form
+ - [x] Create Course Form
  - [ ] Edit Course Form
  - [ ] Delete Course Form
 
@@ -75,7 +75,7 @@
 - [x] home
 - [x] register
 - [x] login
-- [ ] courses
+- [x] courses
 - [ ] online lectures
 - [ ] lectors
 - [ ] students
@@ -95,15 +95,34 @@
   - [ ] ProfileEditPage view
   - [ ] ProfileDeletePage view
 - [ ] Common views
-  - [ ] ...
+  - [ ] show home page
 - [ ] Lectors views
-  - [ ] ...
+  - [ ] create
+  - [ ] details
+  - [ ] edit
+  - [ ] delete
 - [ ] Students views
-  - [ ] ...
+  - [ ] create
+  - [ ] details
+  - [ ] edit
+  - [ ] delete
 - [ ] PersonPhotos views
-  - [ ] ...
+  - [ ] create
+  - [ ] details
+  - [ ] edit
+  - [ ] delete
 - [ ] Courses views
-  - [ ] ...
+  - [ ] create
+  - [ ] details
+  - [ ] edit
+  - [ ] delete
 - [ ] OnlineLectures views
-  - [ ]
+  - [ ] create
+  - [ ] details
+  - [ ] edit
+  - [ ] delete
 - [ ] UniversityPhotos views
+  - [ ] create
+  - [ ] details
+  - [ ] edit
+  - [ ] delete
