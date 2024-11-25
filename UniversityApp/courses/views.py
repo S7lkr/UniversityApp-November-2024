@@ -1,7 +1,8 @@
 from django.urls import reverse_lazy
 from django.views import generic
-from UniversityApp.courses.forms import CourseForm
+from UniversityApp.courses import forms
 from UniversityApp.courses.models import Course
+from UniversityApp.mixins import DisabledFieldsMixin
 
 
 class CoursesCategoriesPage(generic.TemplateView):
@@ -23,14 +24,14 @@ class CoursesPage(generic.ListView):
 
 class CourseCreatePage(generic.CreateView):
     model = Course
-    form_class = CourseForm
+    form_class = forms.CourseCreateForm
     template_name = 'courses/course-create-page.html'
     success_url = reverse_lazy('courses-wd')
 
 
 class CourseEditPage(generic.UpdateView):
     model = Course
-    form_class = CourseForm
+    form_class = forms.CourseEditForm
     pk_url_kwarg = 'pk'
     template_name = 'courses/course-edit-page.html'
     success_url = reverse_lazy('courses-wd')
@@ -40,3 +41,17 @@ class CourseDetailsPage(generic.DetailView):
     model = Course
     pk_url_kwarg = 'pk'
     template_name = 'courses/course-details-page.html'
+
+
+class CourseDeletePage(generic.DeleteView):
+    model = Course
+    form_class = forms.CourseDeleteForm
+    pk_url_kwarg = 'pk'
+    template_name = 'courses/course-delete-page.html'
+    success_url = reverse_lazy('courses-wd')
+
+    def get_initial(self):
+        return self.get_object().__dict__
+
+    def form_invalid(self, form):
+        return super().form_valid(form)
