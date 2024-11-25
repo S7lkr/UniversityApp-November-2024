@@ -28,6 +28,10 @@ class Course(models.Model):
         null=True,
         blank=True,
     )
+    duration = models.PositiveSmallIntegerField(
+        null=True,
+        blank=True,
+    )
     photo = models.URLField(
         null=True,
         blank=True,
