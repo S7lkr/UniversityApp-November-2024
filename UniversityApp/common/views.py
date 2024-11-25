@@ -1,8 +1,5 @@
 from django.views import generic
 
 
-class HomePage(generic.ListView):
+class HomePage(generic.TemplateView):
     template_name = 'index.html'
-
-    def get_queryset(self):
-        pass
