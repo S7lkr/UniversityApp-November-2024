@@ -1,6 +1,4 @@
 from django import forms
-from django.db import models
-
 from UniversityApp.courses.models import Course
 from UniversityApp import mixins
 
