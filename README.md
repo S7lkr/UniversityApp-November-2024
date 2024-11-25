@@ -60,7 +60,7 @@
 - [ ] Courses:
   - [x] Create Course Form
   - [x] Edit Course Form
-  - [ ] Delete Course Form
+  - [x] Delete Course Form
 
 
 ## 6. Register UserModel in admin panel:
@@ -114,11 +114,11 @@
     - [ ] details
     - [ ] edit
     - [ ] delete
-- [ ] Courses views
-    - [ ] create
-    - [ ] details
-    - [ ] edit
-    - [ ] delete
+- [x] Courses views
+    - [x] create
+    - [x] details
+    - [x] edit
+    - [x] delete
 - [ ] OnlineLectures views
     - [ ] create
     - [ ] details
