@@ -8,6 +8,7 @@ urlpatterns = [
             path('', views.CoursesPage.as_view(), name='courses-wd'),
             path('create/', views.CourseCreatePage.as_view(), name='courses-wd-create'),
             path('<int:pk>/', include([
+                path('details/', views.CourseDetailsPage.as_view(), name='details'),
                 path('edit/', views.CourseEditPage.as_view(), name='course-wd-edit'),
             ]))
         ])),

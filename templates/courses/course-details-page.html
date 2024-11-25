@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <!-- Course Start -->
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s" style="min-height: 400px;">
+                    <div class="position-relative h-100">
+                        <img class="img-fluid position-absolute w-100 h-100" src="{{ course.photo }}" alt=""
+                             style="object-fit: cover;">
+                    </div>
+                </div>
+                <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.3s">
+                    <h6 class="section-title bg-white text-start text-primary pe-3">{{ course.category }}</h6>
+                    <h1 class="mb-4 fs-3"><i class="fa-solid fa-file"></i> {{ course.name }}</h1>
+
+                    <p class="mb-4 fs-6"><i class="fa-solid fa-circle-info"></i> {{ course.description }}</p>
+                    <p class="mb-4 fs-6"><i class="fa-regular fa-star"></i> <strong>{{ course.credits }}</strong> credits</p>
+
+                    <div class="row gy-2 gx-4 mb-4">
+                        <div class="col-sm-6">
+                            <p class="mb-4 fs-6">
+                                <i class="fa-regular fa-calendar"></i>
+                                <strong>{{ course.duration }}</strong> weeks
+                            </p>
+                        </div>
+                    </div>
+                    <a class="btn btn-success py-3 px-4 mt-2" href=""><i class="fa-solid fa-plus"></i> Join Now</a>
+                    <br>
+                    <a class="btn btn-primary py-2 px-4 mt-5" href=""><i class="fa-solid fa-pen-to-square"></i> Edit</a>
+                    <a class="btn btn-danger py-2 px-4 mt-5" href=""><i class="fa-solid fa-trash"></i> Delete</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Course End -->
+{% endblock %}

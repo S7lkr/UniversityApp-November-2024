@@ -34,3 +34,9 @@ class CourseEditPage(generic.UpdateView):
     pk_url_kwarg = 'pk'
     template_name = 'courses/course-edit-page.html'
     success_url = reverse_lazy('courses-wd')
+
+
+class CourseDetailsPage(generic.DetailView):
+    model = Course
+    pk_url_kwarg = 'pk'
+    template_name = 'courses/course-details-page.html'
