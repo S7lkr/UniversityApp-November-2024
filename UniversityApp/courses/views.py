@@ -1,4 +1,7 @@
+from django.urls import reverse_lazy
 from django.views import generic
+
+from UniversityApp.courses.forms import CourseForm
 from UniversityApp.courses.models import Course
 
 
@@ -17,3 +20,10 @@ class CoursesPage(generic.ListView):
         category_url = self.request.get_full_path().split('/')[3].replace("-", " ")
         queryset = super().get_queryset().filter(category=category_url)
         return queryset
+
+
+class CourseCreate(generic.CreateView):
+    model = Course
+    form_class = CourseForm
+    template_name = 'course-create-page.html'
+    success_url = reverse_lazy('courses-wd')
