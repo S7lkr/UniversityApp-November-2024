@@ -7,6 +7,7 @@ from UniversityApp.validators import AlphabeticValidator
 
 UserModel = get_user_model()
 
+
 class Profile(models.Model):
     first_name = models.CharField(
         max_length=15,
@@ -23,7 +24,6 @@ class Profile(models.Model):
         ],
         null=True,
         blank=True,
-
     )
     personal_image = models.URLField(
         null=True,
