@@ -8,7 +8,10 @@
     </button>
 
     {% if request.user.is_authenticated %}
-        <span><strong>User:  </strong>{{ request.user }}</span>
+        <span>
+        <strong>User:  </strong>
+            <a href="{% url 'profile-details' user.id %}">{{ request.user }}</a>
+        </span>
     {% else %}
         <span><strong>User:  </strong>Guest</span>
     {% endif %}
