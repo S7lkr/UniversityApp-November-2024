@@ -41,7 +41,7 @@ class Course(models.Model):
     def save(self, *args, **kwargs):    # override save method
         super().save(*args, **kwargs)   # get all functionalities from parent's "save()" method
         if not self.slug:
-            self.slug = slugify(self.category)  # Web Design -> web-design
+            self.slug = slugify(f"{self.name}-{self.id}")  # HTML, CSS & JS --> html-css-js
         super().save(*args, **kwargs)
 
     def __str__(self):
