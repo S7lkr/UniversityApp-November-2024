@@ -9,11 +9,11 @@
             <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
                 <h6 class="section-title bg-white text-center text-primary px-3">Courses</h6>
                 {% if courses %}
-                    <h1 class="mb-5">Web Design courses</h1>
+                    <h1 class="mb-5">{{ category|capfirst }} Courses</h1>
                 {% else %}
                     <h1 class="mb-5">No courses yet</h1>
                 {% endif %}
-                <a href="{% url 'courses-wd-create' %}"><button type="button" class="btn btn-primary mb-4">Add Course</button></a>
+{#                <a href="{% url 'courses-create' %}"><button type="button" class="btn btn-primary mb-4">Add Course</button></a>#}
             </div>
             <div class="row g-4 justify-content-center">
                 {% for course in courses %}
@@ -22,13 +22,14 @@
                             <div class="position-relative overflow-hidden">
                                 <img class="img-fluid" src="{{ course.photo }}" alt="">
                                 <div class="w-100 d-flex justify-content-center position-absolute bottom-0 start-0 mb-4">
-                                    <a href="{% url 'course-wd-details' course.pk %}" class="flex-shrink-0 btn btn-sm btn-primary px-3 border-end"
+                                    <a href="{% url 'course-details' course.slug %}" class="flex-shrink-0 btn btn-sm btn-primary px-3 border-end"
                                        style="border-radius: 30px 0 0 30px;">Read More</a>
-                                    <a href="#" class="flex-shrink-0 btn btn-sm btn-primary px-3"
+                                    <a href="#" class="flex-shrink-0 btn btn-sm btn-warning px-3"
                                        style="border-radius: 0 30px 30px 0;">Join</a>
                                 </div>
                             </div>
                             <div class="text-center p-4 pb-0">
+                                <h6 class="mb-4">{{ course.category }}</h6>
                                 <h3 class="mb-0">{{ course.name }}</h3>
                                 <div class="mb-3">
                                     <small class="fa fa-star text-primary"></small>
@@ -38,13 +39,13 @@
                                     <small class="fa fa-star text-primary"></small>
                                     <small>(123)</small>
                                 </div>
-                                <h5 class="mb-4">{{ course.credits }} credits</h5>
+{#                                <h5 class="mb-4">{{ course.credits }} credits</h5>#}
                             </div>
                             <div class="d-flex border-top">
                                 <small class="flex-fill text-center border-end py-2"><i
                                         class="fa fa-user-tie text-primary me-2"></i>John Doe</small>
                                 <small class="flex-fill text-center border-end py-2"><i
-                                        class="fa fa-clock text-primary me-2"></i>1.49 Hrs</small>
+                                        class="fa fa-clock text-primary me-2"></i>{{ course.duration }} week/s</small>
                                 <small class="flex-fill text-center py-2"><i class="fa fa-user text-primary me-2"></i>30
                                     Students</small>
                             </div>
