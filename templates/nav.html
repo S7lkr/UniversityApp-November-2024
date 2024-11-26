@@ -9,8 +9,16 @@
 
     {% if request.user.is_authenticated %}
         <span>
-        <strong>User:  </strong>
-            <a href="{% url 'profile-details' user.id %}">{{ request.user }}</a>
+            <strong>User:  </strong>
+            <a href="{% url 'profile-details' user.id %}">
+                {{ request.user }}
+{#                <img#}
+{#                    class="border rounded-circle mx-auto mb-3"#}
+{#                    src="/static/img/testimonial-4.jpg"#}
+{#                    style="width: 30px; height: 30px;"#}
+{#                    alt="#"#}
+{#                >#}
+            </a>
         </span>
     {% else %}
         <span><strong>User:  </strong>Guest</span>
@@ -31,8 +39,21 @@
             <a href="about.html" class="nav-item nav-link">About</a>
             <a href="contact.html" class="nav-item nav-link">Contact</a>
         </div>
-        <a href="{% url 'login' %}" class="btn btn-primary py-3 px-lg-3 d-none d-lg-block">LogIn<i class="fa fa-arrow-right ms-3"></i></a>
-        <a href="{% url 'register' %}" class="btn btn-warning py-3 px-lg-3 d-none d-lg-block">Register</a>
+        {% if not request.user.is_authenticated %}
+            <a href="{% url 'login' %}" class="btn btn-primary py-3 px-lg-3 d-none d-lg-block">
+                <i class="fa-solid fa-right-to-bracket"></i>
+                Login
+            </a>
+            <a href="{% url 'register' %}" class="btn btn-warning py-3 px-lg-3 d-none d-lg-block">
+                <i class="fa-solid fa-circle-down"></i>
+                Register
+            </a>
+        {% else %}
+            <a href="{% url 'register' %}" class="btn btn-warning py-3 px-lg-3 d-none d-lg-block">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                Logout
+            </a>
+        {% endif %}
     </div>
 </nav>
 <!-- Navbar End -->
