@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <!-- Course Start -->
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s" style="min-height: 400px;">
+                    <div class="position-relative h-100">
+                        <img class="img-fluid position-absolute w-150 h-100" src="{{ object.profile.personal_image }}" alt=""
+                             style="object-fit: cover;">
+                    </div>
+                </div>
+                <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.3s">
+                    <h6 class="section-title bg-white text-start text-primary pe-3">{{ object.profile.type }}</h6>
+                    <hr>
+                    <h1 class="mb-2 fs-6">
+                        <i class="fa-regular fa-user"></i>
+                        {{ object.profile.first_name }} {{ object.profile.last_name }}
+{#                        <a class="btn btn-primary m-lg-2 py-2 px-3 mt-0" href="#"><i class="fa-solid fa-plus"></i> Join Course</a>#}
+                    </h1>
+                    <hr>
+                    <p class="mb-4 fs-20"><i class="fa-solid fa-circle-info"></i> {{ object.profile.biography }}</p>
+                    <hr>
+                    <span class="mb-4 m-n2 fs-6">Age: {{ object.profile.age }}</span>
+{#                    <span class="mb-4 m-lg-4 fs-6"><i class="fa-regular fa-star"></i> <strong>{{ course.credits }}</strong> credits</span>#}
+{#                    <span class="mb-4 m-lg-4 fs-6">#}
+{#                        <i class="fa-regular fa-clock"></i>#}
+{#                        <strong>{{ course.duration }}</strong>#}
+{#                        weeks#}
+{#                    </span>#}
+{#                    <span class="mb-4 m-lg-4 fs-6"><i class="fa-solid fa-users"></i> 12 students</span>#}
+                    <hr>
+                    <a class="btn btn-success py-2 px-4 mt-2" href="#"><i class="fa-solid fa-pen-to-square"></i> Edit</a>
+                    <a class="btn btn-danger py-2 px-4 mt-2" href="#"><i class="fa-solid fa-trash"></i> Delete</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Course End -->
+{% endblock %}
