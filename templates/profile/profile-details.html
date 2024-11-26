@@ -16,13 +16,21 @@
                     <hr>
                     <h1 class="mb-2 fs-6">
                         <i class="fa-regular fa-user"></i>
-                        {{ object.profile.first_name }} {{ object.profile.last_name }}
+                        {% if object.profile.last_name %}
+                            {{ object.profile.first_name }} {{ object.profile.last_name }}
+                        {% else %}
+                            {{ object.profile.first_name }}
+                        {% endif %}
 {#                        <a class="btn btn-primary m-lg-2 py-2 px-3 mt-0" href="#"><i class="fa-solid fa-plus"></i> Join Course</a>#}
                     </h1>
-                    <hr>
-                    <p class="mb-4 fs-20"><i class="fa-solid fa-circle-info"></i> {{ object.profile.biography }}</p>
-                    <hr>
-                    <span class="mb-4 m-n2 fs-6">Age: {{ object.profile.age }}</span>
+                    {% if object.profile.biography %}
+                        <hr>
+                        <p class="mb-4 fs-20"><i class="fa-solid fa-circle-info"></i> {{ object.profile.biography }}</p>
+                    {% endif %}
+                    {% if object.profile.age %}
+                        <hr>
+                        <span class="mb-4 m-2 fs-6">Age: {{ object.profile.age }}</span>
+                    {% endif %}
 {#                    <span class="mb-4 m-lg-4 fs-6"><i class="fa-regular fa-star"></i> <strong>{{ course.credits }}</strong> credits</span>#}
 {#                    <span class="mb-4 m-lg-4 fs-6">#}
 {#                        <i class="fa-regular fa-clock"></i>#}
