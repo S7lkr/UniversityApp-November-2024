@@ -6,7 +6,8 @@ urlpatterns = [
         path('register/', views.UserRegisterPage.as_view(), name='register'),
         path('login/', views.LoginView.as_view(), name='login'),
     ])),
-    path('<int:pk>/', include([
+    path('profile/<int:pk>/', include([
         path('details/', views.ProfileDetailsPage.as_view(), name='profile-details'),
+        path('edit/', views.ProfileEditPage.as_view(), name='profile-edit'),
     ])),
 ]
