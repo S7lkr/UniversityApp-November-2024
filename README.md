@@ -1,133 +1,106 @@
-# UniversityApp-November-2024-Project-Defence:
+# UniversityApp-November-2024-Project-Defence
 
 
-## 1. Create apps:
-- [x] Accounts app (admin, lectors, students)
-- [x] Common app
-- [ ] Lectors app
-- [ ] Students app
-- [ ] PersonPhotos app
-- [x] Courses app
-- [ ] OnlineLectures app
-- [ ] UniversityPhotos app
+## 1. Create project main architecture -> Apps:
 
-## 2. Create models:
-- [x] Accounts app:
-    - [x] User model
-    - [x] Profile model
-- [ ] Common app:
-    - [ ] Comment model
-    - [ ] Like model
-- [ ] Lector model
-- [ ] Student model
-- [ ] PersonPhoto model
-- [x] Course model
-- [ ] OnlineLecture model
-- [ ] UniversityPhoto model
+### 1.1 Accounts (admin, lectors, students):
+- [x] Models:
+    - [x] User mod.
+    - [x] Profile mod.
+- [x] Views
+- [x] Urls
+- [x] Signals
+- [x] Forms
 
-## 3. Make migrations and migrate to DB:
-- [x] Accounts app:
-    - [x] User model
-    - [x] Profile model
-- [ ] Common app:
-    - [ ] Comment model
-    - [ ] Like model
-- [ ] Lector model
-- [ ] Student model
-- [ ] PersonPhoto model
-- [x] Course model
-- [ ] OnlineLecture model
-- [ ] UniversityPhoto model
+### 1.2 Common:
+- [ ] Views
+  - [x] add user to course
+  - [x] remove user from course
+  - [ ] other.
+- [ ] Urls
+- [ ] Models ??
+- [ ] Forms
 
-## 4. Add validators for models:
+### 1.3 Courses:
+- [x] Models
+- [x] Views
+- [x] Urls
+- [x] Forms
 
-- [x] Alphabetic name validator
-- [x] Password validator
-- [ ] Capitalized name validator
+### 1.4 Online Classes:
+- [ ] Models
+- [ ] Views
+- [ ] Urls
+- [ ] Forms
 
+### 1.5 UserPhotos:
+- [ ] Models
+- [ ] Views
+- [ ] Urls
+- [ ] Forms
 
-## 5. Add mixins:
-- [x] Placeholder Mixin
-- [x] ReadOnlyFields Mixin
-- [x] DisabledFields Mixin
+### 1.6 UniversityPhotos:
+- [ ] Models
+- [ ] Views
+- [ ] Urls
+- [ ] Forms
 
-
-## 5. Create forms:
-- [ ] Users:
-  - [x] Register form
-  - [x] Login form
-  - [x] Profile edit form
-  - [x] Profile delete form
-- [x] Courses:
-  - [x] Create Course Form
-  - [x] Edit Course Form
-  - [x] Delete Course Form
+### 1.7 Question & Answer Section:
+- [ ] Models
+- [ ] Views
+- [ ] Urls
+- [ ] Forms
 
 
-## 6. Register UserModel in admin panel:
+## 2. Register UserModel in admin panel:
 - [x] Customize it:
     - [x] extend django base user -> UserAdmin
     - [x] list display
     - [x] ordering
     - [x] search functionality
     - [x] add fieldsets (categories)
-    - [ ] optional: integrate profile info in admin panel
+    - [ ] optional: integrate profile info in admin panel ??
 
 
-## 7. Create and implement templates (html-s):
-- [x] base
-- [x] home
+## 3. Add validators for models:
+- [x] Alphabetic name validator
+- [x] Password validator
+- [ ] Capitalized name validator
+
+
+## 4. Add mixins:
+- [x] Placeholder Mixin
+- [x] ReadOnlyFields Mixin
+- [x] DisabledFields Mixin
+
+
+## 5. Create/import static files:
+- [x] CSS
+- [x] Images
+- [x] Bootstrap & min.css
+- [x] SCSS
+- [x] JS Scripts
+
+
+## 6. Create templates into the project:
+- [x] base (header/meta + nav + {bl.content} + footer)
+- [x] index (home)
+- [ ] navbar
+
+### 6.1 Users (auth):
 - [x] register
 - [x] login
-- [x] courses
+- [x] create/edit profile
+- [x] delete profile
+
+### 6.2 Courses:
+- [x] Courses
+- [x] Courses categories
+- [x] Crate, Details, Edit, Delete course
+- 
+
+
 - [ ] online lectures
 - [ ] lectors
 - [ ] students
 - [ ] other...
-
-
-## 8. Create and implement static files:
-- [x] CSS
-- [x] Pictures
-
-
-## 9. Create views:
-- [x] Accounts views
-    - [x] UserRegisterPage view
-    - [x] UserLoginPage view
-    - [x] Logout view
-    - [x] ProfileDetailsPage view
-    - [x] ProfileEditPage view
-    - [x] ProfileDeletePage view
-- [ ] Common views
-    - [x] show home page
-- [ ] Lectors views
-    - [ ] create
-    - [ ] details
-    - [ ] edit
-    - [ ] delete
-- [ ] Students views
-    - [ ] create
-    - [ ] details
-    - [ ] edit
-    - [ ] delete
-- [ ] PersonPhotos views
-    - [ ] create
-    - [ ] details
-    - [ ] edit
-    - [ ] delete
-- [x] Courses views
-    - [x] create
-    - [x] details
-    - [x] edit
-    - [x] delete
-- [ ] OnlineLectures views
-    - [ ] create
-    - [ ] details
-    - [ ] edit
-    - [ ] delete
-- [ ] UniversityPhotos views
-    - [ ] create
-    - [ ] details
-    - [ ] edit
-    - [ ] delete
