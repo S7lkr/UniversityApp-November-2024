@@ -46,8 +46,9 @@
                                         class="fa fa-user-tie text-primary me-2"></i>John Doe</small>
                                 <small class="flex-fill text-center border-end py-2"><i
                                         class="fa fa-clock text-primary me-2"></i>{{ course.duration }} week/s</small>
-                                <small class="flex-fill text-center py-2"><i class="fa fa-user text-primary me-2"></i>30
-                                    Students</small>
+                                <small class="flex-fill text-center py-2"><i class="fa fa-user text-primary me-2"></i>
+                                    {{ course.profile_set.count }} student/s
+                                </small>
                             </div>
                         </div>
                     </div>
