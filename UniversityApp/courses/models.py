@@ -1,7 +1,7 @@
 from datetime import date
 from django.db import models
 from django.utils.text import slugify
-from UniversityApp.courses.course_categories import CourseChoices
+from UniversityApp.courses.choices_category import CourseChoices
 
 
 class Course(models.Model):
