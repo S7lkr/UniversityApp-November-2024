@@ -16,12 +16,11 @@ class UserLoginPage(LoginView):
     template_name = 'registration/login.html'
 
 
+# ----------------------------------------------------------
+
 class ProfileDetailsPage(generic.DetailView):
     model = get_user_model()
     template_name = 'profile/profile-details.html'
-
-    def get_object(self, queryset=None):
-        return self.request.user
 
 
 class ProfileEditPage(generic.UpdateView):
