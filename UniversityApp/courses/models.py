@@ -11,10 +11,12 @@ class Course(models.Model):
     name = models.CharField(                # Python Web
         max_length=NAME_MAX_LENGTH,
         unique=True,
+        help_text="This field is required!"
     )
     category = models.CharField(            # Web Design
         max_length=CATEGORY_MAX_LENGTH,
         choices=CourseChoices.choices,
+        help_text="This field is required!"
     )
     slug = models.SlugField(
         null=True,
@@ -26,7 +28,8 @@ class Course(models.Model):
         blank=True,
     )
     start_date = models.DateField(
-        default=date.today()
+        null=True,
+        blank=True,
     )
     credits = models.PositiveSmallIntegerField(
         null=True,
