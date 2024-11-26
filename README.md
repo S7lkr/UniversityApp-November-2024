@@ -1,9 +1,9 @@
 # UniversityApp-November-2024-Project-Defence:
 
-## 1. Create apps:
 
+## 1. Create apps:
 - [x] Accounts app (admin, lectors, students)
-- [ ] Common app
+- [x] Common app
 - [ ] Lectors app
 - [ ] Students app
 - [ ] PersonPhotos app
@@ -12,7 +12,6 @@
 - [ ] UniversityPhotos app
 
 ## 2. Create models:
-
 - [x] Accounts app:
     - [x] User model
     - [x] Profile model
@@ -27,7 +26,6 @@
 - [ ] UniversityPhoto model
 
 ## 3. Make migrations and migrate to DB:
-
 - [x] Accounts app:
     - [x] User model
     - [x] Profile model
@@ -47,17 +45,20 @@
 - [x] Password validator
 - [ ] Capitalized name validator
 
-## 5. Add mixins:
 
+## 5. Add mixins:
 - [x] Placeholder Mixin
 - [x] ReadOnlyFields Mixin
 - [x] DisabledFields Mixin
 
+
 ## 5. Create forms:
-- [ ] Auth:
+- [ ] Users:
   - [x] Register form
   - [x] Login form
-- [ ] Courses:
+  - [x] Profile edit form
+  - [x] Profile delete form
+- [x] Courses:
   - [x] Create Course Form
   - [x] Edit Course Form
   - [x] Delete Course Form
@@ -72,8 +73,8 @@
     - [x] add fieldsets (categories)
     - [ ] optional: integrate profile info in admin panel
 
-## 7. Create and implement templates (html-s):
 
+## 7. Create and implement templates (html-s):
 - [x] base
 - [x] home
 - [x] register
@@ -94,11 +95,12 @@
 - [x] Accounts views
     - [x] UserRegisterPage view
     - [x] UserLoginPage view
-    - [ ] ProfileDetailsPage view
-    - [ ] ProfileEditPage view
-    - [ ] ProfileDeletePage view
+    - [x] Logout view
+    - [x] ProfileDetailsPage view
+    - [x] ProfileEditPage view
+    - [x] ProfileDeletePage view
 - [ ] Common views
-    - [ ] show home page
+    - [x] show home page
 - [ ] Lectors views
     - [ ] create
     - [ ] details
