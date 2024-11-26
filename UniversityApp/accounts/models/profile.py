@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth import get_user_model
 from django.core.validators import MinLengthValidator
+
+from UniversityApp.courses.models import Course
 from UniversityApp.validators import AlphabeticValidator
 
 UserModel = get_user_model()
@@ -35,6 +37,12 @@ class Profile(models.Model):
     user = models.OneToOneField(
         to=UserModel,
         on_delete=models.CASCADE,
+    )
+    course = models.ForeignKey(
+        to=Course,
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
     )
 
     def __str__(self):
