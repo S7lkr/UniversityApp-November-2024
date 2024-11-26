@@ -1,3 +1,4 @@
+from datetime import date
 from django.db import models
 from django.utils.text import slugify
 from UniversityApp.courses.course_categories import CourseChoices
@@ -23,6 +24,9 @@ class Course(models.Model):
     description = models.TextField(
         null=True,
         blank=True,
+    )
+    start_date = models.DateField(
+        default=date.today()
     )
     credits = models.PositiveSmallIntegerField(
         null=True,

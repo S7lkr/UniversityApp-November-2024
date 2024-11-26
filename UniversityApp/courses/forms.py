@@ -10,7 +10,7 @@ class CourseForm(forms.ModelForm):
 
         widgets = {
             'category': forms.Select(attrs=None, choices=['Web Design']),
-            # 'category': models.CharField(default='Web Design'),
+            'start_date': forms.DateInput(attrs={'type': 'date'}),
         }
 
 
