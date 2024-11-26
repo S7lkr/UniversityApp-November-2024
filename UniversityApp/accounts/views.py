@@ -11,7 +11,7 @@ User = get_user_model()
 class UserRegisterPage(generic.CreateView):
     model = User
     form_class = UserRegisterForm
-    template_name = 'registration/registration.html'
+    template_name = 'users/register.html'
 
     def form_valid(self, form):
         response = super().form_valid(form)
@@ -23,7 +23,7 @@ class UserRegisterPage(generic.CreateView):
 
 
 class UserLoginPage(LoginView):
-    template_name = 'registration/login.html'
+    template_name = 'users/login.html'
 
 
 # ----------------------------------------------------------
