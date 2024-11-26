@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import generic
 from UniversityApp.courses.models import Course
 
@@ -7,18 +7,19 @@ class HomePage(generic.TemplateView):
     template_name = 'index.html'
 
 
-def add_user_to_course(request, course_slug):
+def course_user_add(request, course_slug):
     course_id = Course.objects.get(slug=course_slug).pk
     profile = request.user.profile
     profile.course_id = course_id
-    print(request.user)
-    print(course_slug)
+    profile.save()
 
-    if course_slug:
-        profile.save()
+    return redirect(to='http://localhost:8000/courses/all-courses/')
 
-    context = {
-        'slug_url_kwarg': course_slug,
-    }
 
-    return render(request, 'index.html', context)
+def course_user_remove(request):
+    profile = request.user.profile
+    profile.course_id = None
+    profile.save()
+
+    return redirect(to='http://localhost:8000/courses/all-courses/')
+
