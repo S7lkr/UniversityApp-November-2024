@@ -16,8 +16,17 @@
                     <hr>
                     <h1 class="mb-2 fs-3">
                         {{ course.name }}
-                        <a class="btn btn-primary m-lg-2 py-2 px-3 mt-0" href="{% url 'add-user-to-course' course.slug %}"><i class="fa-solid fa-plus"></i> Join Course</a>
+
+                        {% if user.profile.course_id is None %}
+                            <!-- If user NOT in ANY course-->
+                            <a class="btn btn-primary m-lg-2 py-2 px-3 mt-0" href="{% url 'user-add' course.slug %}"><i class="fa-solid fa-plus"></i> Join Course</a>
+                            <!-- If user HAS ALREADY JOINED course -->
+                        {% elif user.profile.course_id == course.pk %}
+                            <span class="badge bg-primary"><i class="fa-solid fa-check"></i>Joined!</span>
+                            <a href="{% url 'user-remove' %}"><span class="badge bg-light">Quit?</span></a>
+                        {% endif %}
                     </h1>
+
                     <p class="mb-3 fs-6"><i class="fa-solid fa-user-tie"></i> John Doe</p>
                     <hr>
                     <p class="mb-4 fs-20"><i class="fa-solid fa-circle-info"></i> {{ course.description }}</p>
