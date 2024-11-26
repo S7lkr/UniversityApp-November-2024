@@ -16,7 +16,7 @@
                     <hr>
                     <h1 class="mb-2 fs-3">
                         {{ course.name }}
-                        <a class="btn btn-primary m-lg-2 py-2 px-3 mt-0" href="#"><i class="fa-solid fa-plus"></i> Join Course</a>
+                        <a class="btn btn-primary m-lg-2 py-2 px-3 mt-0" href="{% url 'add-user-to-course' course.slug %}"><i class="fa-solid fa-plus"></i> Join Course</a>
                     </h1>
                     <p class="mb-3 fs-6"><i class="fa-solid fa-user-tie"></i> John Doe</p>
                     <hr>
