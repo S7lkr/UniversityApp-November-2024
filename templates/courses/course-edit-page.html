@@ -3,11 +3,19 @@
 {% block content %}
     <div class="form-section">
         <div class="form-container">
-            <h2 class="mb-4">Edit course:</h2>
+            <h2 class="mb-4">Edit "{{ course.name }}" course:</h2>
             <form method="post">
                 {% csrf_token %}
                 {{ form }}
-                <button class="btn btn-primary w-50 mt-4" type="submit" tabindex="0">Edit</button>
+                <button class="btn btn-primary p-2 w-40 mt-4 m-lg-0" type="submit" tabindex="0">Edit</button>
+                <a
+                    href="{% url 'course-details' course.slug %}"
+                    class="btn btn-success p-2 w-40 mt-4 m-lg-2"
+                    type="submit"
+                    tabindex="0"
+                >
+                    Cancel
+                </a>
             </form>
         </div>
     </div>
