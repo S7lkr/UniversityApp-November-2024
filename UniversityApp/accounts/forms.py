@@ -40,7 +40,6 @@ class ProfileEditForm(PlaceholderMixin, forms.ModelForm):
             'personal_image': '',
             'biography': '',
             'age': '',
-            'type': "Select user type",
         }
 
 

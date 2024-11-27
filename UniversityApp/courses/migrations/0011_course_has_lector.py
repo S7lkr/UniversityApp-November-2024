@@ -12,7 +12,7 @@ class Migration(migrations.Migration):
     operations = [
         migrations.AddField(
             model_name='course',
-            name='has_lector',
-            field=models.BooleanField(default=False),
+            name='lector',
+            field=models.CharField(max_length=40, null=True, blank=True),
         ),
     ]

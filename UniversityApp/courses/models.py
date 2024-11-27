@@ -44,8 +44,10 @@ class Course(models.Model):
         blank=True,
         default="http://localhost:8000/static/img/course.jpg"
     )
-    has_lector = models.BooleanField(
-        default=False,
+    lector = models.CharField(
+        max_length=40,
+        null=True,
+        blank=True,
     )
 
     def save(self, *args, **kwargs):    # override save method
