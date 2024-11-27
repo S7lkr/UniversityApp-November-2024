@@ -8,7 +8,7 @@ from UniversityApp.accounts.models import Profile
 User = get_user_model()
 
 
-class UserRegisterPage(generic.CreateView):
+class UserRegisterPage(generic.CreateView):     # register
     model = User
     form_class = UserRegisterForm
     template_name = 'users/register.html'
@@ -22,34 +22,23 @@ class UserRegisterPage(generic.CreateView):
         return reverse_lazy('profile-edit', kwargs={'pk': self.object.pk})
 
 
-class UserLoginPage(LoginView):
+class UserLoginPage(LoginView):                 # login
     template_name = 'users/login.html'
 
 
-# ----------------------------------------------------------
-
-class ProfileDetailsPage(generic.DetailView):
+class ProfileDetailsPage(generic.DetailView):       # profile details
     model = get_user_model()
     template_name = 'profile/profile-details.html'
 
 
-class ProfileEditPage(generic.UpdateView):
+class ProfileEditPage(generic.UpdateView):          # profile edit
     model = Profile
     form_class = ProfileEditForm
     template_name = 'profile/profile-edit.html'
-    # success_url = reverse_lazy('profile-details')
 
     def get_success_url(self):
         return reverse_lazy('profile-details', kwargs={'pk': self.object.pk})
 
-    # def get_queryset(self):
-    #     queryset = self.get_queryset()
-    #     print(queryset)
-    #     return queryset
 
-    # def get_object(self, queryset=None):
-    #     return self.request.user
-
-
-class ProfileDeletePage(generic.DeleteView):
+class ProfileDeletePage(generic.DeleteView):        # profile delete
     pass
