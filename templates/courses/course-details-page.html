@@ -23,11 +23,11 @@
                             <!-- If user HAS ALREADY JOINED course -->
                         {% elif user.profile.course_id == course.pk %}
                             <span class="badge bg-primary"><i class="fa-solid fa-check"></i>Joined!</span>
-                            <a href="{% url 'user-remove' %}"><span class="badge bg-light">Quit?</span></a>
+                            <a href="{% url 'user-remove' course.slug %}"><span class="badge bg-light">Quit?</span></a>
                         {% endif %}
                     </h1>
 
-                    <p class="mb-3 fs-6"><i class="fa-solid fa-user-tie"></i> John Doe</p>
+                    <p class="mb-3 fs-6"><i class="fa-solid fa-user-tie"></i> {{ lector }}</p>
                     <hr>
                     <p class="mb-4 fs-20"><i class="fa-solid fa-circle-info"></i> {{ course.description }}</p>
                     <hr>
@@ -38,7 +38,13 @@
                         <strong>{{ course.duration }}</strong>
                         weeks
                     </span>
-                    <span class="mb-4 m-lg-4 fs-6"><i class="fa-solid fa-users"></i> 12 students</span>
+                    <span class="mb-4 m-lg-4 fs-6"><i class="fa-solid fa-users"></i>
+                        {% if not course.lector %}
+                            {{ course.profiles.count }}
+                        {% else %}
+                            {{ course.profiles.count|add:-1 }}
+                        {% endif %}
+                        student/s</span>
                     <hr>
                     <a class="btn btn-success py-2 px-4 mt-2" href="{% url 'course-edit' course.slug %}"><i class="fa-solid fa-pen-to-square"></i> Edit</a>
                     <a class="btn btn-danger py-2 px-4 mt-2" href="{% url 'course-delete' course.slug %}"><i class="fa-solid fa-trash"></i> Delete</a>
