@@ -13,6 +13,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='customuser',
             name='password',
-            field=models.CharField(max_length=16),
+            field=models.CharField(max_length=128),
         ),
     ]

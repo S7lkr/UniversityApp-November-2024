@@ -1,8 +1,7 @@
 from django.db import models
 from django.contrib.auth import get_user_model
-from django.core.validators import MinLengthValidator
-from UniversityApp.accounts.choices_type import TypeChoices
 from UniversityApp.courses.models import Course
+from django.core.validators import MinLengthValidator
 from UniversityApp.validators import AlphabeticValidator
 
 UserModel = get_user_model()
@@ -34,13 +33,12 @@ class Profile(models.Model):
         null=True,
         blank=True,
     )
-    biography = models.TextField(
+    bio = models.TextField(
         null=True,
         blank=True,
     )
-    type = models.CharField(
-        max_length=20,
-        choices=TypeChoices.choices,
+    is_lector = models.BooleanField(
+        default=False,
     )
     user = models.OneToOneField(
         to=UserModel,

@@ -26,7 +26,7 @@ class AlphabeticValidator:
 @deconstructible
 class PasswordValidator:
     _MIN = 8
-    _MAX = 20
+    _MAX = 40
     _HELP_TEXT = (
         f"Password must be between {_MIN} and {_MAX} symbols long!",
     )

@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.validators import MinLengthValidator
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.contrib.auth.models import PermissionsMixin
 from UniversityApp.accounts.managers import CustomUserManager
@@ -12,7 +13,10 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         },
     )
     password = models.CharField(
-        max_length=16,
+        max_length=128,
+        validators=[
+            MinLengthValidator(8),
+        ],
     )
     is_active = models.BooleanField(
         default=True,
