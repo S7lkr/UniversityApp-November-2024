@@ -44,6 +44,9 @@ class Course(models.Model):
         blank=True,
         default="http://localhost:8000/static/img/course.jpg"
     )
+    has_lector = models.BooleanField(
+        default=False,
+    )
 
     def save(self, *args, **kwargs):    # override save method
         super().save(*args, **kwargs)   # get all functionalities from parent's "save()" method

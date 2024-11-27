@@ -6,7 +6,7 @@ from UniversityApp import mixins
 class CourseForm(forms.ModelForm):
     class Meta:
         model = Course
-        exclude = ('slug',)
+        exclude = ('slug', 'has_lector', )
 
         widgets = {
             'category': forms.Select(attrs=None, choices=['Web Design']),
