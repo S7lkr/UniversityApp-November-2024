@@ -56,3 +56,8 @@ class Profile(models.Model):
         if self.last_name:
             return self.first_name + " " + self.last_name
         return self.first_name
+
+    def get_full_name(self):
+        if self.last_name:
+            return self.first_name + " " + self.last_name
+        return self.first_name
