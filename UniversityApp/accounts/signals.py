@@ -16,6 +16,6 @@ def make_profile(sender, instance: User, created: bool, **kwargs):
             first_name='',
             last_name=None,       # initial Profile data
             age=None,
-            personal_image="http://127.0.0.1:8000/static/img/person.jpg",
+            personal_image="http://127.0.0.1:8000/static/img/team.jpg",
             user=instance,
         )
