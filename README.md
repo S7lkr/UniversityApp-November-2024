@@ -59,7 +59,7 @@
     - [x] ordering
     - [x] search functionality
     - [x] add fieldsets (categories)
-    - [ ] optional: integrate profile info in admin panel ??
+    - [x] optional: integrate profile info in admin panel
 
 
 ## 3. Add validators for models:

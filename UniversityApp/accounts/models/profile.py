@@ -48,7 +48,8 @@ class Profile(models.Model):
         to=Course,
         on_delete=models.CASCADE,
         null=True,
-        blank=True,
+        blank=True,                 # Profile.course_id -> person's course
+        related_name='profiles',    # Course2.profiles -> course's all people
     )
 
     def __str__(self):
