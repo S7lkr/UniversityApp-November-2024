@@ -12,7 +12,13 @@
                     </div>
                 </div>
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.3s">
-                    <h6 class="section-title bg-white text-start text-primary pe-3">{{ object.profile.type }}</h6>
+                    <h6 class="section-title bg-white text-start text-primary pe-3">
+                        {% if object.profile.is_lector %}
+                            Lector
+                        {% else %}
+                            Student
+                        {% endif %}
+                    </h6>
                     <hr>
                     <h1 class="mb-2 fs-6">
                         <i class="fa-regular fa-user"></i>
@@ -23,9 +29,9 @@
                         {% endif %}
 {#                        <a class="btn btn-primary m-lg-2 py-2 px-3 mt-0" href="#"><i class="fa-solid fa-plus"></i> Join Course</a>#}
                     </h1>
-                    {% if object.profile.biography %}
+                    {% if object.profile.bio %}
                         <hr>
-                        <p class="mb-4 fs-20"><i class="fa-solid fa-circle-info"></i> {{ object.profile.biography }}</p>
+                        <p class="mb-4 fs-20"><i class="fa-solid fa-circle-info"></i> {{ object.profile.bio }}</p>
                     {% endif %}
                     {% if object.profile.age %}
                         <hr>
