@@ -33,7 +33,7 @@ class UserEditForm(UserChangeForm):     # for admin
 class ProfileEditForm(PlaceholderMixin, forms.ModelForm):
     class Meta:
         model = Profile
-        exclude = ("user", "course")
+        exclude = ("user", "course", "is_lector",)
         labels = {
             'first_name': '',
             'last_name': '',
@@ -45,8 +45,8 @@ class ProfileEditForm(PlaceholderMixin, forms.ModelForm):
 
 
 class ProfileDeleteForm(DisabledFieldsMixin, forms.ModelForm):
-    disabled_fields_set = ('first_name', 'last_name', 'type')
+    disabled_fields_set = ('first_name', 'last_name',)
 
     class Meta:
         model = Profile
-        fields = ('first_name', 'last_name', 'type')
+        fields = ('first_name', 'last_name',)

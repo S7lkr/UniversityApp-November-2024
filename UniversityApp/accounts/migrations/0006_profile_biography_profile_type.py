@@ -12,13 +12,13 @@ class Migration(migrations.Migration):
     operations = [
         migrations.AddField(
             model_name='profile',
-            name='biography',
+            name='bio',
             field=models.TextField(blank=True, null=True),
         ),
         migrations.AddField(
             model_name='profile',
-            name='type',
-            field=models.CharField(choices=[('Lector', 'Lector'), ('Student', 'Student')], default=1, max_length=20),
+            name='is_lector',
+            field=models.BooleanField(default=False),
             preserve_default=False,
         ),
     ]
