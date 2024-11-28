@@ -9,7 +9,6 @@ class CourseForm(forms.ModelForm):
         exclude = ('slug', 'lector',)
 
         widgets = {
-            'category': forms.Select(attrs=None, choices=['Web Design']),
             'start_date': forms.DateInput(attrs={'type': 'date'}),
         }
 
