@@ -23,7 +23,7 @@
                                 <img class="img-fluid" src="{{ course.photo }}" alt="">
                                 <div class="w-100 d-flex justify-content-center position-absolute bottom-0 start-0 mb-4">
 
-                                    {% if user.profile.course_id is None and not course.lector %}
+                                    {% if user.profile.course_id is None and not course.lector or request.user.is_superuser %}
                                         <!-- If student NOT JOINED ANY course -->
                                         <a
                                             href="{% url 'user-add' course.slug %}"
