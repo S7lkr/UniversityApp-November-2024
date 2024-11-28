@@ -1,4 +1,6 @@
 from datetime import date
+
+from django.core.validators import MinValueValidator
 from django.db import models
 from django.utils.text import slugify
 from UniversityApp.courses.choices_category import CourseChoices
@@ -16,7 +18,7 @@ class Course(models.Model):
     category = models.CharField(            # Web Design
         max_length=CATEGORY_MAX_LENGTH,
         choices=CourseChoices.choices,
-        help_text="This field is required!"
+        help_text="Course category: This field is required!"
     )
     slug = models.SlugField(
         null=True,
@@ -28,16 +30,20 @@ class Course(models.Model):
         blank=True,
     )
     start_date = models.DateField(
-        null=True,
-        blank=True,
+        default=date.today(),
+        help_text="Course starting date: This field is required!"
     )
     credits = models.PositiveSmallIntegerField(
-        null=True,
-        blank=True,
+        help_text="Required field!",
+        validators=(
+            MinValueValidator(1),
+        ),
     )
     duration = models.PositiveSmallIntegerField(
-        null=True,
-        blank=True,
+        help_text="Required field!",
+        validators=(
+            MinValueValidator(1),
+        ),
     )
     photo = models.URLField(
         null=True,
