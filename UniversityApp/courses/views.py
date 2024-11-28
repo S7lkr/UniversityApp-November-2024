@@ -1,26 +1,22 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import HttpResponseNotAllowed
+from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
 from UniversityApp.courses import forms
 from UniversityApp.courses.models import Course
 
 
-class CoursesCategoriesPage(generic.TemplateView):
+class CoursesCategoriesPage(LoginRequiredMixin, generic.TemplateView):
     template_name = 'courses/courses_categories.html'
+    login_url = reverse_lazy('login')
 
 
-class CoursesAllPage(generic.ListView):
+class CoursesAllPage(LoginRequiredMixin, generic.ListView):
     model = Course
     template_name = 'courses/courses.html'
     context_object_name = 'courses'
-
-    def get_context_data(self, *, object_list=None, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['lector'] = self.request.user.profile
-        return context
-
-    def get_queryset(self):
-        all_courses = super().get_queryset().all()
-        return all_courses
+    login_url = reverse_lazy('login')
 
 
 class CoursesFromCategoryPage(generic.ListView):
@@ -42,11 +38,17 @@ class CoursesFromCategoryPage(generic.ListView):
         return context
 
 
-class CourseCreatePage(generic.CreateView):
+class CourseCreatePage(LoginRequiredMixin, generic.CreateView):
     model = Course
     form_class = forms.CourseCreateForm
     template_name = 'courses/course-create-page.html'
-    success_url = reverse_lazy('courses-wd')
+    success_url = reverse_lazy('courses-all')
+    login_url = reverse_lazy('login')
+
+    def dispatch(self, request, *args, **kwargs):
+        if not (self.request.user.profile.is_lector or self.request.user.is_superuser):
+            return render(request, 'errors/403.html', status=403)
+        return super().dispatch(request, *args, **kwargs)
 
 
 class CourseDetailsPage(generic.DetailView):
