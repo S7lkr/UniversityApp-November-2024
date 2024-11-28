@@ -4,28 +4,68 @@
 ## 1. Create project main architecture -> Apps:
 
 ### 1.1 Accounts (admin, lectors, students):
-- [x] Models:
-    - [x] User mod.
-    - [x] Profile mod.
-- [x] Views
-- [x] Urls
-- [x] Signals
-- [x] Forms
+- 1.1.1 Models:
+  - [x] User model (extend django default user -> AbstractBaseUser)
+  - [x] Profile model
+
+- 1.1.2 Views:
+  - [x] Register view
+  - [x] Login view
+  - [x] Profile Details view
+  - [x] Profile Edit view
+  - [x] Profile Delete view
+
+- 1.1.3 Admin panel
+  - [x] Register User model
+  - [x] Customize it:
+    - [x] extend django base user -> UserAdmin
+    - [x] list display
+    - [x] ordering
+    - [x] search functionality
+    - [x] add fieldsets (categories)
+    - [x] optional: integrate profile info in admin panel
+    - [x] Attach Profile data (is_lector) beneath each User
+
+- 1.1.4 Urls
+
+- 1.1.5 Signals:
+  - [x] Upon USER creation, a PROFILE will be created too
+
+- 1.1.6 Managers:
+  - [x] Custom user manager 
+
+- 1.1.7 Forms:
+  - [x] User Register Form
+  - [x] User Edit Form
+  - [x] Profile Edit Form
+  - [x] Profile Delete Form
 
 ### 1.2 Common:
-- [ ] Views
-  - [x] add user to course
-  - [x] remove user from course
-  - [ ] other.
-- [ ] Urls
-- [ ] Models ??
+- [x] Views 
+    - [x] Home page
+    - [x] add user to course
+    - [x] remove user from course
+    - [x] admin remove lector from course
+- [x] Urls
+- [ ] Models
 - [ ] Forms
 
 ### 1.3 Courses:
-- [x] Models
+- [x] Models (Course model)
 - [x] Views
+  - [x] CoursesCategories view
+  - [x] CoursesAll view
+  - [x] CoursesFromCategory view
+  - [x] CourseCreate view
+  - [x] CourseDetails view
+  - [x] CourseEdit view
+  - [x] CourseDelete view
 - [x] Urls
 - [x] Forms
+  - [ ] Course Base Form
+  - [ ] Course Create Form
+  - [ ] Course Edit Form
+  - [ ] Course Delete Form
 
 ### 1.4 Online Classes:
 - [ ] Models
@@ -52,16 +92,6 @@
 - [ ] Forms
 
 
-## 2. Register UserModel in admin panel:
-- [x] Customize it:
-    - [x] extend django base user -> UserAdmin
-    - [x] list display
-    - [x] ordering
-    - [x] search functionality
-    - [x] add fieldsets (categories)
-    - [x] optional: integrate profile info in admin panel
-
-
 ## 3. Add validators for models:
 - [x] Alphabetic name validator
 - [x] Password validator
@@ -82,25 +112,28 @@
 - [x] JS Scripts
 
 
-## 6. Create templates into the project:
-- [x] base (header/meta + nav + {bl.content} + footer)
-- [x] index (home)
-- [ ] navbar
+## 6. Create templates for the project:
 
-### 6.1 Users (auth):
+### 6.1 Base html (header/meta + nav + {bl.content} + footer)
+### 6.2 Index html (home)
+### 6.3 Navbar html
+
+### 6.4 Users (auth):
 - [x] register
 - [x] login
-- [x] create/edit profile
-- [x] delete profile
 
-### 6.2 Courses:
-- [x] Courses
+### 6.5 Profile:
+- [x] profile create/edit
+- [x] profile delete
+
+### 6.6 Courses:
+- [x] Courses (all)
 - [x] Courses categories
-- [x] Crate, Details, Edit, Delete course
-- 
+- [x] Create course
+- [x] Details course
+- [x] Edit course
+- [x] Delete course
 
-
-- [ ] online lectures
-- [ ] lectors
-- [ ] students
-- [ ] other...
+### 6.7 Errors:
+- [x] 403 Forbidden
+- [x] 404 Page Not found
