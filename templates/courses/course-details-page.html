@@ -19,18 +19,21 @@
 
                         {% if user.profile.course_id is None %}
                             <!-- If user NOT in ANY course-->
-                            <a class="btn btn-primary m-lg-2 py-2 px-3 mt-0" href="{% url 'user-add' course.slug %}"><i class="fa-solid fa-plus"></i> Join Course</a>
+                            <a class="btn btn-primary m-lg-2 py-2 px-3 mt-0" href="{% url 'user-add' course.slug course.pk %}">
+                                <i class="fa-solid fa-plus"></i>
+                                Join Course
+                            </a>
                             <!-- If user HAS ALREADY JOINED course -->
                         {% elif user.profile.course_id == course.pk %}
                             <span class="badge bg-primary"><i class="fa-solid fa-check"></i>Joined!</span>
-                            <a href="{% url 'user-remove' course.slug %}"><span class="badge bg-light">Quit?</span></a>
+                            <a href="{% url 'user-remove' course.slug course.pk %}"><span class="badge bg-light">Quit?</span></a>
                         {% endif %}
                     </h1>
 
                     <p class="mb-3 fs-6"><i class="fa-solid fa-user-tie"></i> {{ lector }}</p>
                     {% if course.lector and request.user.is_superuser %}
                         <a
-                            href="{% url 'lector-remove' course.slug %}"
+                            href="{% url 'lector-remove' course.slug course.pk %}"
                             class="flex-shrink-0 btn btn-sm btn-warning px-2"
                             style="border-radius: 30px;"
                         >
@@ -56,10 +59,12 @@
                         student/s</span>
                     <hr>
                     {% if request.user.profile.is_lector and request.user.profile.course_id == course.pk %}
-                        <a class="btn btn-success py-2 px-4 mt-2" href="{% url 'course-edit' course.slug %}"><i class="fa-solid fa-pen-to-square"></i> Edit</a>
+                        <a class="btn btn-success py-2 px-4 mt-2" href="{% url 'course-edit' course.slug course.pk %}"><i class="fa-solid fa-pen-to-square"></i> Edit</a>
                     {% elif request.user.is_superuser %}
-                        <a class="btn btn-success py-2 px-4 mt-2" href="{% url 'course-edit' course.slug %}"><i class="fa-solid fa-pen-to-square"></i> Edit</a>
-                        <a class="btn btn-danger py-2 px-4 mt-2" href="{% url 'course-delete' course.slug %}"><i class="fa-solid fa-trash"></i> Delete</a>
+                        <a class="btn btn-danger py-2 px-4 mt-2" href="{% url 'course-delete' course.slug course.pk %}">
+                            <i class="fa-solid fa-trash"></i>
+                            Delete
+                        </a>
                     {% endif %}
                 </div>
             </div>
@@ -73,7 +78,7 @@
 
                     <!-- Start Comment Form -->
                     <div class="form-control mb-5">
-                        <form method="post" action="{% url 'add-comment' course.slug %}">
+                        <form method="post" action="{% url 'add-comment' course.slug course.pk %}">
                             {% csrf_token %}
                             {{ comment_form }}
                             <button class="btn btn-primary py-1 fs-6" type="submit" id="button-addon2">Comment</button>

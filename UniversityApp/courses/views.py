@@ -1,5 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views import generic
 from UniversityApp.courses import forms
@@ -22,13 +22,14 @@ class CoursesAllPage(LoginRequiredMixin, generic.ListView):
 class CoursesFromCategoryPage(generic.ListView):
     model = Course
     template_name = 'courses/courses.html'
-    slug_url_kwarg = 'category'
+    slug_url_kwarg = 'category_slug'
     context_object_name = 'courses'
 
     def get_queryset(self):
-        # get 'course category' dynamically (from url)
-        category_url = self.request.get_full_path().split('/')[3].replace("-", " ")
-        queryset = super().get_queryset().filter(category=category_url)
+        # get 'course.category' dynamically from the slug (.../web-design/) in the url
+        category_lower = self.request.get_full_path().split('/')[3].replace("-", " ")
+        category = (" ".join((word.capitalize() for word in category_lower.split(" "))))
+        queryset = super().get_queryset().filter(category=category)
         return queryset
 
     def get_context_data(self, *, object_list=None, **kwargs):
@@ -41,6 +42,7 @@ class CoursesFromCategoryPage(generic.ListView):
 class CourseCreatePage(LoginRequiredMixin, generic.CreateView):
     model = Course
     form_class = forms.CourseCreateForm
+    slug_url_kwarg = 'category_slug'
     template_name = 'courses/course-create-page.html'
     success_url = reverse_lazy('courses-all')
     login_url = reverse_lazy('login')
@@ -53,7 +55,7 @@ class CourseCreatePage(LoginRequiredMixin, generic.CreateView):
 
 class CourseDetailsPage(generic.DetailView):
     model = Course
-    slug_url_kwarg = 'course_slug'
+    slug_url_kwarg = 'category_slug'
     template_name = 'courses/course-details-page.html'
 
     def get_context_data(self, **kwargs):
@@ -65,29 +67,26 @@ class CourseDetailsPage(generic.DetailView):
         context['students_count'] = studs_cnt - 1 if profile.is_lector and profile.course_id == course.pk else studs_cnt
         context['comment_form'] = AddCommentForm
         context['comments'] = self.object.comment_set.all()
-        print(self.object.comment_set)
         return context
 
 
 class CourseEditPage(generic.UpdateView):
     model = Course
+    slug_url_kwarg = 'category_slug'
     form_class = forms.CourseEditForm
-    slug_url_kwarg = 'course_slug'
     template_name = 'courses/course-edit-page.html'
-    # success_url = reverse_lazy('course-details')
+    # success_url = reverse_lazy('courses-all')
 
     def get_success_url(self):
-        course_slug = self.object.slug
-        print(course_slug)
-        return reverse_lazy('course-details', kwargs={'course_slug': course_slug})
+        return reverse_lazy('course-details', kwargs={'pk': self.object.pk, 'category_slug': self.object.slug})
 
 
 class CourseDeletePage(generic.DeleteView):
     model = Course
+    slug_url_kwarg = 'category_slug'
     form_class = forms.CourseDeleteForm
-    slug_url_kwarg = 'course_slug'
     template_name = 'courses/course-delete-page.html'
-    success_url = reverse_lazy('courses')
+    success_url = reverse_lazy('courses-all')
 
     def get_initial(self):
         return self.get_object().__dict__
