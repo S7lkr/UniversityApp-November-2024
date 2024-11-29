@@ -64,6 +64,44 @@
                 </div>
             </div>
         </div>
+
+        <!-- Start Comments section -->
+        <div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
+            <div class="container">
+                <div class="text-center">
+                    <h6 class="section-title bg-white text-center text-primary px-3 mb-5">Comments section</h6>
+                    {% if not comments %}
+                        <h1 class="mb-5">No comments for this course yet!</h1>
+                    {% endif %}
+                </div>
+
+                <!-- Comment Item -->
+                <div class="testimonial-item ">
+                    <img
+                        class="rounded-circle p-2 mb-0"
+                        src="/static/img/testimonial-1.jpg"
+                        style="width: 50px; height: 50px;"
+                        alt="#"
+                    >
+                    <p class="text-start">John Doe</p>
+                    <div class="testimonial-text bg-light text-md-start p-3">
+                        <p class="fs-8 lh-2 mb-0">
+                            Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam amet diam et eos.
+                        </p>
+                    </div>
+                </div>
+                <!-- End Comment Item -->
+
+            </div>
+        </div>
+        <!-- End Comments section -->
+
+        <!-- Start Add Comments form -->
+        <form method="post">
+            {% csrf_token %}
+            {{ add_comment_form }}
+        </form>
+        <!-- End Add Comments form -->
     </div>
     <!-- Course End -->
 {% endblock %}
