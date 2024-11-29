@@ -1,3 +1,23 @@
 from django.db import models
+from django.contrib.auth import get_user_model
 
-# Create your models here.
+from UniversityApp.courses.models import Course
+
+User = get_user_model()
+
+
+class Comment(models.Model):
+    content = models.TextField(
+        max_length=200,
+    )
+    created_at = models.DateTimeField(
+        auto_now_add=True,
+    )
+    user = models.ForeignKey(
+        to=User,
+        on_delete=models.CASCADE,
+    )
+    course = models.ForeignKey(
+        to=Course,
+        on_delete=models.CASCADE,
+    )
