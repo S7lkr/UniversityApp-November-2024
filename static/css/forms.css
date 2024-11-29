@@ -22,9 +22,9 @@
 	margin-top: -10px;
 }
 
-.form-container label {
-	display: none;
-}
+/*.form-container label {*/
+/*	display: none;*/
+/*}*/
 
 .form-container input, select {
 	background-color: white;
