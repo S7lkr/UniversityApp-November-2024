@@ -41,14 +41,19 @@
   - [x] Profile Delete Form
 
 ### 1.2 Common:
-- [x] Views 
+- 1.2.1 Models:
+  - [x] Comment
+  
+- 1.2.2 Views: 
     - [x] Home page
     - [x] add user to course
     - [x] remove user from course
     - [x] admin remove lector from course
-- [x] Urls
-- [ ] Models
-- [ ] Forms
+    - [ ] add comment view
+
+- 1.2.3 Urls
+
+- 1.2.1 Forms
 
 ### 1.3 Courses:
 - [x] Models (Course model)
