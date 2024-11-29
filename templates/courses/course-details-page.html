@@ -70,9 +70,6 @@
             <div class="container">
                 <div class="text-center">
                     <h6 class="section-title bg-white text-center text-primary px-3 mb-5">Comments section</h6>
-                    {% if not comments %}
-                        <h1 class="mb-5">No comments for this course yet!</h1>
-                    {% endif %}
 
                     <!-- Start Comment Form -->
                     <div class="form-control mb-5">
@@ -103,12 +100,17 @@
                                 {{ comment.user.profile.get_full_name }}
                             </span>
                         </a>
+                        <span class="text-start p-lg-1" style="font-size: 0.7em;">
+                            {{ comment.created_at }}
+                        </span>
                         <div class="testimonial-text bg-light text-md-start p-2">
                             <p class="lh-1 mb-1" style="font-size: 0.8em">
                                 {{ comment.content }}
                             </p>
                         </div>
                     </div>
+                {% empty %}
+                    <h1 class="mb-5 text-center">No comments for this course yet...</h1>
                 {% endfor %}
                 <!-- End Comment Item -->
 
