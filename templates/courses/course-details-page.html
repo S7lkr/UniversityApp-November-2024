@@ -73,35 +73,49 @@
                     {% if not comments %}
                         <h1 class="mb-5">No comments for this course yet!</h1>
                     {% endif %}
+
+                    <!-- Start Comment Form -->
+                    <div class="form-control mb-5">
+                        <form method="post" action="{% url 'add-comment' course.slug %}">
+                            {% csrf_token %}
+                            {{ comment_form }}
+                            <button class="btn btn-primary py-1 fs-6" type="submit" id="button-addon2">Comment</button>
+                        </form>
+                    </div>
+                    <!-- End Comment Form -->
+
                 </div>
 
                 <!-- Comment Item -->
-                <div class="testimonial-item ">
-                    <img
-                        class="rounded-circle p-2 mb-0"
-                        src="/static/img/testimonial-1.jpg"
-                        style="width: 50px; height: 50px;"
-                        alt="#"
-                    >
-                    <p class="text-start">John Doe</p>
-                    <div class="testimonial-text bg-light text-md-start p-3">
-                        <p class="fs-8 lh-2 mb-0">
-                            Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam amet diam et eos.
-                        </p>
+                {% for comment in comments %}
+                    <div class="testimonial-item mb-3">
+                        <a
+                            href="{% url 'profile-details' comment.user.profile.pk %}"
+                            class="text-decoration-none mb-0"
+                        >
+                            <img
+                                class="rounded-circle p-2 mb-0"
+                                src="{{ comment.user.profile.personal_image }}"
+                                style="width: 40px; height: 40px;"
+                                alt="#"
+                            >
+                            <span class="text-start" style="font-size: 0.9em;">
+                                {{ comment.user.profile.get_full_name }}
+                            </span>
+                        </a>
+                        <div class="testimonial-text bg-light text-md-start p-2">
+                            <p class="lh-1 mb-1" style="font-size: 0.8em">
+                                {{ comment.content }}
+                            </p>
+                        </div>
                     </div>
-                </div>
+                {% endfor %}
                 <!-- End Comment Item -->
 
             </div>
         </div>
         <!-- End Comments section -->
 
-        <!-- Start Add Comments form -->
-        <form method="post">
-            {% csrf_token %}
-            {{ add_comment_form }}
-        </form>
-        <!-- End Add Comments form -->
     </div>
     <!-- Course End -->
 {% endblock %}

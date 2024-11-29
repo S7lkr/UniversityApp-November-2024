@@ -4,6 +4,7 @@ from django.urls import reverse_lazy
 from django.views import generic
 from UniversityApp.courses import forms
 from UniversityApp.courses.models import Course
+from UniversityApp.common.forms import AddCommentForm
 
 
 class CoursesCategoriesPage(LoginRequiredMixin, generic.TemplateView):
@@ -62,6 +63,9 @@ class CourseDetailsPage(generic.DetailView):
         studs_cnt = self.object.profiles.count()
         context['lector'] = course.lector if course.lector else 'N/A'
         context['students_count'] = studs_cnt - 1 if profile.is_lector and profile.course_id == course.pk else studs_cnt
+        context['comment_form'] = AddCommentForm
+        context['comments'] = self.object.comment_set.all()
+        print(self.object.comment_set)
         return context
 
 

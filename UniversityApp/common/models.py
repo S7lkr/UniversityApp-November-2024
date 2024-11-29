@@ -7,6 +7,12 @@ User = get_user_model()
 
 
 class Comment(models.Model):
+    class Meta:
+        indexes = [
+            models.Index(fields=['created_at'])
+        ]
+        ordering = ['-created_at']    # DESC
+
     content = models.TextField(
         max_length=200,
     )

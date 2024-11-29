@@ -1,8 +1,11 @@
-from django.shortcuts import render, redirect
-from django.views import generic
+from django.contrib.auth.decorators import login_required
+from django.urls import reverse_lazy
 
 from UniversityApp.accounts.models import Profile
+from UniversityApp.common.forms import AddCommentForm
 from UniversityApp.courses.models import Course
+from django.views import generic
+from django.shortcuts import redirect
 
 
 class HomePage(generic.TemplateView):
@@ -45,3 +48,17 @@ def lector_remove(request, course_slug):
 
     return redirect(to=request.META.get('HTTP_REFERER'))       # stays on the same path
     # return redirect(to='http://localhost:8000/courses/all/')
+
+
+@login_required
+def comment_add_view(request, course_slug: str):
+    if request.POST:
+        course = Course.objects.get(slug=course_slug)
+        form = AddCommentForm(request.POST)
+
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.user = request.user
+            comment.course = course
+            comment.save()
+    return redirect(request.META.get('HTTP_REFERER') + f"#{course_slug}")

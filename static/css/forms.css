@@ -59,3 +59,10 @@
 	text-align: center;
 	padding: 20px;
 }
+
+.form-control input {
+	min-width: 500px;
+	min-height: 35px;
+	padding-left: 0.5em;
+	border-radius: 5px;
+}
