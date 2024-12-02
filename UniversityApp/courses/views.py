@@ -88,7 +88,7 @@ class CourseDeletePage(generic.DeleteView):
     template_name = 'courses/course-delete-page.html'
     success_url = reverse_lazy('courses-all')
 
-    def get_initial(self):
+    def get_initial(self) -> dict:
         return self.get_object().__dict__
 
     def form_invalid(self, form):
