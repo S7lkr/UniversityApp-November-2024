@@ -40,9 +40,9 @@ class ProfileCreateOrEditForm(PlaceholderMixin, ProfileBaseForm):
         }
 
 
-class ProfileDeleteForm(DisabledFieldsMixin, forms.ModelForm):
-    disabled_fields_set = ('first_name', 'last_name',)
+class ProfileDeleteForm(forms.ModelForm):
+    # disabled_fields_set = ('first_name', 'last_name')
 
     class Meta:
         model = Profile
-        fields = ('first_name', 'last_name',)
+        fields = ()
