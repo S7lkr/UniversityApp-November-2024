@@ -13,7 +13,7 @@ def make_profile(sender, instance: User, created: bool, **kwargs):
     if created:                     # when User model created
         print(instance.email)
         Profile.objects.create(     # a Profile model will be created too
-            first_name='',
+            first_name='Unnamed',
             last_name=None,       # initial Profile data
             age=None,
             personal_image="http://127.0.0.1:8000/static/img/team.jpg",
