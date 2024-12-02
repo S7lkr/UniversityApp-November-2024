@@ -43,7 +43,7 @@ class CourseCreatePage(LoginRequiredMixin, generic.CreateView):
     model = Course
     form_class = forms.CourseCreateForm
     slug_url_kwarg = 'category_slug'
-    template_name = 'courses/course-create-page.html'
+    template_name = 'courses/course_management/course-create-page.html'
     success_url = reverse_lazy('courses-all')
     login_url = reverse_lazy('login')
 
@@ -56,7 +56,7 @@ class CourseCreatePage(LoginRequiredMixin, generic.CreateView):
 class CourseDetailsPage(generic.DetailView):
     model = Course
     slug_url_kwarg = 'category_slug'
-    template_name = 'courses/course-details-page.html'
+    template_name = 'courses/course_details/course-details-page.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -74,7 +74,7 @@ class CourseEditPage(generic.UpdateView):
     model = Course
     slug_url_kwarg = 'category_slug'
     form_class = forms.CourseEditForm
-    template_name = 'courses/course-edit-page.html'
+    template_name = 'courses/course_management/course-edit-page.html'
     # success_url = reverse_lazy('courses-all')
 
     def get_success_url(self):
@@ -85,7 +85,7 @@ class CourseDeletePage(generic.DeleteView):
     model = Course
     slug_url_kwarg = 'category_slug'
     form_class = forms.CourseDeleteForm
-    template_name = 'courses/course-delete-page.html'
+    template_name = 'courses/course_management/course-delete-page.html'
     success_url = reverse_lazy('courses-all')
 
     def get_initial(self) -> dict:
