@@ -1,9 +1,6 @@
 from django.db import models
-from django.contrib.auth import get_user_model
-
+from UniversityApp.accounts.models import Profile
 from UniversityApp.courses.models import Course
-
-User = get_user_model()
 
 
 class Comment(models.Model):
@@ -20,7 +17,7 @@ class Comment(models.Model):
         auto_now_add=True,
     )
     user = models.ForeignKey(
-        to=User,
+        to=Profile,
         on_delete=models.CASCADE,
     )
     course = models.ForeignKey(
