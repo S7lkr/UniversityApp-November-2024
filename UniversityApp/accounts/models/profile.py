@@ -1,8 +1,8 @@
 from django.db import models
 from django.contrib.auth import get_user_model
 from UniversityApp.courses.models import Course
-from django.core.validators import MinLengthValidator
-from UniversityApp.validators import AlphabeticValidator
+from django.core.validators import MinLengthValidator, MinValueValidator
+from UniversityApp.validators import AlphabeticValidator, CapitalizedValidator
 
 UserModel = get_user_model()
 
@@ -13,14 +13,15 @@ class Profile(models.Model):
         validators=[
             MinLengthValidator(2),
             AlphabeticValidator(),
+            CapitalizedValidator(),
         ],
-        help_text="This field is required!"
     )
     last_name = models.CharField(
         max_length=20,
         validators=[
             MinLengthValidator(2),
             AlphabeticValidator(),
+            CapitalizedValidator(),
         ],
         null=True,
         blank=True,
@@ -32,6 +33,7 @@ class Profile(models.Model):
     age = models.PositiveSmallIntegerField(
         null=True,
         blank=True,
+        validators=[MinValueValidator(5)],
     )
     bio = models.TextField(
         null=True,
