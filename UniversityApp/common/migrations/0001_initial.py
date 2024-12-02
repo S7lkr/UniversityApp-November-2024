@@ -22,7 +22,7 @@ class Migration(migrations.Migration):
                 ('content', models.TextField(max_length=200)),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('course', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='courses.course')),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='accounts.profile')),
+                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
         ),
     ]
