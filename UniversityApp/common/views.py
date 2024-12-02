@@ -53,7 +53,7 @@ def lector_remove(request, category_slug: str, course_pk: int):
 @login_required
 def comment_add_view(request, category_slug: str, course_pk: int):
     if request.POST:
-        course = Course.objects.get(slug=category_slug)
+        course = Course.objects.get(pk=course_pk)
         form = AddCommentForm(request.POST)
 
         if form.is_valid():
