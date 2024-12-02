@@ -33,7 +33,9 @@ class Profile(models.Model):
     age = models.PositiveSmallIntegerField(
         null=True,
         blank=True,
-        validators=[MinValueValidator(5)],
+        validators=[
+            MinValueValidator(5),
+        ],
     )
     bio = models.TextField(
         null=True,
