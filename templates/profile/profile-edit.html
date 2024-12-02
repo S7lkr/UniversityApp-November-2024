@@ -9,6 +9,9 @@
                 {% for field in form %}
                     {{ field }}
                     {{ field.errors }}
+                    <p style="font-size: 0.8em; color: #0d6efd; padding-left: 0.5em" >
+                        {{ field.help_text }}
+                    </p>
                 {% endfor %}
                 <button class="btn btn-primary p-2 w-40 mt-4 m-lg-0" type="submit" tabindex="0">Edit</button>
                 <a

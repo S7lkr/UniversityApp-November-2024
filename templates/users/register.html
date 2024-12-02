@@ -6,7 +6,10 @@
             <h2 class="mb-4">Registration:</h2>
             <form method="post">
                 {% csrf_token %}
-                {{ form }}
+                {% for field in form %}
+                    {{ field }}
+                    {{ field.errors }}
+                {% endfor %}
                 <button class="btn btn-primary w-50 mt-4" type="submit" tabindex="0">Register</button>
             </form>
         </div>
