@@ -15,23 +15,23 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='course',
             name='category',
-            field=models.CharField(choices=[('Web Design', 'Web Design'), ('Graphic Design', 'Graphic Design'), ('Video Editing', 'Video Editing'), ('Online Marketing', 'Online Marketing')], help_text='Course category: This field is required!', max_length=40),
+            field=models.CharField(choices=[('Web Design', 'Web Design'), ('Graphic Design', 'Graphic Design'), ('Video Editing', 'Video Editing'), ('Online Marketing', 'Online Marketing')], help_text='Course category. This field is required!', max_length=40),
         ),
         migrations.AlterField(
             model_name='course',
             name='credits',
-            field=models.PositiveSmallIntegerField(default=1, help_text='Required field!', validators=[django.core.validators.MinValueValidator(1)]),
+            field=models.PositiveSmallIntegerField(default=1, help_text="This field is required!", validators=[django.core.validators.MinValueValidator(1), django.core.validators.MaxValueValidator(50)]),
             preserve_default=False,
         ),
         migrations.AlterField(
             model_name='course',
             name='duration',
-            field=models.PositiveSmallIntegerField(default=1, help_text='Required field!', validators=[django.core.validators.MinValueValidator(1)]),
+            field=models.PositiveSmallIntegerField(default=1, help_text="This field is required!", validators=[django.core.validators.MinValueValidator(1), django.core.validators.MaxValueValidator(24)]),
             preserve_default=False,
         ),
         migrations.AlterField(
             model_name='course',
             name='start_date',
-            field=models.DateField(default=datetime.date(2024, 11, 28), help_text='Course starting date: This field is required!'),
+            field=models.DateField(default=datetime.date(2024, 11, 20), help_text='Course starting date. This field is required!'),
         ),
     ]

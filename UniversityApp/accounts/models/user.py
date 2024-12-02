@@ -1,6 +1,7 @@
 from django.db import models
-from django.core.validators import MinLengthValidator
 from django.contrib.auth.base_user import AbstractBaseUser
+from django.core.validators import MinLengthValidator
+from UniversityApp.validators import PasswordLengthValidator
 from django.contrib.auth.models import PermissionsMixin
 from UniversityApp.accounts.managers import CustomUserManager
 
@@ -13,9 +14,10 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         },
     )
     password = models.CharField(
-        max_length=128,
+        max_length=40,
         validators=[
             MinLengthValidator(8),
+            PasswordLengthValidator(),
         ],
     )
     is_active = models.BooleanField(
@@ -30,4 +32,5 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
     USERNAME_FIELD = 'email'    # first credential used in auth, required by default
     REQUIRED_FIELDS = []        # so not necessary to place it in REQUIRED_FIELDS
+
     objects = CustomUserManager()

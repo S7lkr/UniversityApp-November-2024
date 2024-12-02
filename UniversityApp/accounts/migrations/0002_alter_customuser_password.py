@@ -15,6 +15,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='customuser',
             name='password',
-            field=models.CharField(max_length=128, validators=[django.core.validators.MinLengthValidator(8), UniversityApp.validators.PasswordValidator()]),
+            field=models.CharField(max_length=128, validators=[django.core.validators.MinLengthValidator(8), UniversityApp.validators.PasswordLengthValidator()]),
         ),
     ]

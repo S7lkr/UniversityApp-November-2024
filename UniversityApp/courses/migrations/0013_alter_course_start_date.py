@@ -14,6 +14,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='course',
             name='start_date',
-            field=models.DateField(default=datetime.date(2024, 11, 29), help_text='Course starting date: This field is required!'),
+            field=models.DateField(default=datetime.date(2024, 11, 20), help_text='Course starting date. This field is required!'),
         ),
     ]

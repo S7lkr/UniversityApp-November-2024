@@ -2,6 +2,7 @@
 
 import django.core.validators
 from django.db import migrations, models
+import UniversityApp.validators
 
 
 class Migration(migrations.Migration):
@@ -14,6 +15,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='customuser',
             name='password',
-            field=models.CharField(max_length=128, validators=[django.core.validators.MinLengthValidator(8)]),
+            field=models.CharField(max_length=40, validators=[UniversityApp.validators.PasswordLengthValidator()]),
         ),
     ]
