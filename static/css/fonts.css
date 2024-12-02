@@ -12,8 +12,13 @@
     font-weight: 700 !important;
 }
 
-form li {
-    font-size: 0.8em;
+form ul li {
+    font-size: 0.9em;
+    color: lightskyblue;
+}
+
+form ul.errorlist li {
+    font-size: 0.9em;
     color: red;
 }
 
