@@ -13,31 +13,29 @@ class HomePage(generic.TemplateView):
 
 
 def course_user_add(request, category_slug: str, course_pk: int):
-    course = Course.objects.get(slug=category_slug)
+    course = Course.objects.get(pk=course_pk)
     profile = request.user.profile
     profile.course_id = course.pk
     if profile.is_lector:
         course.lector = profile.get_full_name()
     course.save()
     profile.save()
-    # return redirect(to=request.META.get('HTTP_REFERER'))       # stays on the same path
-    return redirect(to='http://localhost:8000/courses/all/')
+    return redirect(request.META.get('HTTP_REFERER') + f"#{course_pk}")
 
 
 def course_user_remove(request, category_slug: str, course_pk: int):
-    course = Course.objects.get(slug=category_slug)
+    course = Course.objects.get(pk=course_pk)
     profile = request.user.profile
     profile.course_id = None
     if profile.is_lector:
         course.lector = None
     course.save()
     profile.save()
-#     return redirect(to=request.META.get('HTTP_REFERER'))       # stays on the same path
-    return redirect(to='http://localhost:8000/courses/all/')
+    return redirect(request.META.get('HTTP_REFERER') + f"#{course_pk}")
 
 
 def lector_remove(request, category_slug: str, course_pk: int):
-    course = Course.objects.get(slug=category_slug)
+    course = Course.objects.get(pk=course_pk)
     l_first_name = course.lector.split(" ")[0]
     l_last_name = course.lector.split(" ")[1]
     profile = Profile.objects.get(first_name=l_first_name, last_name=l_last_name)
@@ -45,9 +43,7 @@ def lector_remove(request, category_slug: str, course_pk: int):
     course.lector = None
     course.save()
     profile.save()
-
-#     return redirect(to=request.META.get('HTTP_REFERER'))       # stays on the same path
-    return redirect(to='http://localhost:8000/courses/all/')
+    return redirect(request.META.get('HTTP_REFERER') + f"#{course_pk}")
 
 
 @login_required
