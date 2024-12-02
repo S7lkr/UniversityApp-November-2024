@@ -1,5 +1,5 @@
 from django.contrib.auth import get_user_model, login
-from UniversityApp.accounts.forms import UserRegisterForm, ProfileEditForm
+from UniversityApp.accounts.forms import UserRegisterForm, ProfileCreateOrEditForm
 from django.contrib.auth.views import LoginView
 from django.views import generic
 from django.urls import reverse_lazy
@@ -49,9 +49,9 @@ class ProfileDetailsPage(generic.DetailView):       # profile details
         return context
 
 
-class ProfileEditPage(generic.UpdateView):          # profile edit
+class ProfileCreateOrEditPage(generic.UpdateView):          # profile edit
     model = Profile
-    form_class = ProfileEditForm
+    form_class = ProfileCreateOrEditForm
     template_name = 'profile/profile-edit.html'
 
     def get_success_url(self):

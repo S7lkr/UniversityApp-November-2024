@@ -12,17 +12,6 @@ class UserRegisterForm(PlaceholderMixin, UserCreationForm):
         model = User
         fields = ('email', 'password1', 'password2')
 
-        # widgets = {
-        #     'email': forms.EmailInput(attrs={'id': "email",}),
-        #     'password1': forms.PasswordInput(attrs={'id': "password1"}),
-        #     'password2': forms.PasswordInput(attrs={'id': "password2"}),
-        # }
-        # labels = {
-        #     'username': "Email",
-        #     'password1': "Password",
-        #     'password2': "Repeat password",
-        # }
-
 
 class UserEditForm(UserChangeForm):     # for admin
     class Meta(UserChangeForm.Meta):
@@ -30,7 +19,7 @@ class UserEditForm(UserChangeForm):     # for admin
         fields = "__all__"
 
 
-class ProfileEditForm(PlaceholderMixin, forms.ModelForm):
+class ProfileBaseForm(forms.ModelForm):
     class Meta:
         model = Profile
         exclude = ("user", "course", "is_lector",)
@@ -40,6 +29,14 @@ class ProfileEditForm(PlaceholderMixin, forms.ModelForm):
             'personal_image': '',
             'biography': '',
             'age': '',
+        }
+
+
+class ProfileCreateOrEditForm(PlaceholderMixin, ProfileBaseForm):
+    class Meta(ProfileBaseForm.Meta):
+        help_texts = {
+            'first_name': 'This field is required!',
+            'age': 'Age must be at least 5.',
         }
 
 
