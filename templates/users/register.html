@@ -9,6 +9,7 @@
                 {% for field in form %}
                     {{ field }}
                     {{ field.errors }}
+                    {{ field.help_text }}
                 {% endfor %}
                 <button class="btn btn-primary w-50 mt-4" type="submit" tabindex="0">Register</button>
             </form>
