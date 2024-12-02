@@ -1,16 +1,16 @@
 from django.contrib.auth import get_user_model, login
-from UniversityApp.accounts.forms import UserRegisterForm, ProfileCreateOrEditForm
+from UniversityApp.accounts.forms import UserRegisterForm, ProfileCreateOrEditForm, ProfileDeleteForm
 from django.contrib.auth.views import LoginView
 from django.views import generic
 from django.urls import reverse_lazy
-from UniversityApp.accounts.models import Profile
+from UniversityApp.accounts.models import Profile, CustomUser
 from UniversityApp.courses.models import Course
 
-User = get_user_model()
+UserModel = get_user_model()
 
 
 class UserRegisterPage(generic.CreateView):     # register
-    model = User
+    model = UserModel
     form_class = UserRegisterForm
     template_name = 'users/register.html'
 
@@ -28,7 +28,7 @@ class UserLoginPage(LoginView):                 # login
 
 
 class ProfileDetailsPage(generic.DetailView):       # profile details
-    model = User
+    model = UserModel
     template_name = 'profile/profile-details.html'
 
     def get_context_data(self, **kwargs):
@@ -59,4 +59,20 @@ class ProfileCreateOrEditPage(generic.UpdateView):          # profile edit
 
 
 class ProfileDeletePage(generic.DeleteView):        # profile delete
-    pass
+    model = Profile
+    form_class = ProfileDeleteForm
+    template_name = 'profile/profile-delete.html'
+    success_url = reverse_lazy('logout')
+
+    def get_initial(self):
+        return self.get_object().__dict__
+
+    def form_invalid(self, form):
+        profile_pk = self.get_object().pk
+        user = CustomUser.objects.get(pk=profile_pk)
+        user.is_active = False
+        user.save()
+        print(user, user.is_active)
+        return super().form_valid(form)
+
+
