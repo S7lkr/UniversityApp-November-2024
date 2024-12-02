@@ -30,8 +30,8 @@ class CourseEditForm(CourseBaseForm):
     pass
 
 
-class CourseDeleteForm(mixins.DisabledFieldsMixin):
-    # disabled_fields_set = ('name', 'category',)
+class CourseDeleteForm(mixins.DisabledFieldsMixin, forms.ModelForm):
+    disabled_fields_set = ('name', 'category',)
 
     class Meta:
         model = Course
