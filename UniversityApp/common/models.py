@@ -25,4 +25,5 @@ class Comment(models.Model):
     course = models.ForeignKey(
         to=Course,
         on_delete=models.CASCADE,
+        related_name='comments'
     )
