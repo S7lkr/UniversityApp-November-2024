@@ -14,7 +14,7 @@ class UserRegisterForm(PlaceholderMixin, UserCreationForm):
 
 
 class UserEditForm(UserChangeForm):     # for admin
-    class Meta(UserChangeForm.Meta):
+    class Meta(UserCreationForm.Meta):
         model = User
         fields = "__all__"
 
@@ -42,7 +42,6 @@ class ProfileCreateOrEditForm(PlaceholderMixin, ProfileBaseForm):
 
 class ProfileDeleteForm(forms.ModelForm):
     # disabled_fields_set = ('first_name', 'last_name')
-
     class Meta:
         model = Profile
         fields = ()
