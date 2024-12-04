@@ -64,9 +64,9 @@ class CourseDetailsPage(generic.DetailView):
         profile = self.request.user.profile
         studs_cnt = self.object.profiles.count()
         context['lector'] = course.lector if course.lector else 'N/A'
-        context['students_count'] = studs_cnt - 1 if profile.is_lector and profile.course_id == course.pk else studs_cnt
+        context['students_count'] = studs_cnt if not course.lector else studs_cnt - 1
         context['comment_form'] = AddCommentForm
-        context['comments'] = self.object.comment_set.all()
+        context['comments'] = self.object.comments.all()
         return context
 
 
