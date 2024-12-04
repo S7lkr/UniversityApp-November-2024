@@ -1,4 +1,13 @@
 /*** Categories & Courses ***/
+
+body {
+    background-image: url('http://localhost:8000/static/img/background-15.jpg');
+    /*background-repeat: no-repeat;*/
+    background-attachment: fixed;
+    background-position: center;
+    background-size: 100%;
+}
+
 .category img,
 .course-item img {
     transition: .5s;
