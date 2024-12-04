@@ -17,16 +17,35 @@
                     <h1 class="mb-2 fs-3">
                         {{ course.name }}
 
+                        <span class="fs-5">
+                            {% if request.user.profile.is_lector and request.user.profile.course_id == course.pk %}
+                                <a class="text-decoration-none fs-5" href="{% url 'course-edit' course.slug course.pk %}">
+                                    <i class="fa-solid fa-pen-to-square"></i>
+                                </a>
+                                <a class="text-decoration-none fs-5" href="{% url 'course-delete' course.slug course.pk %}">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            {% endif %}
+                        </span>
+
                         {% if user.profile.course_id is None %}
                             <!-- If user NOT in ANY course-->
-                            <a class="btn btn-primary m-lg-2 py-2 px-3 mt-0" href="{% url 'user-add' course.slug course.pk %}">
+                            <a class="btn btn-primary m-lg-2 py-1 px-3 mt-0" href="{% url 'user-add' course.slug course.pk %}">
                                 <i class="fa-solid fa-plus"></i>
                                 Join Course
                             </a>
                             <!-- If user HAS ALREADY JOINED course -->
                         {% elif user.profile.course_id == course.pk %}
-                            <span class="badge bg-primary"><i class="fa-solid fa-check"></i>Joined!</span>
-                            <a href="{% url 'user-remove' course.slug course.pk %}"><span class="badge bg-light">Quit?</span></a>
+                            <span class="text-md-end m-lg-2">
+                                <span class="badge bg-success fs-6">
+                                    <i class="fa-solid fa-check"></i>
+                                    Joined!
+                                </span>
+                                <a href="{% url 'user-remove' course.slug course.pk %}">
+                                    <span class="badge bg-dark fs-6">Quit?</span>
+                                </a>
+                            </span>
+
                         {% endif %}
                     </h1>
 
@@ -51,21 +70,9 @@
                         weeks
                     </span>
                     <span class="mb-4 m-lg-4 fs-6"><i class="fa-solid fa-users"></i>
-                        {% if not course.lector %}
-                            {{ course.profiles.count }}
-                        {% else %}
-                            {{ course.profiles.count|add:-1 }}
-                        {% endif %}
+                        {{ students_count }}
                         student/s</span>
                     <hr>
-                    {% if request.user.profile.is_lector and request.user.profile.course_id == course.pk %}
-                        <a class="btn btn-success py-2 px-4 mt-2" href="{% url 'course-edit' course.slug course.pk %}"><i class="fa-solid fa-pen-to-square"></i> Edit</a>
-                    {% elif request.user.is_superuser %}
-                        <a class="btn btn-danger py-2 px-4 mt-2" href="{% url 'course-delete' course.slug course.pk %}">
-                            <i class="fa-solid fa-trash"></i>
-                            Delete
-                        </a>
-                    {% endif %}
                 </div>
             </div>
         </div>

@@ -18,15 +18,19 @@
                     <hr>
                     <h1 class="mb-2 fs-6">
                         <i class="fa-regular fa-user"></i>
-                        {{ request.user.profile.first_name }} {{ last_name }}
+                        {{ full_name }}
+                        {% if request.user.profile.pk == profile.pk %}
+                            <span class="m-lg-5">
+                                <a class="m-sm-1" href="{% url 'profile-edit' user.pk %}"><i class="fa-solid fa-pen-to-square"></i></a>
+                                <a class="m-sm-1" href="{% url 'profile-delete' user.pk %}"><i class="fa-solid fa-trash"></i></a>
+                            </span>
+                        {% endif %}
                     </h1>
                     <hr>
                     <p class="mb-4 fs-20"><i class="fa-solid fa-circle-info"></i> {{ bio }}</p>
                     <p class="mb-4 fs-20">Age: {{ age }}</p>
                     <p class="mb-4 fs-20">Course: {{ course }}</p>
                     <hr>
-                    <a class="btn btn-success py-2 px-4 mt-2" href="{% url 'profile-edit' user.pk %}"><i class="fa-solid fa-pen-to-square"></i> Edit</a>
-                    <a class="btn btn-danger py-2 px-4 mt-2" href="{% url 'profile-delete' user.pk %}"><i class="fa-solid fa-trash"></i> Delete</a>
                 </div>
             </div>
         </div>
