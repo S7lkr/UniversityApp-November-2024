@@ -18,7 +18,7 @@ class ShowProfile(admin.StackedInline):     # allows PROFILE data (all or select
         # 'personal_image',
         # 'bio',
         # 'age',
-        'course',
+        # 'course',
         'is_lector',
     )
 
