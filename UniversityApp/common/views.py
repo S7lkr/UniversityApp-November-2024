@@ -58,3 +58,17 @@ def comment_add_view(request, category_slug: str, course_pk: int):
             comment.course = course
             comment.save()
     return redirect(request.META.get('HTTP_REFERER') + f"#{course_pk}")
+
+
+class AboutPage(generic.TemplateView):
+    template_name = 'about/about.html'
+
+
+class AboutTeam(generic.ListView):
+    model = Profile
+    template_name = 'about/team.html'
+    context_object_name = 'lectors'
+
+    def get_queryset(self):
+        lectors = Profile.objects.filter(is_lector=True)
+        return lectors
