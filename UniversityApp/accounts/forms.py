@@ -13,6 +13,9 @@ class UserRegisterForm(PlaceholderMixin, UserCreationForm):
         fields = ('email', 'password1', 'password2')
 
 
+# Django default login form -> "AuthenticationForm"
+
+
 class UserEditForm(UserChangeForm):     # for admin
     class Meta(UserCreationForm.Meta):
         model = User

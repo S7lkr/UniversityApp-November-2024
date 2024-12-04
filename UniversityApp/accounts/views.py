@@ -25,6 +25,8 @@ class UserRegisterPage(generic.CreateView):     # register
 
 class UserLoginPage(LoginView):                 # login
     template_name = 'users/login.html'
+    success_url = reverse_lazy('home')
+    redirect_authenticated_user = reverse_lazy('home')
 
 
 class ProfileDetailsPage(generic.DetailView):       # profile details
@@ -33,14 +35,15 @@ class ProfileDetailsPage(generic.DetailView):       # profile details
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        last_name = self.request.user.profile.last_name
-        image = self.request.user.profile.personal_image
-        bio = self.request.user.profile.bio
-        age = self.request.user.profile.age
-        course_id = self.request.user.profile.course_id
+        profile = self.get_object().profile
+        image = profile.personal_image
+        bio = profile.bio
+        age = profile.age
+        course_id = profile.course_id
 
-        context['user_type'] = "Lector" if self.request.user.profile.is_lector else "Student"
-        context['last_name'] = last_name if last_name else ''
+        context['user_type'] = "Lector" if profile.is_lector else "Student"
+        context['profile'] = profile
+        context['full_name'] = profile.get_full_name
         context['image'] = image if image else ''
         context['bio'] = bio if bio else 'n/a'
         context['age'] = age if age else 'n/a'
@@ -74,5 +77,3 @@ class ProfileDeletePage(generic.DeleteView):        # profile delete
         user.save()
         print(user, user.is_active)
         return super().form_valid(form)
-
-

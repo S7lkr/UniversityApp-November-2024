@@ -1,11 +1,11 @@
-from django.contrib.auth.views import LogoutView
 from django.urls import path, include
+from django.contrib.auth.views import LogoutView
 from UniversityApp.accounts import views
 
 urlpatterns = [
     path('', include([
         path('register/', views.UserRegisterPage.as_view(), name='register'),
-        path('login/', views.LoginView.as_view(), name='login'),
+        path('login/', views.UserLoginPage.as_view(), name='login'),
         path('logout/', LogoutView.as_view(), name='logout'),
     ])),
     path('profile/<int:pk>/', include([
