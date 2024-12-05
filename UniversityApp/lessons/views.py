@@ -1,4 +1,4 @@
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 
 # from django.views.generic import CreateView
@@ -17,12 +17,4 @@ def lesson_add_view(request, category_slug: str, course_pk: int):
             lesson.readme = str(lesson.readme.replace(', ', ',').split(","))
             lesson.save()
         return redirect(request.META.get('HTTP_REFERER') + f"#{course_pk}")
-
-
-# class LessonAddView(CreateView):
-#     model = Lesson
-#     form_class = LessonAddForm
-#
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         context['add_lesson_form'] = None
+    return render(request, template_name=None, context={'form': LessonAddForm()})

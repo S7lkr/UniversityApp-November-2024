@@ -68,8 +68,6 @@ class CourseDetailsPage(generic.DetailView):
         context['students_count'] = studs_cnt if not course.lector else studs_cnt - 1
         context['add_lesson_form'] = LessonAddForm
         context['lessons'] = course.lessons.all()
-        context['readmes'] = [eval(lesson.readme) for lesson in context['lessons']]
-        # context['readmes'] = {num + 1: eval(lesson.readme) for num, lesson in enumerate(context['lessons'])}
         context['comment_form'] = AddCommentForm
         context['comments'] = self.object.comments.all()
 

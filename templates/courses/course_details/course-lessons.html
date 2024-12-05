@@ -7,9 +7,13 @@
             <p>
                 <button
                         class="btn btn-warning py-1 fs-6"
+                        style="display: block; margin: 0 auto"
                         type="submit"
-                        id="button-addon2"
-                        onclick="document.getElementById('add-lesson').style['display']='block';"
+                        id="create-lesson"
+                        onclick="
+                            document.getElementById('add-lesson').style['display']='block';
+                            document.getElementById('create-lesson').style['display']='none';
+                        "
                 >
                     Create lesson
                 </button>
@@ -17,16 +21,34 @@
 
             <!-- Start Add Lesson Form -->
             <div id="add-lesson" class="lessons-form bg-transparent" style="display: none">
-                <form method="post" action="{% url 'lesson-add' course.slug course.pk %}">
+                <h2 class="mb-1 text-center">Lesson creation:</h2>
+                <form
+                    id="add-lesson-form"
+                    method="post"
+                    action="{% url 'lesson-add' course.slug course.pk %}"
+                    onsubmit="
+                        if (document.getElementById('id_title').value.length < 2) {
+                            event.preventDefault();
+                            alert('Invalid form!!! Lesson title must be 2 or more characters.');
+                        } else {
+                            document.getElementById('add-lesson-form').submit();
+                        }
+                    "
+                >
                     {% csrf_token %}
                     {{ add_lesson_form }}
                     <div class="display-block">
-                        <button class="btn btn-info m-lg-2 p-1 fs-6" type="submit" id="button-addon2">Add lesson</button>
+                        <button class="btn btn-info m-lg-2 p-1 fs-6" type="submit" id="button-addon2">
+                            Add lesson
+                        </button>
                         <button
-                                class="btn btn-light m-lg-2 p-1 fs-6"
-                                type="button"
-                                id="button-addon2"
-                                onclick="document.getElementById('add-lesson').style['display']='none';"
+                            class="btn btn-light m-lg-2 p-1 fs-6"
+                            type="button"
+                            id="button-addon2"
+                            onclick="
+                                document.getElementById('add-lesson').style['display']='none';
+                                document.getElementById('create-lesson').style['display']='block';
+                            "
                         >
                             Cancel
                         </button>
@@ -41,21 +63,23 @@
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="heading{{ lesson.pk }}">
                             <button
-                                    class="accordion-button collapsed fs-5"
-                                    type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#collapse{{ lesson.pk }}"
-                                    aria-expanded="false"
-                                    aria-controls="collapse{{ lesson.pk }}">
+                                class="accordion-button collapsed fs-5"
+                                type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapse{{ lesson.pk }}"
+                                aria-expanded="false"
+                                aria-controls="collapse{{ lesson.pk }}"
+                            >
                                 {{ lesson.pk }}. {{ lesson.title }}
                             </button>
                         </h2>
-                        <div id="collapse{{ lesson.pk }}" class="accordion-collapse collapse" aria-labelledby="heading{{ lesson.pk }}"
+                        <div id="collapse{{ lesson.pk }}" class="accordion-collapse collapse"
+                             aria-labelledby="heading{{ lesson.pk }}"
                              data-bs-parent="#accordionExample" style="">
                             <div class="accordion-body">
-                            <p class="text-start fw-bold fs-5 mb-1">Lesson subjects:</p>
+                                <p class="text-start fw-bold fs-5 mb-1">Lesson subjects:</p>
                                 <ul class="fs-6">
-                                    {% for line in readmes|index:lesson.pk %}
-                                        <li class="text-start fs-6">{{ line }}</li>
+                                    {% for info in lesson.readme|as_list %}
+                                        <li class="text-start fs-6">{{ info }}</li>
                                     {% endfor %}
                                 </ul>
                                 <p class="text-start"><b class="fs-6">Description:</b>
@@ -68,6 +92,8 @@
                             </div>
                         </div>
                     </div>
+                {% empty %}
+                    <h1 class="mb-5 text-center">No lessons yet.</h1>
                 {% endfor %}
             </div>
             <!-- End Lessons section -->
