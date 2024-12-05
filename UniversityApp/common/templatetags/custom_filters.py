@@ -18,3 +18,8 @@ def index(iterable, index_: int):
     if iterable.__class__ in [list, set, tuple]:
         return iterable[index_ - 1]
     raise ValueError('The given argument "iterable" must be of class "list/set/tuple"!')
+
+
+@register.filter(name='as_list')
+def str_to_list(value: str):
+    return eval(value)
