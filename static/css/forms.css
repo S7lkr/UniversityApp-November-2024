@@ -83,8 +83,10 @@ form label {
 .lessons-form textarea {
 	min-height: 100px;
 	height: 160px;
+	margin-bottom: 1em;
 }
 
 .lessons-form span.helptext {
-	color: #f0f0f0;
+	color: greenyellow;
+	font-size: 0.9em;
 }
