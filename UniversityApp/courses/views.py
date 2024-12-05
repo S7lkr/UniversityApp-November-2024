@@ -5,6 +5,7 @@ from django.views import generic
 from UniversityApp.courses import forms
 from UniversityApp.courses.models import Course
 from UniversityApp.common.forms import AddCommentForm
+from UniversityApp.lessons.forms import LessonAddForm
 
 
 class CoursesCategoriesPage(LoginRequiredMixin, generic.TemplateView):
@@ -61,12 +62,17 @@ class CourseDetailsPage(generic.DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         course = self.object
-        profile = self.request.user.profile
         studs_cnt = self.object.profiles.count()
+
         context['lector'] = course.lector if course.lector else 'N/A'
         context['students_count'] = studs_cnt if not course.lector else studs_cnt - 1
+        context['add_lesson_form'] = LessonAddForm
+        context['lessons'] = course.lessons.all()
+        context['readmes'] = [eval(lesson.readme) for lesson in context['lessons']]
+        # context['readmes'] = {num + 1: eval(lesson.readme) for num, lesson in enumerate(context['lessons'])}
         context['comment_form'] = AddCommentForm
         context['comments'] = self.object.comments.all()
+
         return context
 
 
@@ -75,7 +81,6 @@ class CourseEditPage(generic.UpdateView):
     slug_url_kwarg = 'category_slug'
     form_class = forms.CourseEditForm
     template_name = 'courses/course_management/course-edit-page.html'
-    # success_url = reverse_lazy('courses-all')
 
     def get_success_url(self):
         return reverse_lazy('course-details', kwargs={'pk': self.object.pk, 'category_slug': self.object.slug})

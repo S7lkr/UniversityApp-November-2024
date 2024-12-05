@@ -34,7 +34,8 @@ ALLOWED_HOSTS = ['*']
 MY_APPS = [
     'UniversityApp.accounts',
     'UniversityApp.common',
-    'UniversityApp.courses'
+    'UniversityApp.courses',
+    'UniversityApp.lessons',
 ]
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -70,6 +71,9 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+            # 'builtins': [
+            #     'UniversityApp.common.templatetags.get_dict_value_filter',
+            # ]
         },
     },
 ]

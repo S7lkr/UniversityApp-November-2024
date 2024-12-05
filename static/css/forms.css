@@ -66,3 +66,25 @@ form label {
 	padding-left: 0.5em;
 	border-radius: 5px;
 }
+
+.lessons-form {
+	margin: 0 auto;
+	width: 400px;
+	background-color: whitesmoke;
+	/*border: 1px solid rgb(156, 152, 152);*/
+	padding: 1em;
+}
+
+.lessons-form input, textarea {
+	width: 350px;
+	border-radius: 3px;
+}
+
+.lessons-form textarea {
+	min-height: 100px;
+	height: 160px;
+}
+
+.lessons-form span.helptext {
+	color: #f0f0f0;
+}
