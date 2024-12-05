@@ -66,9 +66,19 @@ class AboutPage(generic.TemplateView):
 
 class AboutTeam(generic.ListView):
     model = Profile
-    template_name = 'about/team.html'
+    template_name = 'about/lectors.html'
     context_object_name = 'lectors'
 
     def get_queryset(self):
         lectors = Profile.objects.filter(is_lector=True)
         return lectors
+
+
+class AboutStudents(generic.ListView):
+    model = Profile
+    template_name = 'about/students.html'
+    context_object_name = 'students'
+
+    def get_queryset(self):
+        students = Profile.objects.filter(is_lector=False)
+        return students

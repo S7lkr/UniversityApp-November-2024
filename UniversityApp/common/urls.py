@@ -1,6 +1,6 @@
 from django.urls import path, include
 from UniversityApp.common.views import HomePage, course_user_add, course_user_remove, lector_remove, comment_add_view, \
-    AboutTeam, AboutPage
+    AboutTeam, AboutPage, AboutStudents
 
 urlpatterns = [
     path('', HomePage.as_view(), name='home'),
@@ -15,5 +15,6 @@ urlpatterns = [
     path('about/', include([
         path('', AboutPage.as_view(), name='about'),
         path('team/', AboutTeam.as_view(), name='about-team'),
+        path('students/', AboutStudents.as_view(), name='about-students'),
     ]))
 ]
