@@ -55,7 +55,7 @@ class ProfileDetailsPage(generic.DetailView):       # profile details
 class ProfileCreateOrEditPage(generic.UpdateView):          # profile edit
     model = Profile
     form_class = ProfileCreateOrEditForm
-    template_name = 'profile/profile-edit.html'
+    template_name = 'profile/profile-manage.html'
 
     def get_success_url(self):
         return reverse_lazy('profile-details', kwargs={'pk': self.object.pk})
@@ -70,10 +70,9 @@ class ProfileDeletePage(generic.DeleteView):        # profile delete
     def get_initial(self):
         return self.get_object().__dict__
 
-    def form_invalid(self, form):
+    def form_valid(self, form):
         profile_pk = self.get_object().pk
         user = CustomUser.objects.get(pk=profile_pk)
         user.is_active = False
         user.save()
-        print(user, user.is_active)
         return super().form_valid(form)
