@@ -3,7 +3,7 @@
 {% block content %}
     <div class="form-section">
         <div class="form-container">
-            <h2 class="mb-4">Edit/Create Profile:</h2>
+            <h2 class="mb-4">{{ btn_type }} Profile:</h2>
             <form method="post">
                 {% csrf_token %}
                 {% for field in form %}
@@ -13,7 +13,7 @@
                         {{ field.help_text }}
                     </p>
                 {% endfor %}
-                <button class="btn btn-primary p-2 w-40 mt-4 m-lg-0" type="submit" tabindex="0">Edit/Create</button>
+                <button class="btn btn-primary p-2 w-40 mt-4 m-lg-0" type="submit" tabindex="0">{{ btn_type }}</button>
                 <a
                     href="{% url 'profile-details' user.id %}"
                     class="btn btn-success p-2 w-40 mt-4 m-lg-2"

@@ -60,6 +60,12 @@ class ProfileCreateOrEditPage(generic.UpdateView):          # profile edit
     def get_success_url(self):
         return reverse_lazy('profile-details', kwargs={'pk': self.object.pk})
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['btn_type'] = 'Create' if self.object.first_name == 'Unnamed' else 'Edit'
+
+        return context
+
 
 class ProfileDeletePage(generic.DeleteView):        # profile delete
     model = Profile
