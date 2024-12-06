@@ -3,24 +3,25 @@
 <div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
     <div class="container">
         <div class="text-center">
-            <h6 class="section-title bg-white text-center text-primary px-3 mb-5">Lessons</h6>
-            <p>
+            <h6 class="section-title bg-white text-center text-primary px-3 mb-3">Lessons</h6>
+
+            {% if request.user|allowed_to:'courses.add_course' %}
                 <button
-                        class="btn btn-warning py-1 fs-6"
+                        class="btn btn-warning py-1 fs-6 mb-3"
                         style="display: block; margin: 0 auto"
                         type="submit"
                         id="create-lesson"
                         onclick="
-                            document.getElementById('add-lesson').style['display']='block';
+                            document.getElementById('add-lesson-div').style['display']='block';
                             document.getElementById('create-lesson').style['display']='none';
                         "
                 >
                     Create lesson
                 </button>
-            </p>
+            {% endif %}
 
             <!-- Start Add Lesson Form -->
-            <div id="add-lesson" class="lessons-form bg-transparent" style="display: none">
+            <div id="add-lesson-div" class="lessons-form bg-transparent" style="display: none">
                 <h2 class="mb-1 text-center">Lesson creation:</h2>
                 <form
                     id="add-lesson-form"
@@ -46,7 +47,7 @@
                             type="button"
                             id="button-addon2"
                             onclick="
-                                document.getElementById('add-lesson').style['display']='none';
+                                document.getElementById('add-lesson-div').style['display']='none';
                                 document.getElementById('create-lesson').style['display']='block';
                             "
                         >
