@@ -47,7 +47,8 @@ class ProfileDetailsPage(generic.DetailView):       # profile details
         context['image'] = image if image else ''
         context['bio'] = bio if bio else 'n/a'
         context['age'] = age if age else 'n/a'
-        context['course'] = Course.objects.get(pk=course_id) if course_id else 'No'
+        context['course'] = self.object.profile.course
+        print(context['course'])
 
         return context
 

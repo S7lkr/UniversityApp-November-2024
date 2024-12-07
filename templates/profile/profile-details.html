@@ -29,7 +29,19 @@
                     <hr>
                     <p class="mb-4 fs-20"><i class="fa-solid fa-circle-info"></i> {{ bio }}</p>
                     <p class="mb-4 fs-20">Age: {{ age }}</p>
-                    <p class="mb-4 fs-20">Course: {{ course }}</p>
+                    <p class="mb-4 fs-20">
+                        Course:
+                        {% if course %}
+                            <a
+                                    href="{% url 'course-details' course.slug course.pk %}"
+                                    style="color: yellow;"
+                            >
+                                {{ course }}
+                            </a>
+                        {% else %}
+                            No course
+                        {% endif %}
+                    </p>
                     <hr>
                 </div>
             </div>
