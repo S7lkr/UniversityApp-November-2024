@@ -43,6 +43,6 @@ def str_to_list(value: str):
 
 @register.filter(name='allowed_to')
 def allowed_to(user, action: str):
-    if user.__class__ != get_user_model().__class__:
-        raise TypeError('Given argument "user" must be of class "CustomUser"!')
+    # if user.__class__ != get_user_model().__class__:
+    #     raise TypeError('Given argument "user" must be of class "CustomUser"!')
     return action in user.get_group_permissions() or user.has_perm(action)
