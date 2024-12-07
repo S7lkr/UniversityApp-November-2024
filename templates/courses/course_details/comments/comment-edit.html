@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
+        <div class="container">
+            <div class="text-center">
+                <h6 class="section-title bg-white text-center text-primary px-3 mb-5">Edit comment:</h6>
+                <div class="form-control mb-5 bg-transparent">
+                    <form method="post" class="comment-form">
+                        {% csrf_token %}
+                        {{ form }}
+                        <div>
+                            <button class="btn btn-warning py-0 m-lg-2 fs-6 d-inline-block" type="submit" id="button-addon2">Edit</button>
+                            <a
+                                    class="btn btn-light py-0 m-lg-2 fs-6 d-inline-block"
+                                    type="button"
+                                    href="{% url 'course-details' category_slug course_pk %}"
+                            >
+                                Cancel
+                            </a>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

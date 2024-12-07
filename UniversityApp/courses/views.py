@@ -1,16 +1,26 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect
+from django.template.defaultfilters import slugify
 from django.urls import reverse_lazy
 from django.views import generic
 from UniversityApp.courses import forms
 from UniversityApp.courses.models import Course
-from UniversityApp.common.forms import AddCommentForm
+from UniversityApp.common.forms import CommentAddForm
 from UniversityApp.lessons.forms import LessonAddForm
 
 
 class CoursesCategoriesPage(LoginRequiredMixin, generic.TemplateView):
     template_name = 'courses/courses_categories.html'
     login_url = reverse_lazy('login')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['web_design_count'] = Course.objects.filter(slug='web-design').count()
+        context['graphic_design_count'] = Course.objects.filter(slug='graphic-design').count()
+        context['video_editing_count'] = Course.objects.filter(slug='video-editing').count()
+        context['online_marketing_count'] = Course.objects.filter(slug='online-marketing').count()
+
+        return context
 
 
 class CoursesAllPage(LoginRequiredMixin, generic.ListView):
@@ -56,6 +66,7 @@ class CourseCreatePage(LoginRequiredMixin, generic.CreateView):
 
 class CourseDetailsPage(generic.DetailView):
     model = Course
+    pk_url_kwarg = 'course_pk'
     slug_url_kwarg = 'category_slug'
     template_name = 'courses/course_details/course-details-page.html'
 
@@ -68,7 +79,7 @@ class CourseDetailsPage(generic.DetailView):
         context['students_count'] = studs_cnt if not course.lector else studs_cnt - 1
         context['add_lesson_form'] = LessonAddForm
         context['lessons'] = course.lessons.all()
-        context['comment_form'] = AddCommentForm
+        context['comment_form'] = CommentAddForm
         context['comments'] = self.object.comments.all()
 
         return context
@@ -76,12 +87,20 @@ class CourseDetailsPage(generic.DetailView):
 
 class CourseEditPage(generic.UpdateView):
     model = Course
+    pk_url_kwarg = 'course_pk'
     slug_url_kwarg = 'category_slug'
     form_class = forms.CourseEditForm
     template_name = 'courses/course_management/course-edit-page.html'
 
     def get_success_url(self):
-        return reverse_lazy('course-details', kwargs={'pk': self.object.pk, 'category_slug': self.object.slug})
+        return reverse_lazy(
+            'course-details',
+            kwargs={'category_slug': self.object.slug, 'course_pk': self.object.pk}
+        )
+
+    def form_valid(self, form):
+        self.object.slug = slugify(self.object.category)
+        return super().form_valid(form)
 
 
 class CourseDeletePage(generic.DeleteView):

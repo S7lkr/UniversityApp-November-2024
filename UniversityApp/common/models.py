@@ -13,10 +13,10 @@ class Comment(models.Model):
         ordering = ['-created_at']    # DESC
 
     content = models.TextField(
-        max_length=200,
+        max_length=500,
     )
     created_at = models.DateTimeField(
-        auto_now_add=True,
+        auto_now=True,
     )
     user = models.ForeignKey(
         to=User,
