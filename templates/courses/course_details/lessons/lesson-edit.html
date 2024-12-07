@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <!-- Start Add Lesson Form -->
+    <div id="add-lesson-div" class="lessons-form bg-transparent">
+        <h2 class="mb-1 text-center">Lesson edit:</h2>
+        <form id="add-lesson-form" method="post">
+            {% csrf_token %}
+            {{ form }}
+            <div class="display-block">
+                <button class="btn btn-info m-lg-2 p-1 fs-6" type="submit" id="button-addon2">
+                    Edit
+                </button>
+                <a
+                        class="btn btn-light m-lg-2 p-1 fs-6"
+                        type="button"
+                        id="button-addon2"
+                        href="{% url 'course-details' category_slug course_pk %}"
+                >
+                    Cancel
+                </a>
+            </div>
+        </form>
+    </div>
+    <!-- End Add Lesson Form -->
+{% endblock %}

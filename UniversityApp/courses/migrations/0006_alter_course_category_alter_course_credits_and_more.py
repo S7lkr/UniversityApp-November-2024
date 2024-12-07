@@ -28,6 +28,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='course',
             name='slug',
-            field=models.SlugField(blank=True, editable=False, null=True),
+            field=models.SlugField(blank=True, editable=True, null=True),
         ),
     ]

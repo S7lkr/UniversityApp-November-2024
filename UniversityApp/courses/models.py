@@ -23,7 +23,7 @@ class Course(models.Model):
     slug = models.SlugField(
         null=True,
         blank=True,
-        editable=False,
+        editable=True,
     )
     description = models.TextField(
         null=True,
