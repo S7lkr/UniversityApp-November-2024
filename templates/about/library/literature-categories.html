@@ -17,18 +17,18 @@
                         <div class="bg-white text-center position-absolute bottom-0 end-0 py-2 px-3"
                              style="margin:  1px;">
                             <h5 class="m-0">Books</h5>
-                            <small class="text-primary">5 Book/s</small>
+                            <small class="text-primary">{{ books_cnt }} Book/s</small>
                         </div>
                     </a>
                 </div>
                 <div class="col-lg-5 col-md-6 wow zoomIn" data-wow-delay="0.7s" style="min-height: 350px;">
-                    <a class="position-relative d-block h-100 overflow-hidden" href="{% url 'journals' %}">
+                    <a class="position-relative d-block h-100 overflow-hidden" href="{% url 'magazines' %}">
                         <img class="img-fluid position-absolute w-100 h-100" src="{% static 'img/magazines.jpg' %}" alt=""
                              style="object-fit: cover;">
                         <div class="bg-white text-center position-absolute bottom-0 end-0 py-2 px-3"
                              style="margin:  1px;">
-                            <h5 class="m-0">Journals</h5>
-                            <small class="text-primary">2 Journal/s</small>
+                            <h5 class="m-0">Magazines</h5>
+                            <small class="text-primary">{{ magazines_cnt }} Magazine/s</small>
                         </div>
                     </a>
                 </div>
