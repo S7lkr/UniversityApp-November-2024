@@ -62,5 +62,5 @@ class AboutStudents(generic.ListView):
     context_object_name = 'students'
 
     def get_queryset(self):
-        students = Profile.objects.filter(is_lector=False)
+        students = Profile.objects.filter(is_lector=False).exclude(first_name='Admin')
         return students
