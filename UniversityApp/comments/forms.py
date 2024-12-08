@@ -1,5 +1,5 @@
 from django import forms
-from UniversityApp.common.models import Comment
+from UniversityApp.comments.models import Comment
 from UniversityApp.mixins import DisabledFieldsMixin
 
 

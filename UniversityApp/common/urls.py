@@ -1,6 +1,7 @@
 from django.urls import path, include
-from UniversityApp.common.views import HomePage, course_user_add, course_user_remove, lector_remove, comment_add_view, \
-    AboutTeam, AboutPage, AboutStudents, CommentEditView, CommentDeleteView
+from UniversityApp.common.views import HomePage, course_user_add, course_user_remove, lector_remove, \
+    AboutTeam, AboutPage, AboutStudents
+
 
 urlpatterns = [
     path('', HomePage.as_view(), name='home'),
@@ -9,11 +10,6 @@ urlpatterns = [
             path('user-add/', course_user_add, name='user-add'),
             path('user-remove/', course_user_remove, name='user-remove'),
             path('lector-remove/', lector_remove, name='lector-remove'),
-            path('comment-add/', comment_add_view, name='add-comment'),
-            path('<int:comment_pk>/', include([
-                path('comment-edit/', CommentEditView.as_view(), name='edit-comment'),
-                path('comment-delete/', CommentDeleteView.as_view(), name='delete-comment'),
-            ])),
         ])),
     ])),
     path('about/', include([

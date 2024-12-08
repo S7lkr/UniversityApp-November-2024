@@ -36,6 +36,7 @@ MY_APPS = [
     'UniversityApp.common',
     'UniversityApp.courses',
     'UniversityApp.lessons',
+    'UniversityApp.comments',
 ]
 INSTALLED_APPS = [
     'django.contrib.admin',
