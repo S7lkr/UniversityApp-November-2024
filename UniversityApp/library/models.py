@@ -39,7 +39,14 @@ class Book(Literature):
     )
 
 
-class SoftwareJournal(Literature):
+class Magazine(Literature):
     image = models.URLField(
         default='http://localhost:8000/static/img/journal2.jpg',
+    )
+    publisher = models.CharField(
+        max_length=40,
+        default='UniversityApp',
+        validators=[
+            MinLengthValidator(2),
+        ]
     )
