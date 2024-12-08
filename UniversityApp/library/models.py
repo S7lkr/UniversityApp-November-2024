@@ -1,6 +1,7 @@
 from django.db import models
 from django.core.validators import MinLengthValidator
 from UniversityApp.accounts.models import CustomUser
+from datetime import date
 
 
 # "Book" Abstract class
@@ -12,16 +13,15 @@ class Literature(models.Model):
         max_length=50,
         validators=[
             MinLengthValidator(2),
-        ]
+        ],
+        help_text="Title must be at least 2 characters long or more."
     )
     content = models.TextField(
         max_length=1000,
     )
-    image = models.URLField(
-        default=None,
-    )
-    publish_date = models.DateField(
-        auto_now_add=True,
+    publish_date = models.DateField()
+    pages = models.PositiveSmallIntegerField(
+        default=180,
     )
 
     def __str__(self):
@@ -34,8 +34,12 @@ class Book(Literature):
         on_delete=models.SET,
         related_name='books',
     )
-    pages = models.PositiveSmallIntegerField()
+    image = models.URLField(
+        default='http://localhost:8000/static/img/book.jpg',
+    )
 
 
-class Journal(Literature):
-    pass
+class SoftwareJournal(Literature):
+    image = models.URLField(
+        default='http://localhost:8000/static/img/journal2.jpg',
+    )

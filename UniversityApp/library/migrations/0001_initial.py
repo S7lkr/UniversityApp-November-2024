@@ -16,13 +16,14 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Journal',
+            name='SoftwareJournal',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('title', models.CharField(max_length=50, validators=[django.core.validators.MinLengthValidator(2)])),
                 ('content', models.TextField(max_length=1000)),
-                ('image', models.URLField(default=None)),
-                ('publish_date', models.DateField(auto_now_add=True)),
+                ('image', models.URLField(default='http://localhost:8000/static/img/journal2.jpg'),),
+                ('pages', models.PositiveSmallIntegerField(default=180,)),
+                ('publish_date', models.DateField()),
             ],
             options={
                 'abstract': False,
@@ -34,9 +35,9 @@ class Migration(migrations.Migration):
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('title', models.CharField(max_length=50, validators=[django.core.validators.MinLengthValidator(2)])),
                 ('content', models.TextField(max_length=1000)),
-                ('image', models.URLField(default=None)),
-                ('publish_date', models.DateField(auto_now_add=True)),
-                ('pages', models.PositiveSmallIntegerField()),
+                ('image', models.URLField(default='http://localhost:8000/static/img/book.jpg'),),
+                ('publish_date', models.DateField()),
+                ('pages', models.PositiveSmallIntegerField(default=180,)),
                 ('author', models.ForeignKey(on_delete=django.db.models.deletion.SET, related_name='books', to=settings.AUTH_USER_MODEL)),
             ],
             options={
