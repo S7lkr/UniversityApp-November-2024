@@ -23,7 +23,7 @@ def key(dict_, key_):
 
 @register.filter(name='index')
 def index(iterable, index_: int):
-    if iterable.__class__ not in [list, tuple]:
+    if iterable.__class__.__name__ not in ['list', 'tuple', 'QuerySet']:
         raise ValueError('The given argument "iterable" must be of class "list" or "tuple"!')
     try:
         return iterable[index_ - 1]
@@ -33,10 +33,10 @@ def index(iterable, index_: int):
 
 @register.filter(name='as_list')
 def str_to_list(value: str):
-    if value.__class__ != str:
+    if type(value) is not str:
         raise ValueError('The given argument must be of type String!')
     try:
-        return eval(value)
+        return [v.strip() for v in filter(lambda x: x != "", eval(value))]
     except TypeError as err:
         print(err)
 

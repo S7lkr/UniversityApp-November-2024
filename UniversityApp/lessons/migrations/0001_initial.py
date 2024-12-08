@@ -21,7 +21,7 @@ class Migration(migrations.Migration):
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('title', models.CharField(help_text='This field is required.', max_length=50, validators=[django.core.validators.MinLengthValidator(2),])),
                 ('description', models.TextField(blank=True, max_length=400, null=True)),
-                ('readme', models.CharField(help_text="Enter lesson's main points, separated with comma.", max_length=150)),
+                ('readme', models.CharField(help_text="Enter lesson's main points, separated with semicolon ';'", max_length=150)),
                 ('course', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='lessons', to='courses.course')),
             ],
         ),

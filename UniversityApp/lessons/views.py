@@ -13,7 +13,7 @@ def lesson_add_view(request, category_slug: str, course_pk: int):
         if form.is_valid():
             lesson = form.save(commit=False)
             lesson.course = course
-            lesson.readme = str(lesson.readme.replace(', ', ',').split(","))
+            lesson.readme = str(lesson.readme.split(';'))
             lesson.save()
         return redirect(request.META.get('HTTP_REFERER') + f"#{course_pk}")
     return render(request, template_name=None, context={'form': LessonAddForm()})

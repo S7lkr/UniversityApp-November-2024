@@ -19,7 +19,7 @@ class Lesson(models.Model):
     )
     readme = models.CharField(
         max_length=150,
-        help_text="Enter lesson's main points, separated with comma.",
+        help_text="Enter lesson's main points, separated with semicolon ';'",
     )
     course = models.ForeignKey(
         to='courses.Course',
