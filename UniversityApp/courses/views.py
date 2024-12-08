@@ -5,7 +5,7 @@ from django.urls import reverse_lazy
 from django.views import generic
 from UniversityApp.courses import forms
 from UniversityApp.courses.models import Course
-from UniversityApp.common.forms import CommentAddForm
+from UniversityApp.comments.forms import CommentAddForm
 from UniversityApp.lessons.forms import LessonAddForm
 
 
