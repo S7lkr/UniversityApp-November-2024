@@ -13,6 +13,6 @@ urlpatterns = [
         ])),
     ])),
     path('journals/', include([
-        path('', views.SoftwareJournalsPage.as_view(), name='journals'),
+        path('', views.MagazinesPage.as_view(), name='magazines'),
     ])),
 ]

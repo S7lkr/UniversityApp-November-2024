@@ -17,7 +17,7 @@ class Migration(migrations.Migration):
             field=models.CharField(help_text='Title must be at least 2 characters long or more.', max_length=50, validators=[django.core.validators.MinLengthValidator(2)]),
         ),
         migrations.AlterField(
-            model_name='softwarejournal',
+            model_name='magazine',
             name='title',
             field=models.CharField(help_text='Title must be at least 2 characters long or more.', max_length=50, validators=[django.core.validators.MinLengthValidator(2)]),
         ),

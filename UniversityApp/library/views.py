@@ -1,12 +1,17 @@
 from django.urls import reverse_lazy
 from django.views import generic
-
 from UniversityApp.library.forms import BookAddForm, BookDeleteForm
-from UniversityApp.library.models import Book, SoftwareJournal
+from UniversityApp.library.models import Book, Magazine
 
 
 class LibraryCategories(generic.TemplateView):
     template_name = 'about/library/literature-categories.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['books_cnt'] = Book.objects.count()
+        context['magazines_cnt'] = Magazine.objects.count()
+        return context
 
 
 # ---------- Book views ----------
@@ -55,8 +60,37 @@ class BookDeletePage(generic.DeleteView):
         return reverse_lazy('book-details', kwargs={'book_id': self.object.pk})
 
 
-# ----------- SoftwareJournal views -------------
+# ----------- Magazine views -------------
 
-class SoftwareJournalsPage(generic.ListView):
-    model = SoftwareJournal
+class MagazinesPage(generic.ListView):
+    model = Magazine
     template_name = 'about/library/journals.html'
+
+
+class MagazineAddPage(generic.CreateView):
+    model = Magazine
+    form_class = None
+    template_name = None
+    success_url = None
+
+
+class MagazineDetailsPage(generic.DetailView):
+    model = Magazine
+    template_name = None
+    pk_url_kwarg = 'magazine_id'
+
+
+class MagazineEditPage(generic.UpdateView):
+    model = Magazine
+    form_class = None
+    pk_url_kwarg = 'magazine_id'
+    template_name = None
+    success_url = None
+
+
+class MagazineDeletePage(generic.DeleteView):
+    model = Magazine
+    form_class = None
+    pk_url_kwarg = 'magazine_id'
+    template_name = None
+    success_url = None
