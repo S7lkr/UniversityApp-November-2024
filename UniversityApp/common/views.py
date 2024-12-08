@@ -84,7 +84,32 @@ class CommentEditView(generic.UpdateView):
 
 
 class CommentDeleteView(generic.DeleteView):
-    pass
+    model = Comment
+    form_class = CommentDeleteForm
+    pk_url_kwarg = 'comment_pk'
+    template_name = 'courses/course_details/comments/comment-delete.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['category_slug'] = self.object.course.slug
+        context['course_pk'] = self.object.course.pk
+
+        return context
+
+    def get_success_url(self):
+        return reverse_lazy(
+            'course-details',
+            kwargs={
+                'category_slug': self.object.course.slug,
+                'course_pk': self.object.course.pk,
+            }
+        )
+
+    def get_initial(self):
+        return self.object.__dict__
+
+    def form_invalid(self, form):
+        return super().form_valid(form)
 
 
 class AboutPage(generic.TemplateView):

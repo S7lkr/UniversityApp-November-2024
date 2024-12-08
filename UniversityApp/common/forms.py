@@ -1,5 +1,6 @@
 from django import forms
 from UniversityApp.common.models import Comment
+from UniversityApp.mixins import DisabledFieldsMixin
 
 
 class CommentBaseForm(forms.ModelForm):
@@ -22,7 +23,9 @@ class CommentEditForm(CommentBaseForm):
     pass
 
 
-class CommentDeleteForm(forms.ModelForm):
+class CommentDeleteForm(DisabledFieldsMixin, forms.ModelForm):
+    disabled_fields_set = ('content',)
+
     class Meta:
         model = Comment
-        fields = ()
+        fields = ('content',)

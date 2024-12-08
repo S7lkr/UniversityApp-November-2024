@@ -62,7 +62,7 @@
                     <a href="{% url 'edit-comment' course.slug course.pk comment.pk %}" class="text-decoration-none">
                         <i class="fa-solid fa-pen-to-square"  style="color: darkslategray;"></i>
                     </a>
-                    <a href="#" class="text-decoration-none">
+                    <a href="{% url 'delete-comment' course.slug course.pk comment.pk %}" class="text-decoration-none">
                         <i class="fa-solid fa-trash"  style="color: darkslategray;"></i>
                     </a>
                 </span>
