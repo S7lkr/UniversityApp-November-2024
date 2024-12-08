@@ -24,4 +24,5 @@ urlpatterns = [
     path('courses/', include('UniversityApp.courses.urls')),
     path('', include('UniversityApp.lessons.urls')),
     path('', include('UniversityApp.comments.urls')),
+    path('library/', include('UniversityApp.library.urls')),
 ]
