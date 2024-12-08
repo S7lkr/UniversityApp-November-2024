@@ -12,7 +12,13 @@ urlpatterns = [
             path('book-delete/', views.BookDeletePage.as_view(), name='book-delete'),
         ])),
     ])),
-    path('journals/', include([
+    path('magazines/', include([
         path('', views.MagazinesPage.as_view(), name='magazines'),
+        path('magazine-add/', views.MagazineAddPage.as_view(), name='magazine-add'),
+        path('<int:magazine_id>/', include([
+            path('magazine-details/', views.MagazineDetailsPage.as_view(), name='magazine-details'),
+            path('magazine-edit/', views.MagazineEditPage.as_view(), name='magazine-edit'),
+            path('magazine-delete/', views.MagazineDeletePage.as_view(), name='magazine-delete'),
+        ])),
     ])),
 ]

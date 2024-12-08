@@ -1,7 +1,9 @@
 from django import forms
-from UniversityApp.library.models import Book
+from UniversityApp.library.models import Book, Magazine
 from UniversityApp.mixins import PlaceholderMixin
 
+
+# ------------ Book Forms -------------- #
 
 class BookBaseForm(forms.ModelForm):
     class Meta:
@@ -17,5 +19,25 @@ class BookAddForm(PlaceholderMixin, BookBaseForm):
 
 
 class BookDeleteForm(BookBaseForm):
+    class Meta(BookBaseForm.Meta):
+        fields = ()
+
+
+# ------------ Magazine Forms -------------- #
+
+class MagazineBaseForm(forms.ModelForm):
+    class Meta:
+        model = Magazine
+        exclude = ('author',)
+        widgets = {
+            'publish_date': forms.DateInput(attrs={'type': 'date'}),
+        }
+
+
+class MagazineAddForm(PlaceholderMixin, MagazineBaseForm):
+    pass
+
+
+class MagazineDeleteForm(BookBaseForm):
     class Meta(BookBaseForm.Meta):
         fields = ()

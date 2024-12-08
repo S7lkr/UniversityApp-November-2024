@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="form-section">
+        <div class="form-container">
+            <h2 class="mb-4">"{{ magazine.title }}". Delete magazine?</h2>
+            <form method="post">
+                {% csrf_token %}
+                {{ form }}
+                <button class="btn btn-danger w-25 mt-1 p-0" type="submit" tabindex="0">Confirm</button>
+                <a class="btn btn-dark w-25 mt-1 p-0" href="{% url 'magazine-details' magazine.pk %}">Cancel</a>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}
