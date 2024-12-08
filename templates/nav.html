@@ -28,7 +28,7 @@
         <div class="navbar-nav ms-auto p-4 p-lg-0">
             <a href="{% url 'home' %}" class="nav-item nav-link active">Home</a>
             <div class="nav-item dropdown">
-                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Courses</a>
+                <a href="{% url 'courses-categories' %}" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Courses</a>
                 <div class="dropdown-menu fade-down m-0">
                     <a href="{% url 'courses-all' %}" class="dropdown-item">All Courses</a>
                     <a href="{% url 'courses-categories' %}" class="dropdown-item">Categories</a>
@@ -43,7 +43,7 @@
             <a href="{% url 'about' %}" class="nav-item nav-link">About</a>
             <a href="contact.html" class="nav-item nav-link">Contact</a>
             <div class="nav-item dropdown">
-                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Library</a>
+                <a href="{% url 'lib-categories' %}" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Library</a>
                 <div class="dropdown-menu fade-down m-0">
                     <a href="{% url 'books' %}" class="dropdown-item">Books</a>
                     <a href="{% url 'magazines' %}" class="dropdown-item">Magazines</a>
