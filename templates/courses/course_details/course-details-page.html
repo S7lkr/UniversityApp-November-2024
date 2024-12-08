@@ -50,6 +50,8 @@
                     </h1>
 
                     <p class="mb-3 fs-6"><i class="fa-solid fa-user-tie"></i> {{ lector }}</p>
+
+                    <!-- If course HAS lector, ONLY admin can remove him -->
                     {% if course.lector and request.user.is_superuser %}
                         <a
                             href="{% url 'lector-remove' course.slug course.pk %}"
@@ -59,6 +61,7 @@
                             Remove lector
                         </a>
                     {% endif %}
+
                     <hr>
                     <p class="mb-4 fs-20"><i class="fa-solid fa-circle-info"></i> {{ course.description }}</p>
                     <hr>
