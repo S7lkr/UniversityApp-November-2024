@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load custom_filters %}
 
 {% block content %}
     <!-- Book Start -->
@@ -8,10 +9,10 @@
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s" style="min-height: 400px;">
                     <div class="position-relative h-100">
                         <img
-                            class="img-fluid position-absolute w-150 h-auto"
-                            src="{{ book.image }}"
-                            alt=""
-                            style="object-fit: cover;"
+                                class="img-fluid position-absolute w-150 h-auto"
+                                src="{{ book.image }}"
+                                alt=""
+                                style="object-fit: cover;"
                         >
                     </div>
                 </div>
@@ -22,21 +23,32 @@
                         {{ book.title }}
 
                         <span class="fs-5">
-                            <a class="text-decoration-none fs-5" href="{% url 'book-edit' book.pk %}">
-                                <i class="fa-solid fa-pen-to-square"></i>
-                            </a>
-                            <a class="text-decoration-none fs-5" href="{% url 'book-delete' book.pk %}">
-                                <i class="fa-solid fa-trash"></i>
-                            </a>
+                            <!-- IF user authorized to EDIT BOOk -->
+                            {% if request.user|allowed_to:'library.change_book' and book.author == user.profile.get_full_name %}
+                                <a class="text-decoration-none fs-5" href="{% url 'book-edit' book.pk %}">
+                                    <i class="fa-solid fa-pen-to-square"></i>
+                                </a>
+                            {% endif %}
+                            {% if request.user|allowed_to:'library.delete_book' %}
+                                <a class="text-decoration-none fs-5" href="{% url 'book-delete' book.pk %}">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            {% endif %}
                         </span>
                     </h1>
-                    <p class="mb-3 fs-6"><i class="fa-solid fa-user-tie"></i> {{ book.author.profile.get_full_name }}</p>
+                    <p class="mb-3 fs-6"><i class="fa-solid fa-user-tie"></i> {{ book.author.profile.get_full_name }}
+                    </p>
                     <hr>
                     <p class="mb-4 fs-20"><i class="fa-solid fa-circle-info"></i> {{ book.content }}</p>
                     <hr>
-                    <span class="mb-4 m-lg-4 fs-6"><i class="fa-regular fa-calendar"></i> {{ book.publish_date }}</span>
-                    <span class="mb-4 m-lg-4 fs-6"><i
-                            class="fa-solid fa-book"></i> <strong>{{ book.pages }}</strong> pages</span>
+                    <span class="mb-4 m-lg-4 fs-6">
+                        <i class="fa-regular fa-calendar"></i>
+                        {{ book.publish_date }}
+                    </span>
+                    <span class="mb-4 m-lg-4 fs-6">
+                        <i class="fa-solid fa-book"></i>
+                        <strong>{{ book.pages }}</strong> pages
+                    </span>
                     <hr>
                 </div>
             </div>

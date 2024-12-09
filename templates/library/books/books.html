@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load custom_filters %}
 {% load static %}
 
 {% block content %}
@@ -8,13 +9,18 @@
         <div class="container">
             <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
                 <h6 class="section-title bg-white text-center text-primary px-3 mb-4">Books</h6>
-                <a
-                        href="{% url 'book-add' %}"
-                        class="btn btn-info py-1 fs-6 mb-4"
-                        style="display: block; margin: 0 auto; width: 135px"
-                >
-                    + Add Book
-                </a>
+
+                <!-- If user authorized to ADD BOOK -->
+                {% if request.user|allowed_to:'library.add_book' %}
+                    <a
+                            href="{% url 'book-add' %}"
+                            class="btn btn-info py-1 fs-6 mb-4"
+                            style="display: block; margin: 0 auto; width: 135px"
+                    >
+                        + Add Book
+                    </a>
+                {% endif %}
+
             </div>
 
             <div class="row g-4 justify-content-center">
