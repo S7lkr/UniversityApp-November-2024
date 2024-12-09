@@ -1,7 +1,9 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <div class="form-section">
+    <div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
+        <div class="container">
+            <div class="form-section">
         <div class="form-container">
             <h2 class="mb-4">{{ btn_type }} Profile:</h2>
             <form method="post">
@@ -13,10 +15,10 @@
                         {{ field.help_text }}
                     </p>
                 {% endfor %}
-                <button class="btn btn-primary p-2 w-40 mt-4 m-lg-0" type="submit" tabindex="0">{{ btn_type }}</button>
+                <button class="btn btn-primary p-1 w-20 mt-4 m-lg-0" type="submit" tabindex="0">{{ btn_type }}</button>
                 <a
                     href="{% url 'profile-details' user.id %}"
-                    class="btn btn-success p-2 w-40 mt-4 m-lg-2"
+                    class="btn btn-success p-1 w-20 mt-4 m-lg-2"
                     type="submit"
                     tabindex="0"
                 >
@@ -25,5 +27,6 @@
             </form>
         </div>
     </div>
-
+        </div>
+    </div>
 {% endblock %}
