@@ -1,27 +1,41 @@
 {% extends 'base.html' %}
+{% load custom_filters %}
 {% load static %}
 
 {% block content %}
 
-    <!-- Books Start -->
+    <!-- Magazines Start -->
     <div class="container-xxl py-5">
         <div class="container">
-
             <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
                 <h6 class="section-title bg-white text-center text-primary px-3 mb-4">Magazines</h6>
-                <a
-                        href="{% url 'magazine-add' %}"
-                        class="btn btn-info py-0 fs-6 mb-4"
-                        style="display: block; margin: 0 auto; width: 180px;"
-                >
-                    + Add Magazine
-                </a>
+
+                <!-- IF user authorized to ADD MAGAZINE -->
+                {% if request.user|allowed_to:'library.add_magazine' %}
+                    <a
+                            href="{% url 'magazine-add' %}"
+                            class="btn btn-info py-0 fs-6 mb-4"
+                            style="display: block; margin: 0 auto; width: 180px;"
+                    >
+                        + Add Magazine
+                    </a>
+                {% endif %}
             </div>
 
             <div class="row g-4 justify-content-center">
                 {% for magazine in magazine_list %}
                     <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                         <div class="course-item bg-light">
+                            <div class="text-center p-2">
+                                <h3 class="mb-0">
+                                    <!-- IF user is MAGAZINE CREATOR -->
+                                    {% if magazine.publisher == request.user.profile.get_full_name %}
+                                        <i class="fa-solid fa-star fs-5" style="color: dodgerblue"></i>
+                                    {% endif %}
+
+                                    {{ magazine.title }}
+                                </h3>
+                            </div>
                             <div class="position-relative overflow-hidden">
                                 <img class="img-fluid" src="{{ magazine.image }}" alt="">
                                 <div class="w-100 d-flex justify-content-center position-absolute bottom-0 start-0 mb-4">
@@ -34,25 +48,14 @@
                                     </a>
                                 </div>
                             </div>
-                            <div class="text-center p-4 pb-0">
-                                {#                                <h6 class="mb-4">{{ course.category }}</h6>#}
-                                <h3 class="mb-0">{{ magazine.title }}</h3>
-                                <div class="mb-3">
-                                    <small class="fa fa-star text-primary"></small>
-                                    <small class="fa fa-star text-primary"></small>
-                                    <small class="fa fa-star text-primary"></small>
-                                    <small class="fa fa-star text-primary"></small>
-                                    <small class="fa fa-star text-primary"></small>
-                                    <small>(5)</small>
-                                </div>
-                            </div>
                             <div class="d-flex border-top">
                                 <small class="flex-fill text-center border-end py-2">
                                     <i class="fa fa-user-tie text-primary me-2"></i>
                                     {{ magazine.publisher }}
                                 </small>
                                 <small class="flex-fill text-center border-end py-2"><i
-                                        class="fa-regular fa-calendar text-primary me-2"></i>{{ magazine.publish_date }}</small>
+                                        class="fa-regular fa-calendar text-primary me-2"></i>{{ magazine.publish_date }}
+                                </small>
                                 <small class="flex-fill text-center py-2"><i class="fa fa-user text-primary me-2"></i>
                                     {{ magazine.pages }}
                                 </small>
@@ -65,5 +68,5 @@
             </div>
         </div>
     </div>
-    <!-- Books End -->
+    <!-- Magazines End -->
 {% endblock %}
