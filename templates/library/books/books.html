@@ -14,23 +14,29 @@
                 {% if request.user|allowed_to:'library.add_book' %}
                     <a
                             href="{% url 'book-add' %}"
-                            class="btn btn-info py-1 fs-6 mb-4"
+                            class="btn btn-info py-0 w-10 fs-6 mb-4"
                             style="display: block; margin: 0 auto; width: 135px"
                     >
                         + Add Book
                     </a>
                 {% endif %}
-
             </div>
 
             <div class="row g-4 justify-content-center">
                 {% for book in book_list %}
                     <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                         <div class="course-item bg-light">
+                            <div class="text-center p-2">
+                                <h3 class="mb-0">
+                                    <!-- IF user is BOOK CREATOR -->
+                                    {% if book.author_id == request.user.pk %}
+                                        <i class="fa-solid fa-star fs-5" style="color: dodgerblue"></i>
+                                    {% endif %}
+
+                                    {{ book.title }}
+                                </h3>
+                            </div>
                             <div class="position-relative overflow-hidden">
-                                <div class="text-center p-2">
-                                    <h3 class="mb-0">{{ book.title }}</h3>
-                                </div>
                                 <img class="img-fluid" src="{{ book.image }}" alt="">
                                 <div class="w-100 d-flex justify-content-center position-absolute bottom-0 start-0 mb-4">
                                     <a
@@ -45,7 +51,12 @@
                             <div class="d-flex border-top">
                                 <small class="flex-fill text-center border-end py-2">
                                     <i class="fa fa-user-tie text-primary me-2"></i>
-                                    {{ book.author.profile.get_full_name }}
+                                    <a
+                                            href="{% url 'profile-details' book.author_id %}"
+                                            class="text-decoration-none"
+                                    >
+                                        {{ book.author.profile.get_full_name }}
+                                    </a>
                                 </small>
                                 <small class="flex-fill text-center border-end py-2"><i
                                         class="fa-regular fa-calendar text-primary me-2"></i>{{ book.publish_date }}</small>

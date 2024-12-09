@@ -23,12 +23,14 @@
                         {{ book.title }}
 
                         <span class="fs-5">
-                            <!-- IF user authorized to EDIT BOOk -->
-                            {% if request.user|allowed_to:'library.change_book' and book.author == user.profile.get_full_name %}
+                            <!-- IF user authorized to EDIT BOOK or is BOOK CREATOR -->
+                            {% if request.user|allowed_to:'library.change_book' or book.author_id == request.user.pk %}
                                 <a class="text-decoration-none fs-5" href="{% url 'book-edit' book.pk %}">
                                     <i class="fa-solid fa-pen-to-square"></i>
                                 </a>
                             {% endif %}
+
+                            <!-- IF user authorized to DELETE BOOK -->
                             {% if request.user|allowed_to:'library.delete_book' %}
                                 <a class="text-decoration-none fs-5" href="{% url 'book-delete' book.pk %}">
                                     <i class="fa-solid fa-trash"></i>
