@@ -10,11 +10,11 @@
             {% csrf_token %}
             {{ form }}
             <div class="display-block text-center">
-                <button class="btn btn-info m-lg-2 p-1 fs-6" type="submit" id="button-addon2">
+                <button class="btn btn-danger m-lg-2 p-0 w-25" type="submit" id="button-addon2">
                     Delete
                 </button>
                 <a
-                        class="btn btn-light m-lg-2 p-1 fs-6"
+                        class="btn btn-dark m-lg-2 p-0 w-25"
                         type="button"
                         id="button-addon2"
                         href="{% url 'course-details' category_slug course_pk %}"
