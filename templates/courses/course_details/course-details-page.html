@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load custom_filters %}
 
 {% block content %}
     <!-- Course Start -->
@@ -18,23 +19,31 @@
                         {{ course.name }}
 
                         <span class="fs-5">
-                            {% if request.user.profile.is_lector and request.user.profile.course_id == course.pk %}
+
+                            <!-- If user has PERMISSION TO CHANGE course & is IN THIS COURSE -->
+                            {% if request.user|allowed_to:'courses.change_course' and request.user.profile.course_id == course.pk %}
                                 <a class="text-decoration-none fs-5" href="{% url 'course-edit' course.slug course.pk %}">
                                     <i class="fa-solid fa-pen-to-square"></i>
                                 </a>
+                            {% endif %}
+
+                            <!-- If user has PERMISSION TO DELETE the whole course -->
+                            {% if request.user|allowed_to:'courses.delete_course' %}
                                 <a class="text-decoration-none fs-5" href="{% url 'course-delete' course.slug course.pk %}">
                                     <i class="fa-solid fa-trash"></i>
                                 </a>
                             {% endif %}
+
                         </span>
 
+                        <!-- If user NOT in ANY course-->
                         {% if user.profile.course_id is None %}
-                            <!-- If user NOT in ANY course-->
                             <a class="btn btn-primary m-lg-2 py-1 px-3 mt-0" href="{% url 'user-add' course.slug course.pk %}">
                                 <i class="fa-solid fa-plus"></i>
                                 Join Course
                             </a>
-                            <!-- If user HAS ALREADY JOINED course -->
+
+                        <!-- If user has JOINED THIS course -->
                         {% elif user.profile.course_id == course.pk %}
                             <span class="text-md-end m-lg-2">
                                 <span class="badge bg-success fs-6">
@@ -45,13 +54,11 @@
                                     <span class="badge bg-dark fs-6">Quit?</span>
                                 </a>
                             </span>
-
                         {% endif %}
                     </h1>
-
                     <p class="mb-3 fs-6"><i class="fa-solid fa-user-tie"></i> {{ lector }}</p>
 
-                    <!-- If course HAS lector, ONLY admin can remove him -->
+                    <!-- If course HAS LECTOR, only ADMIN can detach him from a course -->
                     {% if course.lector and request.user.is_superuser %}
                         <a
                             href="{% url 'lector-remove' course.slug course.pk %}"
