@@ -9,7 +9,7 @@ from UniversityApp.comments.forms import CommentAddForm
 from UniversityApp.lessons.forms import LessonAddForm
 
 
-class CoursesCategoriesPage(LoginRequiredMixin, generic.TemplateView):
+class CoursesCategoriesPage(generic.TemplateView):
     template_name = 'courses/courses_categories.html'
     login_url = reverse_lazy('login')
 
@@ -23,11 +23,17 @@ class CoursesCategoriesPage(LoginRequiredMixin, generic.TemplateView):
         return context
 
 
-class CoursesAllPage(LoginRequiredMixin, generic.ListView):
+class CoursesAllPage(generic.ListView):
     model = Course
     template_name = 'courses/courses.html'
     context_object_name = 'courses'
     login_url = reverse_lazy('login')
+
+    # Authentication control:
+    def get_template_names(self):
+        if self.request.user.is_authenticated:
+            return ['courses/courses.html',]
+        return ['courses/courses-not-auth.html']
 
 
 class CoursesFromCategoryPage(generic.ListView):
@@ -37,11 +43,16 @@ class CoursesFromCategoryPage(generic.ListView):
     context_object_name = 'courses'
 
     def get_queryset(self):
-        # get 'course.category' dynamically from the slug (.../web-design/) in the url
+        # get 'course.category' dynamically from slug ".../web-design/.." in the url
         category_lower = self.request.get_full_path().split('/')[3].replace("-", " ")
         category = (" ".join((word.capitalize() for word in category_lower.split(" "))))
         queryset = super().get_queryset().filter(category=category)
         return queryset
+
+    def get_template_names(self):
+        if self.request.user.is_authenticated:
+            return ['courses/courses.html',]
+        return ['courses/courses-not-auth.html']
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -59,7 +70,7 @@ class CourseCreatePage(LoginRequiredMixin, generic.CreateView):
     login_url = reverse_lazy('login')
 
     def dispatch(self, request, *args, **kwargs):
-        if not (self.request.user.profile.is_lector or self.request.user.is_superuser):
+        if 'courses.add_course' not in self.request.user.get_group_permissions():
             return render(request, 'errors/403.html', status=403)
         return super().dispatch(request, *args, **kwargs)
 
