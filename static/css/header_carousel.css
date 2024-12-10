@@ -66,6 +66,14 @@
     text-transform: uppercase;
 }
 
+#info-panel {
+    position: relative;
+    display: inline-block;
+    text-transform: uppercase;
+    height: 18px;
+    line-height: 0.5em;
+}
+
 .section-title::before {
     position: absolute;
     content: "";
