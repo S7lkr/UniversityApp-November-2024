@@ -42,6 +42,23 @@
                             No course
                         {% endif %}
                     </p>
+                    <p class="mb-1 fs-6">
+                        <i class="fa-solid fa-book"></i>
+                        {{ profile.user.books.count }} book/s
+                    </p>
+                    <ul class="mb-4 fs-6">
+                        {% for book in profile.user.books.all %}
+                            <li>
+                                <a
+                                        href="{% url 'book-details' book.pk %}"
+                                        class="text-decoration-none"
+                                        style="color: yellow;"
+                                >
+                                    {{ book }}
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
                     <hr>
                 </div>
             </div>
