@@ -38,6 +38,7 @@ MY_APPS = [
     'UniversityApp.lessons',
     'UniversityApp.comments',
     'UniversityApp.library',
+    'UniversityApp.gallery',
 ]
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -133,6 +134,9 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = (
     BASE_DIR / 'static',
 )
+
+MEDIA_URL = '/media/'                # will show up in urls as 'media'
+MEDIA_ROOT = BASE_DIR / 'mediafiles'    # it will read from 'mediafiles' folder
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
