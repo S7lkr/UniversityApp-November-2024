@@ -38,7 +38,7 @@ class Migration(migrations.Migration):
                 ('image', models.URLField(default='http://localhost:8000/static/img/book.jpg'),),
                 ('publish_date', models.DateField()),
                 ('pages', models.PositiveSmallIntegerField(default=180,)),
-                ('author', models.ForeignKey(on_delete=django.db.models.deletion.SET, related_name='books', to=settings.AUTH_USER_MODEL)),
+                ('author', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='books', to=settings.AUTH_USER_MODEL)),
             ],
             options={
                 'abstract': False,
