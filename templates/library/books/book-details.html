@@ -5,6 +5,13 @@
     <!-- Book Start -->
     <div class="container-xxl py-5">
         <div class="container">
+            <a
+                    href="{% url 'books' %}"
+                    class="btn btn-info py-2 fs-6 mb-4"
+                    style="display: block; width: 180px"
+            >
+                < Books
+            </a>
             <div class="row g-5">
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s" style="min-height: 400px;">
                     <div class="position-relative h-100">
@@ -24,10 +31,12 @@
 
                         <span class="fs-5">
                             <!-- IF user authorized to EDIT BOOK or is BOOK CREATOR -->
-                            {% if request.user|allowed_to:'library.change_book' or book.author_id == request.user.pk %}
-                                <a class="text-decoration-none fs-5" href="{% url 'book-edit' book.pk %}">
-                                    <i class="fa-solid fa-pen-to-square"></i>
-                                </a>
+                            {% if request.user|allowed_to:'library.change_book' %}
+                                {% if book.author_id == request.user.pk or user.is_superuser %}
+                                    <a class="text-decoration-none fs-5" href="{% url 'book-edit' book.pk %}">
+                                        <i class="fa-solid fa-pen-to-square"></i>
+                                    </a>
+                                {% endif %}
                             {% endif %}
 
                             <!-- IF user authorized to DELETE BOOK -->
