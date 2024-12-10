@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load custom_filters %}
+{% load static %}
+
+{% block content %}
+    <!-- Albums Start -->
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                <h6 class="section-title bg-white text-center text-primary px-3 mb-lg-5">Gallery</h6>
+
+                <!-- If user authorized to ADD ALBUM -->
+                {#                {% if request.user|allowed_to:'gallery.add_album' %}#}
+                <a
+                        href="{% url 'album-add' %}"
+                        class="btn btn-info py-0 fs-6 mb-4"
+                        style="display: block; margin: 0 auto; width: 150px"
+                >
+                    + Add Album
+                </a>
+                {#                {% endif %}#}
+            </div>
+            <div class="row g-4 justify-content-center">
+                {% for album in albums %}
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="photo course-item bg-light">
+                            <div class="text-center p-2">
+                                <h3 class="mb-0">{{ album.title }}</h3>
+                            </div>
+                            <div class="position-relative overflow-hidden">
+                                <a href="{% url 'photos' album.pk %}">
+                                    <img class="img-fluid" src="{{ album.cover.url }}" alt="">
+                                </a>
+                            </div>
+
+                            <div class="d-flex border-top">
+                                <small class="flex-fill text-center border-end py-2">
+                                    <i class="fa-regular fa-calendar text-primary me-2"></i>
+                                    {{ album.created_at }}
+                                </small>
+                            </div>
+                            <!-- If user authorized to EDIT/DELETE album -->
+{#                            {% if request.user|allowed_to:'gallery.delete_album' %}#}
+                                <div class="text-end m-2">
+                                    <span>
+                                        <a class="text-decoration-none" href="{% url 'album-edit' album.pk %}">
+                                            <i class="fa-solid fa-pen-to-square"></i>
+                                        </a>
+                                        <a class="text-decoration-none" href="{% url 'album-delete' album.pk %}">
+                                            <i class="fa-solid fa-trash"></i>
+                                        </a>
+                                    </span>
+                                </div>
+{#                            {% endif %}#}
+                        </div>
+                    </div>
+                {% empty %}
+                    <h1 class="mb-5 text-md-center">No albums yet</h1>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <!-- Albums End -->
+{% endblock %}

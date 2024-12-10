@@ -5,12 +5,12 @@
         <div class="container">
             <div class="form-section">
                 <div class="form-container">
-                    <h2 class="mb-4">"{{ book.title }}". Delete book?</h2>
+                    <h2 class="mb-4">"{{ album.title }}". Delete album?</h2>
                     <form method="post">
                         {% csrf_token %}
                         {{ form }}
                         <button class="btn btn-danger p-1 w-20 mt-1 p-1" type="submit" tabindex="0">Delete</button>
-                        <a class="btn btn-dark p-1 w-20 mt-1 p-1" href="{% url 'book-details' book.pk %}" tabindex="0">Cancel</a>
+                        <a class="btn btn-dark p-1 w-20 mt-1 p-1" href="javascript:history.back();" tabindex="0">Cancel</a>
                     </form>
                 </div>
             </div>

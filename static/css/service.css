@@ -16,3 +16,36 @@
 .service-item:hover * {
     color: var(--light) !important;
 }
+
+#full-page {
+    display: none;
+    position: absolute;
+    z-index: 99;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    backdrop-filter: blur(0.3em);
+}
+
+#full-page img {
+    display: block;
+    width: 50vw;
+    height: auto;
+    position: sticky;
+}
+
+#full-page button {
+    width: 1.9em;
+    top: 10%;
+    left: 49%;
+}
+
+div.photo {
+    /*border: 2px solid black;*/
+    box-shadow: 0.4em 0.4em 0.6em rgba(0, 0, 0, 0.6);
+}

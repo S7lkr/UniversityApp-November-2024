@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load custom_filters %}
+{% load static %}
+
+{% block content %}
+    <!-- Photos Start -->
+    <div class="container-xxl py-5" onload="getPics()">
+        <div class="container">
+            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                <h6 class="section-title bg-white text-center text-primary px-3 mb-lg-5">"{{ album.title }}" Photos</h6>
+                <a
+                        href="{% url 'albums' %}"
+                        class="btn btn-dark py-0 fs-6 mb-4"
+                        style="display: block; margin: 0 auto; width: 180px"
+                >
+                    Back to Albums
+                </a>
+
+                <!-- If user authorized to ADD PHOTO -->
+{#                {% if request.user|allowed_to:'gallery.add_photo' %}#}
+                    <a
+                            href="{% url 'photo-add' album.pk %}"
+                            class="btn btn-info py-0 fs-6 mb-4"
+                            style="display: block; margin: 0 auto; width: 150px"
+                    >
+                        + Add Photo
+                    </a>
+{#                {% endif %}#}
+            </div>
+            <div class="gallery row g-4 justify-content-center">
+                {% for photo in album.photos.all %}
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="photo course-item bg-light">
+                            <div class="position-relative overflow-hidden">
+                                <a href="#">
+                                    <img id="{{ photo.pk }}" class="img-fluid" src="{{ photo.photo.url }}" alt="">
+                                </a>
+                            </div>
+
+                            <!-- IF user authorized to DELETE PHOTO -->
+                            {% if request.user|allowed_to:'gallery.delete_photo' %}
+                                <a href="{% url 'photo-delete' album.pk photo.pk %}">
+                                    <i class="fa-solid fa-trash" style="padding-left: 12em;"></i>
+                                </a>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                {% empty %}
+                    <h1 class="mb-5 text-md-center">No photos yet</h1>
+                {% endfor %}
+            </div>
+        </div>
+        <div id="full-page">
+            <button
+                    class="btn btn-danger fs-6 rounded-circle p-1"
+                    onclick="document.getElementById('full-page').style.display='none';"
+            >
+                x
+            </button>
+        </div>
+    </div>
+    <!-- Photos End -->
+
+    <script>
+        function getPics() {
+        } //just for this demo
+        const imgs = document.querySelectorAll('.gallery img');
+        const fullPage = document.querySelector('#full-page');
+
+        imgs.forEach(img => {
+            img.addEventListener('click', function () {
+                fullPage.style.backgroundImage = 'url(' + img.src + ')';
+                fullPage.style.display = 'block';
+            });
+        });
+    </script>
+
+{% endblock %}

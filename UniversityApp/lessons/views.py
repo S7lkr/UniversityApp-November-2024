@@ -19,10 +19,6 @@ def lesson_add_view(request, category_slug: str, course_pk: int):
     return render(request, template_name=None, context={'form': LessonAddForm()})
 
 
-# def lesson_edit_view(request, category_slug: str, course_pk: int, lesson_pk: int):
-#     if request.POST:
-#         pass
-
 class LessonEditView(generic.UpdateView):
     model = Lesson
     form_class = LessonAddForm
