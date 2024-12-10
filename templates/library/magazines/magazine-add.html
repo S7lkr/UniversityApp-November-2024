@@ -16,8 +16,9 @@
                             {{ field.errors }}
                         {% endfor %}
                         <button class="btn btn-info w-25 p-0 mt-4" type="submit">Add</button>
-                        <a href="{% url 'magazines' %}" class="btn btn-dark w-25 p-0 mt-4" type="submit"
-                          >Cancel</a>
+                        <a href="javascript:history.back();" class="btn btn-dark w-25 p-0 mt-4">
+                            Cancel
+                        </a>
                     </form>
                 </div>
             </div>

@@ -8,7 +8,8 @@
             <form method="post">
                 {% csrf_token %}
                 {{ form }}
-                <button class="btn btn-primary w-50 mt-4" type="submit" tabindex="0">Login</button>
+                <button class="btn btn-primary w-25 p-1 mt-4" type="submit" tabindex="0">Login</button>
+                <a class="btn btn-dark w-25 p-1 mt-4" href="javascript:history.back();">Cancel</a>
             </form>
             <p class="mt-3">Don't have an account?
                 <a href="{% url 'register' %}"><b>Register</b></a> now.

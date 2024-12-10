@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load custom_filters %}
 {% load static %}
 
 {% block content %}
@@ -13,11 +14,20 @@
                 {% else %}
                     <h1 class="mb-5">No courses yet</h1>
                 {% endif %}
-{#                <a href="{% url 'courses-create' %}"><button type="button" class="btn btn-primary mb-4">Add Course</button></a>#}
+                {#                <a href="{% url 'courses-create' %}"><button type="button" class="btn btn-primary mb-4">Add Course</button></a>#}
             </div>
             <div class="row g-4 justify-content-center">
                 {% for course in courses %}
                     <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                    {% if request.user|allowed_to:'courses.add_course' %}
+                        <a
+                                href="{% url 'course-create' %}"
+                                class="btn btn-info py-1 fs-6 mb-4"
+                                style="display: block; margin: 0 auto; width: 180px"
+                        >
+                            + Add Course
+                        </a>
+                    {% endif %}
                         <div class="course-item bg-light">
                             <div class="position-relative overflow-hidden">
                                 <img class="img-fluid" src="{{ course.photo }}" alt="">
@@ -28,52 +38,52 @@
                                         <!-- If profile is student or Course HAS NOT a lector -->
                                         {% if not user.profile.is_lector or not course.lector %}
                                             <a
-                                                href="{% url 'user-add' course.slug course.pk %}"
-                                                class="flex-shrink-0 btn btn-sm btn-primary px-3 border-end"
-                                                style="border-radius: 30px 0 0 30px;"
+                                                    href="{% url 'user-add' course.slug course.pk %}"
+                                                    class="flex-shrink-0 btn btn-sm btn-primary px-3 border-end"
+                                                    style="border-radius: 30px 0 0 30px;"
                                             >
                                                 Join
                                             </a>
                                             <a
-                                                href="{% url 'course-details' course.slug course.pk %}"
-                                                class="flex-shrink-0 btn btn-sm btn-warning px-3"
-                                                style="border-radius: 0 30px 30px 0;"
+                                                    href="{% url 'course-details' course.slug course.pk %}"
+                                                    class="flex-shrink-0 btn btn-sm btn-warning px-3"
+                                                    style="border-radius: 0 30px 30px 0;"
                                             >
                                                 Read More
                                             </a>
-                                        <!-- If user is LECTOR, but Course already HAS one -->
+                                            <!-- If user is LECTOR, but Course already HAS one -->
                                         {% else %}
                                             <a
-                                                href="{% url 'course-details' course.slug course.pk %}"
-                                                class="flex-shrink-0 btn btn-sm btn-warning px-3"
-                                                style="border-radius: 30px 30px;"
+                                                    href="{% url 'course-details' course.slug course.pk %}"
+                                                    class="flex-shrink-0 btn btn-sm btn-warning px-3"
+                                                    style="border-radius: 30px 30px;"
                                             >
                                                 Read More
                                             </a>
                                         {% endif %}
-                                    <!-- If person HAS JOINED this course-->
+                                        <!-- If person HAS JOINED this course-->
                                     {% elif user.profile.course_id == course.pk %}
                                         <!-- If student JOINED THIS course -->
                                         <a
-                                            href="#"
-                                            class="flex-shrink-0 btn btn-sm btn-primary px-3 border-end disabled"
-                                            style="border-radius: 30px 0 0 30px;"
+                                                href="#"
+                                                class="flex-shrink-0 btn btn-sm btn-primary px-3 border-end disabled"
+                                                style="border-radius: 30px 0 0 30px;"
                                         >
                                             Joined!
                                         </a>
                                         <a
-                                            href="{% url 'course-details' course.slug course.pk %}"
-                                            class="flex-shrink-0 btn btn-sm btn-warning px-3"
-                                            style="border-radius: 0 30px 30px 0;"
+                                                href="{% url 'course-details' course.slug course.pk %}"
+                                                class="flex-shrink-0 btn btn-sm btn-warning px-3"
+                                                style="border-radius: 0 30px 30px 0;"
                                         >
                                             Read More
                                         </a>
                                     {% else %}
                                         <!-- If student JOINED ANOTHER course -->
                                         <a
-                                            href="{% url 'course-details' course.slug course.pk %}"
-                                            class="flex-shrink-0 btn btn-sm btn-warning px-3"
-                                           style="border-radius: 30px 30px;"
+                                                href="{% url 'course-details' course.slug course.pk %}"
+                                                class="flex-shrink-0 btn btn-sm btn-warning px-3"
+                                                style="border-radius: 30px 30px;"
                                         >
                                             Read More
                                         </a>

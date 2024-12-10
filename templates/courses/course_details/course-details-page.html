@@ -5,6 +5,13 @@
     <!-- Course Start -->
     <div class="container-xxl py-5">
         <div class="container">
+            <a
+                    href="{% url 'courses-all' %}"
+                    class="btn btn-info py-2 fs-6 mb-4"
+                    style="display: block; width: 180px"
+            >
+                < Courses
+            </a>
             <div class="row g-5">
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s" style="min-height: 400px;">
                     <div class="position-relative h-100">
@@ -19,31 +26,32 @@
                         {{ course.name }}
 
                         <span class="fs-5">
-
                             <!-- If user has PERMISSION TO CHANGE course & is IN THIS COURSE -->
-                            {% if request.user|allowed_to:'courses.change_course' and request.user.profile.course_id == course.pk %}
-                                <a class="text-decoration-none fs-5" href="{% url 'course-edit' course.slug course.pk %}">
+                            {% if request.user|allowed_to:'courses.change_course' %}
+                                <a class="text-decoration-none fs-5"
+                                   href="{% url 'course-edit' course.slug course.pk %}">
                                     <i class="fa-solid fa-pen-to-square"></i>
                                 </a>
                             {% endif %}
 
                             <!-- If user has PERMISSION TO DELETE the whole course -->
                             {% if request.user|allowed_to:'courses.delete_course' %}
-                                <a class="text-decoration-none fs-5" href="{% url 'course-delete' course.slug course.pk %}">
+                                <a class="text-decoration-none fs-5"
+                                   href="{% url 'course-delete' course.slug course.pk %}">
                                     <i class="fa-solid fa-trash"></i>
                                 </a>
                             {% endif %}
-
                         </span>
 
                         <!-- If user NOT in ANY course-->
                         {% if user.profile.course_id is None %}
-                            <a class="btn btn-primary m-lg-2 py-1 px-3 mt-0" href="{% url 'user-add' course.slug course.pk %}">
+                            <a class="btn btn-primary m-lg-2 py-1 px-3 mt-0"
+                               href="{% url 'user-add' course.slug course.pk %}">
                                 <i class="fa-solid fa-plus"></i>
                                 Join Course
                             </a>
 
-                        <!-- If user has JOINED THIS course -->
+                            <!-- If user has JOINED THIS course -->
                         {% elif user.profile.course_id == course.pk %}
                             <span class="text-md-end m-lg-2">
                                 <span class="badge bg-success fs-6">
@@ -61,9 +69,9 @@
                     <!-- If course HAS LECTOR, only ADMIN can detach him from a course -->
                     {% if course.lector and request.user.is_superuser %}
                         <a
-                            href="{% url 'lector-remove' course.slug course.pk %}"
-                            class="flex-shrink-0 btn btn-sm btn-warning px-2"
-                            style="border-radius: 30px;"
+                                href="{% url 'lector-remove' course.slug course.pk %}"
+                                class="flex-shrink-0 btn btn-sm btn-warning px-2"
+                                style="border-radius: 30px;"
                         >
                             Remove lector
                         </a>
@@ -73,7 +81,8 @@
                     <p class="mb-4 fs-20"><i class="fa-solid fa-circle-info"></i> {{ course.description }}</p>
                     <hr>
                     <span class="mb-4 m-lg-4 fs-6"><i class="fa-regular fa-calendar"></i> {{ course.start_date }}</span>
-                    <span class="mb-4 m-lg-4 fs-6"><i class="fa-regular fa-star"></i> <strong>{{ course.credits }}</strong> credits</span>
+                    <span class="mb-4 m-lg-4 fs-6"><i
+                            class="fa-regular fa-star"></i> <strong>{{ course.credits }}</strong> credits</span>
                     <span class="mb-4 m-lg-4 fs-6">
                         <i class="fa-regular fa-clock"></i>
                         <strong>{{ course.duration }}</strong>

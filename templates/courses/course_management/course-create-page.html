@@ -10,7 +10,7 @@
                         {% csrf_token %}
                         {{ form }}
                         <button class="btn btn-info w-25 p-0 mt-5" type="submit" tabindex="0">Create</button>
-                        <a href="{% url 'courses-all' %}" class="btn btn-dark w-25 p-0 mt-5" tabindex="0">Cancel</a>
+                        <a href="javascript:history.back();" class="btn btn-dark w-25 p-0 mt-5" tabindex="0">Cancel</a>
                     </form>
                 </div>
             </div>

@@ -9,8 +9,8 @@
                     <form method="post">
                         {% csrf_token %}
                         {{ form }}
-                        <button class="btn btn-danger p-1 w-20 mt-1 p-1" type="submit" tabindex="0">Delete</button>
-                        <a class="btn btn-dark p-1 w-20 mt-1 p-1" href="{% url 'book-details' book.pk %}" tabindex="0">Cancel</a>
+                        <button class="btn btn-danger w-25 mt-1 p-0" type="submit" tabindex="0">Delete</button>
+                        <a class="btn btn-dark w-25 mt-1 p-0" href="javascript:history.back();" tabindex="0">Cancel</a>
                     </form>
                 </div>
             </div>

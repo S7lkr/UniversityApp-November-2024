@@ -10,7 +10,7 @@
                         {% csrf_token %}
                         {{ form }}
                         <button class="btn btn-danger w-25 mt-1 p-0" type="submit" tabindex="0">Confirm</button>
-                        <a class="btn btn-dark w-25 mt-1 p-0" href="{% url 'magazine-details' magazine.pk %}">Cancel</a>
+                        <a class="btn btn-dark w-25 mt-1 p-0" href="javascript:history.back();">Cancel</a>
                     </form>
                 </div>
             </div>
