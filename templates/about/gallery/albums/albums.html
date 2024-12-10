@@ -10,7 +10,7 @@
                 <h6 class="section-title bg-white text-center text-primary px-3 mb-lg-5">Gallery</h6>
 
                 <!-- If user authorized to ADD ALBUM -->
-                {#                {% if request.user|allowed_to:'gallery.add_album' %}#}
+                {% if request.user|allowed_to:'gallery.add_album' %}
                 <a
                         href="{% url 'album-add' %}"
                         class="btn btn-info py-0 fs-6 mb-4"
@@ -18,7 +18,7 @@
                 >
                     + Add Album
                 </a>
-                {#                {% endif %}#}
+                {% endif %}
             </div>
             <div class="row g-4 justify-content-center">
                 {% for album in albums %}
@@ -40,7 +40,7 @@
                                 </small>
                             </div>
                             <!-- If user authorized to EDIT/DELETE album -->
-{#                            {% if request.user|allowed_to:'gallery.delete_album' %}#}
+                            {% if request.user|allowed_to:'gallery.delete_album' %}
                                 <div class="text-end m-2">
                                     <span>
                                         <a class="text-decoration-none" href="{% url 'album-edit' album.pk %}">
@@ -51,7 +51,7 @@
                                         </a>
                                     </span>
                                 </div>
-{#                            {% endif %}#}
+                            {% endif %}
                         </div>
                     </div>
                 {% empty %}

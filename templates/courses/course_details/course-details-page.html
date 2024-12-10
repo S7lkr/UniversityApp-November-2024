@@ -44,7 +44,7 @@
                         </span>
 
                         <!-- If user NOT in ANY course-->
-                        {% if user.profile.course_id is None %}
+                        {% if user.is_authenticated and user.profile.course_id is None %}
                             <a class="btn btn-primary m-lg-2 py-1 px-3 mt-0"
                                href="{% url 'user-add' course.slug course.pk %}">
                                 <i class="fa-solid fa-plus"></i>

@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.views import generic
 from UniversityApp.library.forms import BookAddForm, BookDeleteForm, MagazineAddForm, MagazineDeleteForm
@@ -34,10 +35,11 @@ class BookAddPage(generic.CreateView):
         return super().form_valid(form)
 
 
-class BookDetailsPage(generic.DetailView):
+class BookDetailsPage(LoginRequiredMixin, generic.DetailView):
     model = Book
     pk_url_kwarg = 'book_id'
     template_name = 'library/books/book-details.html'
+    login_url = reverse_lazy('login')
 
 
 class BookEditPage(generic.UpdateView):
@@ -72,10 +74,11 @@ class MagazineAddPage(generic.CreateView):
     success_url = reverse_lazy('magazines')
 
 
-class MagazineDetailsPage(generic.DetailView):
+class MagazineDetailsPage(LoginRequiredMixin, generic.DetailView):
     model = Magazine
     template_name = 'library/magazines/magazine-details.html'
     pk_url_kwarg = 'magazine_id'
+    login_url = reverse_lazy('login')
 
 
 class MagazineEditPage(generic.UpdateView):

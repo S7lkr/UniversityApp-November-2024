@@ -6,15 +6,18 @@
             <h6 class="section-title bg-white text-center text-primary px-3 mb-3">Comments section</h6>
 
             <!-- Start Comment Form -->
-            <div class="form-control mb-3 bg-transparent">
-                <form method="post" class="comment-form" action="{% url 'add-comment' course.slug course.pk %}">
-                    {% csrf_token %}
-                    {{ comment_form }}
-                    <button class="btn btn-info py-1 fs-6 mt-2" type="submit" id="button-addon2">
-                        Comment
-                    </button>
-                </form>
-            </div>
+
+            {% if request.user.is_authenticated %}
+                <div class="form-control mb-3 bg-transparent">
+                    <form method="post" class="comment-form" action="{% url 'add-comment' course.slug course.pk %}">
+                        {% csrf_token %}
+                        {{ comment_form }}
+                        <button class="btn btn-info py-1 fs-6 mt-2" type="submit" id="button-addon2">
+                            Comment
+                        </button>
+                    </form>
+                </div>
+            {% endif %}
             <!-- End Comment Form -->
 
         </div>

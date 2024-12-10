@@ -8,16 +8,9 @@
         <div class="container">
             <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
                 <h6 class="section-title bg-white text-center text-primary px-3 mb-lg-5">"{{ album.title }}" Photos</h6>
-                <a
-                        href="{% url 'albums' %}"
-                        class="btn btn-dark py-0 fs-6 mb-4"
-                        style="display: block; margin: 0 auto; width: 180px"
-                >
-                    Back to Albums
-                </a>
 
                 <!-- If user authorized to ADD PHOTO -->
-{#                {% if request.user|allowed_to:'gallery.add_photo' %}#}
+                {% if request.user|allowed_to:'gallery.add_photo' %}
                     <a
                             href="{% url 'photo-add' album.pk %}"
                             class="btn btn-info py-0 fs-6 mb-4"
@@ -25,7 +18,15 @@
                     >
                         + Add Photo
                     </a>
-{#                {% endif %}#}
+                {% endif %}
+
+                <a
+                        href="{% url 'albums' %}"
+                        class="btn btn-dark py-0 fs-6 mb-4"
+                        style="display: block; margin: 0 auto; width: 180px"
+                >
+                    Back to Albums
+                </a>
             </div>
             <div class="gallery row g-4 justify-content-center">
                 {% for photo in album.photos.all %}
