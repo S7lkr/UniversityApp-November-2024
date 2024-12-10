@@ -10,6 +10,7 @@
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s" style="min-height: 400px;">
                     <div class="position-relative h-100">
                         <img
+                                id="photo"
                                 class="img-fluid position-absolute w-100 h-100"
                                 src="{% static 'img/about.jpg' %}" alt=""
                                 style="object-fit: cover;"
@@ -64,13 +65,16 @@
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s" style="min-height: 400px;">
                     <div class="position-relative h-100">
                         <img
+                                id="photo"
                                 class="img-fluid position-absolute w-100 h-100"
                                 src="{% static 'img/background-11.jpg' %}" alt=""
-                                style="object-fit: cover;"
                         >
                     </div>
                 </div>
-                <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.3s" style="background-color: lightblue">
+                <div
+                        class="col-lg-6 wow fadeInUp" data-wow-delay="0.3s"
+                        style="background-color: rgba(255, 255, 255, 0.2);"
+                >
                     <h1 class="mb-4">What is the purpose of UniversityApp?</h1>
                     <p class="mb-4">UniversityApp is an online educational platform opened for everyone, who aims to
                         learn the concepts of software and web technologies. In order to develop oneself as a proven
