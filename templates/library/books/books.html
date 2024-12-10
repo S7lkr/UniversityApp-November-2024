@@ -51,15 +51,20 @@
                             <div class="d-flex border-top">
                                 <small class="flex-fill text-center border-end py-2">
                                     <i class="fa fa-user-tie text-primary me-2"></i>
-                                    <a
-                                            href="{% url 'profile-details' book.author_id %}"
-                                            class="text-decoration-none"
-                                    >
-                                        {{ book.author.profile.get_full_name }}
-                                    </a>
+                                    {% if book.author.profile %}
+                                        <a
+                                                href="{% url 'profile-details' book.author_id %}"
+                                                class="text-decoration-none"
+                                        >
+                                            {{ book.author_name }}
+                                        </a>
+                                    {% else %}
+                                        {{ book.author_name }}
+                                    {% endif %}
                                 </small>
                                 <small class="flex-fill text-center border-end py-2"><i
-                                        class="fa-regular fa-calendar text-primary me-2"></i>{{ book.publish_date }}</small>
+                                        class="fa-regular fa-calendar text-primary me-2"></i>{{ book.publish_date }}
+                                </small>
                                 <small class="flex-fill text-center py-2"><i class="fa fa-book text-primary me-2"></i>
                                     {{ book.pages }} pages
                                 </small>

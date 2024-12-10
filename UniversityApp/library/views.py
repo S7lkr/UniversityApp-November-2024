@@ -31,6 +31,7 @@ class BookAddPage(generic.CreateView):
     def form_valid(self, form):
         book = form.save(commit=False)
         book.author = self.request.user
+        book.author_name = self.request.user.profile.get_full_name()
         book.save()
         return super().form_valid(form)
 

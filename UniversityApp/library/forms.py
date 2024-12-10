@@ -8,7 +8,7 @@ from UniversityApp.mixins import PlaceholderMixin
 class BookBaseForm(forms.ModelForm):
     class Meta:
         model = Book
-        exclude = ('author',)
+        exclude = ('author', 'author_name')
         widgets = {
             'publish_date': forms.DateInput(attrs={'type': 'date'}),
         }

@@ -25,14 +25,19 @@ class Literature(models.Model):
     )
 
     def __str__(self):
-        return f"{self.title} from {self.publish_date}"
+        return f"{self.title}"
 
 
 class Book(Literature):
     author = models.ForeignKey(
         to=CustomUser,
-        on_delete=models.SET,
+        null=True,
+        on_delete=models.SET_NULL,
         related_name='books',
+    )
+    author_name = models.CharField(
+        max_length=50,
+        default='NoName'
     )
     image = models.URLField(
         default='http://localhost:8000/static/img/book.jpg',
