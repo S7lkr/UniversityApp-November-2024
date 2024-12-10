@@ -47,14 +47,14 @@
             <div class="row g-5">
                 <div class="col-lg-3 col-md-6">
                     <h4 class="text-white mb-3">Quick Link</h4>
-                    <a class="btn btn-link" href="">About Us</a>
-                    <a class="btn btn-link" href="">Contact Us</a>
-                    <a class="btn btn-link" href="">Privacy Policy</a>
-                    <a class="btn btn-link" href="">Terms & Condition</a>
-                    <a class="btn btn-link" href="">FAQs & Help</a>
+                    <a class="btn btn-link text-decoration-none" href="{% url 'about' %}">About Us</a>
+                    <a class="btn btn-link text-decoration-none" href="{% url 'about-team' %}">Our Team</a>
+                    <a class="btn btn-link text-decoration-none" href="{% url 'courses-categories' %}">Course Categories</a>
+                    <a class="btn btn-link text-decoration-none" href="{% url 'albums' %}">Gallery</a>
+                    <a class="btn btn-link text-decoration-none" href="{% url 'lib-categories' %}">Library</a>
                 </div>
                 <div class="col-lg-3 col-md-6">
-                    <h4 class="text-white mb-3">Contact</h4>
+                    <h4 class="text-white mb-3">Contact Us</h4>
                     <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>123 Street, New York, USA</p>
                     <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+012 345 67890</p>
                     <p class="mb-2"><i class="fa fa-envelope me-3"></i>info@example.com</p>
@@ -78,22 +78,22 @@
                             <img class="img-fluid bg-light p-1" src="{% static 'img/course-3.jpg' %}" alt="">
                         </div>
                         <div class="col-4">
-                            <img class="img-fluid bg-light p-1" src="{% static 'img/course-2.jpg' %}" alt="">
+                            <img class="img-fluid bg-light p-1" src="{% static 'img/carousel-2.jpg' %}" alt="">
                         </div>
                         <div class="col-4">
-                            <img class="img-fluid bg-light p-1" src="{% static 'img/course-3.jpg' %}" alt="">
+                            <img class="img-fluid bg-light p-1" src="{% static 'img/cat-2.jpg' %}" alt="">
                         </div>
                         <div class="col-4">
-                            <img class="img-fluid bg-light p-1" src="{% static 'img/course-1.jpg' %}" alt="">
+                            <img class="img-fluid bg-light p-1" src="{% static 'img/cat-3.jpg' %}" alt="">
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <h4 class="text-white mb-3">Newsletter</h4>
-                    <p>Dolor amet sit justo amet elitr clita ipsum elitr est.</p>
+                    <p>Become a member of our everyday-growing community. Sign up now!</p>
                     <div class="position-relative mx-auto" style="max-width: 400px;">
-                        <input class="form-control border-0 w-100 py-3 ps-4 pe-5" type="text" placeholder="Your email">
-                        <button type="button" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">SignUp</button>
+{#                        <input class="form-control border-0 w-100 py-3 ps-4 pe-5" type="text" placeholder="Your email">#}
+                        <a href="{% url 'register' %}" class="btn btn-primary py-2 text-start top-0 end-0 mt-2 me-2">SignUp</a>
                     </div>
                 </div>
             </div>
@@ -102,17 +102,18 @@
             <div class="copyright">
                 <div class="row">
                     <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                        &copy; <a class="border-bottom" href="#">UniversityApp</a>, All Right Reserved.
+                        &copy; <a class="border-bottom" href="https://www.free-css.com/free-css-templates/page291/elearning">UniversityApp</a>, All Right Reserved.
 
                         <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
                         Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a>
                     </div>
                     <div class="col-md-6 text-center text-md-end">
                         <div class="footer-menu">
-                            <a href="">Home</a>
-                            <a href="">Cookies</a>
-                            <a href="">Help</a>
-                            <a href="">FQAs</a>
+                            <a href="{% url 'home' %}">Home</a>
+                            <a href="{% url 'about' %}">Help</a>
+                            {% if request.user.is_authenticated %}
+                                <a href="{% url 'logout' %}">Quit</a>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
