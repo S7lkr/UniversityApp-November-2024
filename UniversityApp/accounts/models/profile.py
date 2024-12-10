@@ -50,7 +50,7 @@ class Profile(models.Model):
     )
     course = models.ForeignKey(
         to=Course,
-        on_delete=models.CASCADE,
+        on_delete=models.SET_NULL,
         null=True,
         blank=True,                 # Profile.course_id -> person's course
         related_name='profiles',    # Course2.profiles -> course's all people
