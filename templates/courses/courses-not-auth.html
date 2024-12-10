@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load custom_filters %}
+{% load static %}
+
+{% block content %}
+
+    <!-- Courses Start -->
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                <h6 class="section-title bg-white text-center text-primary px-3">Courses</h6>
+                {% if courses %}
+                    <h1 class="mb-5">{{ category|capfirst }} Courses</h1>
+                {% endif %}
+            </div>
+            <div class="row g-4 justify-content-center">
+                {% for course in courses %}
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                        {% if request.user|allowed_to:'courses.add_course' %}
+                            <a
+                                    href="{% url 'course-create' %}"
+                                    class="btn btn-info py-1 fs-6 mb-4"
+                                    style="display: block; margin: 0 auto; width: 180px"
+                            >
+                                + Add Course
+                            </a>
+                        {% endif %}
+                        <div class="course-item bg-light">
+                            <div class="position-relative overflow-hidden">
+                                <img class="img-fluid" src="{{ course.photo }}" alt="">
+                                <div class="w-100 d-flex justify-content-center position-absolute bottom-0 start-0 mb-4">
+                                    <a
+                                            href="{% url 'course-details' course.slug course.pk %}"
+                                            class="flex-shrink-0 btn btn-sm btn-warning px-3"
+                                            style="border-radius: 30px 30px;"
+                                    >
+                                        Read More
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="text-center p-4 pb-0">
+                                <h6 class="mb-4">{{ course.category }}</h6>
+                                <h3 class="mb-0">{{ course.name }}</h3>
+                                <div class="mb-3">
+                                    <small class="fa fa-star text-primary"></small>
+                                    <small class="fa fa-star text-primary"></small>
+                                    <small class="fa fa-star text-primary"></small>
+                                    <small class="fa fa-star text-primary"></small>
+                                    <small class="fa fa-star text-primary"></small>
+                                    <small>(5)</small>
+                                </div>
+                            </div>
+                            <div class="d-flex border-top">
+                                <small class="flex-fill text-center border-end py-2">
+                                    <i class="fa fa-user-tie text-primary me-2"></i>
+                                    {% if course.lector %}
+                                        {{ course.lector }}
+                                    {% else %}
+                                        n/a
+                                    {% endif %}
+                                </small>
+                                <small class="flex-fill text-center border-end py-2"><i
+                                        class="fa fa-clock text-primary me-2"></i>{{ course.duration }} week/s</small>
+                                <small class="flex-fill text-center py-2"><i class="fa fa-user text-primary me-2"></i>
+                                    {% if not course.lector %}
+                                        {{ course.profiles.count }} student/s
+                                    {% else %}
+                                        {{ course.profiles.count|add:-1 }} student/s
+                                    {% endif %}
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                {% empty %}
+                    <h1 class="mb-5">No courses yet</h1>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <!-- Courses End -->
+{% endblock %}
