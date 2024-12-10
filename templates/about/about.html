@@ -9,8 +9,11 @@
             <div class="row g-5">
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s" style="min-height: 400px;">
                     <div class="position-relative h-100">
-                        <img class="img-fluid position-absolute w-100 h-100" src="{% static 'img/about.jpg' %}" alt=""
-                             style="object-fit: cover;">
+                        <img
+                                class="img-fluid position-absolute w-100 h-100"
+                                src="{% static 'img/about.jpg' %}" alt=""
+                                style="object-fit: cover;"
+                        >
                     </div>
                 </div>
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.3s">
@@ -38,12 +41,67 @@
                             </p>
                         </div>
                     </div>
-                    <a class="btn btn-primary py-3 px-5 mt-2" href="">Read More</a>
+                    <a
+                            href="#"
+                            id="info-more"
+                            class="btn btn-primary py-2 px-5 mt-2"
+                            onclick="document.getElementById('about-more').style.display='block';
+                                this.style.display='none';
+                            "
+                    >
+                        Read More
+                    </a>
                 </div>
             </div>
         </div>
     </div>
     <!-- About End -->
+
+    <!-- About More (hidden) Start -->
+    <div id="about-more" class="container-xxl py-5 mt-2" style="display: none">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s" style="min-height: 400px;">
+                    <div class="position-relative h-100">
+                        <img
+                                class="img-fluid position-absolute w-100 h-100"
+                                src="{% static 'img/background-11.jpg' %}" alt=""
+                                style="object-fit: cover;"
+                        >
+                    </div>
+                </div>
+                <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.3s" style="background-color: lightblue">
+                    <h1 class="mb-4">What is the purpose of UniversityApp?</h1>
+                    <p class="mb-4">UniversityApp is an online educational platform opened for everyone, who aims to
+                        learn the concepts of software and web technologies. In order to develop oneself as a proven
+                        and experienced software developer, they need to put a serious amount of efforts and
+                        undoubtedly dedicate themselves into making a dream come true.
+                    </p>
+                    <p class="mb-4">Our interactive and professional educational system provides modern patterns
+                        and follows advanced principles and protocols in educating and preparing people from all
+                        around the globe to effortlessly enter the world of wed & video development, deployment of web
+                        applications, online marketing and last but not least, graphic design.
+                    </p>
+                    <p class="mb-4">We motivate our team and our students by involving them into various
+                        international competitions, olympiads and other events with educational purposes. If your
+                        requirements and expectations meet our educational conditions, we advise you not to squander
+                        the opportunity UniversityApp gives you. Get started now! :)
+                    </p>
+                    <a
+                            href="#"
+                            class="btn btn-primary py-2 px-5 mt-2"
+                            onclick="
+                                document.getElementById('about-more').style.display='none';
+                                document.getElementById('info-more').style.display='inline-block';
+                            "
+                    >
+                        Hide
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- About More (hidden) End -->
 
     <!-- Info Panel Start -->
     {% include 'about/info-panel.html' %}
