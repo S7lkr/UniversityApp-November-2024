@@ -14,19 +14,20 @@
                 {% else %}
                     <h1 class="mb-5">No courses yet</h1>
                 {% endif %}
+                {% if request.user|allowed_to:'courses.add_course' %}
+                    <a
+                            href="{% url 'course-create' %}"
+                            class="btn btn-info py-1 fs-6 mb-4"
+                            style="display: block; margin: 0 auto; width: 180px"
+                    >
+                        + Add Course
+                    </a>
+                {% endif %}
             </div>
+
             <div class="row g-4 justify-content-center">
                 {% for course in courses %}
                     <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                    {% if request.user|allowed_to:'courses.add_course' %}
-                        <a
-                                href="{% url 'course-create' %}"
-                                class="btn btn-info py-1 fs-6 mb-4"
-                                style="display: block; margin: 0 auto; width: 180px"
-                        >
-                            + Add Course
-                        </a>
-                    {% endif %}
                         <div class="course-item bg-light">
                             <div class="position-relative overflow-hidden">
                                 <img class="img-fluid" src="{{ course.photo }}" alt="">
