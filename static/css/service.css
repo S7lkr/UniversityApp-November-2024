@@ -45,7 +45,6 @@
     left: 49%;
 }
 
-div.photo {
-    /*border: 2px solid black;*/
+img#photo {
     box-shadow: 0.4em 0.4em 0.6em rgba(0, 0, 0, 0.6);
 }
