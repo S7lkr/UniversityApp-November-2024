@@ -109,6 +109,11 @@ class CourseEditPage(generic.UpdateView):
             kwargs={'category_slug': self.object.slug, 'course_pk': self.object.pk}
         )
 
+    def get_form_class(self):
+        if self.request.user.is_staff:
+            return forms.CourseEditForm
+        return forms.CourseLimitedEditForm
+
     def form_valid(self, form):
         self.object.slug = slugify(self.object.category)
         return super().form_valid(form)
@@ -116,6 +121,7 @@ class CourseEditPage(generic.UpdateView):
 
 class CourseDeletePage(generic.DeleteView):
     model = Course
+    pk_url_kwarg = 'course_pk'
     slug_url_kwarg = 'category_slug'
     form_class = forms.CourseDeleteForm
     template_name = 'courses/course_management/course-delete-page.html'
