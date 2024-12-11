@@ -5,7 +5,7 @@
 
 #### DISCLAIMER: Project uses extended Django user model -> by inheriting AbstractBaseUser & PermissionsMixin. USERNAME_FIELD is set to be an email. A custom password is created also. Django default AUTH_VALIDATORS have been replaced with custom ones.
 
-## ----------------------------------------------------------------------------------------------------
+## --------------------------------------------------------------------------------------
 
 ## 2. Project requirements:
 #### 2.1 Python version: 3.9 or higher
@@ -13,7 +13,7 @@
 #### 2.3 Browser: Project has been developed and tested on Brave v1.73.97 Chromium 131.0.6778.108(official build, 64-bit)
 #### 2.4 Working resolution: 1920x1080 fullHD (not mandatory, but recommended)
 
-## ----------------------------------------------------------------------------------------------------
+## --------------------------------------------------------------------------------------
 
 ## 3. Setup instructions:
 #### 3.1 Start a new (base) Django project on your PC (django system files, cores and functionalities in order to run a project)
@@ -65,7 +65,7 @@ python manage.py runserver --insecure
 ```
 ##### will work for sure!!
 
-## ----------------------------------------------------------------------------------------------------
+## --------------------------------------------------------------------------------------
 
 ## (!!) 4. Configuration (VERY IMPORTANT!)
 #### DISCLAIMER: In order for the project to work properly, make sure you CREATE THE GROUPS !!, given below & add the PERMISSIONS into them !!, correspondingly. This step is mandatory!
@@ -204,7 +204,7 @@ python manage.py createsuperuser
 #### NOTE: you can use pictures from 'static/img' to flow data in gallery app's tables.
 
 
-## ----------------------------------------------------------------------------------------------------
+## --------------------------------------------------------------------------------------
 
 
 ## 4. Project architecture -> Apps:
