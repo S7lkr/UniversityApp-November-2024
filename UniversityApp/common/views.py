@@ -1,3 +1,5 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.urls import reverse_lazy
 from django.views import generic
 from UniversityApp.accounts.models import Profile
 from UniversityApp.courses.models import Course
@@ -56,11 +58,16 @@ class AboutTeam(generic.ListView):
         return lectors
 
 
-class AboutStudents(generic.ListView):
+class AboutStudents(LoginRequiredMixin, generic.ListView):
     model = Profile
     template_name = 'about/students.html'
     context_object_name = 'students'
+    login_url = reverse_lazy('login')
 
     def get_queryset(self):
-        students = Profile.objects.filter(is_lector=False).exclude(first_name='Admin')
+        students = (Profile.objects
+                    .filter(is_lector=False)
+                    .exclude(first_name='Admin')
+                    .exclude(first_name='Moderator')
+                    )
         return students
