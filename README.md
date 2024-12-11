@@ -55,7 +55,7 @@ NAME='db.sqlite3'
 ```
 #### NOTE: Without it, project breaks, and wont even start because of the secret key, being not provided.
 
-#### 2.6 (VERY IMPORTANT) The project is configured to start, by default, at DEBUG=False (Production Environment), so make sure to start it from the console, like this:
+#### 3.7 LAST STEP (VERY IMPORTANT): The project is configured to start, by default, at DEBUG=False (Production Environment), so make sure to start it from the console, like this:
 ```angular2html
 python manage.py runserver
 ```
