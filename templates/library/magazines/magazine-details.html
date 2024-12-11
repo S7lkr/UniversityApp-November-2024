@@ -32,11 +32,9 @@
                         <span class="fs-5">
                             <!-- IF user authorized to EDIT MAGAZINE or is MAGAZINE PUBLISHER-->
                             {% if request.user|allowed_to:'library.change_magazine' %}
-                                {% if magazine.publisher == user.profile.get_full_name or user.is_superuser %}
-                                    <a class="text-decoration-none fs-5" href="{% url 'magazine-edit' magazine.pk %}">
-                                        <i class="fa-solid fa-pen-to-square"></i>
-                                    </a>
-                                {% endif %}
+                                <a class="text-decoration-none fs-5" href="{% url 'magazine-edit' magazine.pk %}">
+                                    <i class="fa-solid fa-pen-to-square"></i>
+                                </a>
                             {% endif %}
 
                             <!-- IF user authorized to DELETE MAGAZINE -->

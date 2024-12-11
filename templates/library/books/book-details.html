@@ -32,7 +32,7 @@
                         <span class="fs-5">
                             <!-- IF user authorized to EDIT BOOK or is BOOK CREATOR -->
                             {% if request.user|allowed_to:'library.change_book' %}
-                                {% if book.author_id == request.user.pk or user.is_superuser %}
+                                {% if request.user|allowed_to:'library.change_book' %}
                                     <a class="text-decoration-none fs-5" href="{% url 'book-edit' book.pk %}">
                                         <i class="fa-solid fa-pen-to-square"></i>
                                     </a>

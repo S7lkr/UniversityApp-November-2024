@@ -27,7 +27,7 @@
 
                         <span class="fs-5">
                             <!-- If user has PERMISSION TO CHANGE course & is IN THIS COURSE -->
-                            {% if request.user|allowed_to:'courses.change_course' and course.pk == request.user.course_id or user.is_superuser %}
+                            {% if request.user|allowed_to:'courses.change_course' or course.pk == user.profile.course_id and user.profile.is_lector %}
                                 <a class="text-decoration-none fs-5"
                                    href="{% url 'course-edit' course.slug course.pk %}">
                                     <i class="fa-solid fa-pen-to-square"></i>
@@ -42,18 +42,20 @@
                                 </a>
                             {% endif %}
                         </span>
+                        <!-- IF user IS LOGGED IN -->
+                        {% if user.is_authenticated %}
+                            <!-- IF user is LECTOR and course doesn't have a LECTOR or user NOT in ANY course -->
+                            {% if user.profile.is_lector and not course.lector or user.profile.course_id is None %}
+                                <a class="btn btn-primary m-lg-2 py-1 px-3 mt-0"
+                                   href="{% url 'user-add' course.slug course.pk %}">
+                                    <i class="fa-solid fa-plus"></i>
+                                    Join Course
+                                </a>
+                            {% endif %}
 
-                        <!-- If user NOT in ANY course-->
-                        {% if user.is_authenticated and user.profile.course_id is None %}
-                            <a class="btn btn-primary m-lg-2 py-1 px-3 mt-0"
-                               href="{% url 'user-add' course.slug course.pk %}">
-                                <i class="fa-solid fa-plus"></i>
-                                Join Course
-                            </a>
-
-                        <!-- If user has already JOINED THIS course -->
-                        {% elif user.profile.course_id == course.pk %}
-                            <span class="text-md-end m-lg-2">
+                            <!-- If user has JOINED THIS course (no matter lector/student)-->
+                            {% if user.profile.course_id == course.pk %}
+                                <span class="text-md-end m-lg-2">
                                 <span class="badge bg-success fs-6">
                                     <i class="fa-solid fa-check"></i>
                                     Joined!
@@ -62,6 +64,7 @@
                                     <span class="badge bg-dark fs-6">Quit?</span>
                                 </a>
                             </span>
+                            {% endif %}
                         {% endif %}
                     </h1>
                     <p class="mb-3 fs-6"><i class="fa-solid fa-user-tie"></i> {{ lector }}</p>

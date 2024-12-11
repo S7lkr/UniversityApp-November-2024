@@ -41,7 +41,7 @@
                     <a href="{% url 'courses-categories' %}" class="dropdown-item">Categories</a>
 
                     <!-- ADD COURSE authorization: only Admin -->
-                    {% if request.user|allowed_to:'course.add_course' %}
+                    {% if request.user|allowed_to:'courses.add_course' %}
                         <a href="{% url 'course-create' %}" class="dropdown-item">Add Course</a>
                     {% endif %}
 

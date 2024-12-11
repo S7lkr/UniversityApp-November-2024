@@ -1,3 +1,4 @@
+{% load custom_filters %}
 {% load static %}
 
 <div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
@@ -60,16 +61,18 @@
                     {{ comment.created_at }}
                 </span>
 
-                {% if user.is_superuser or comment.user.pk == request.user.profile.pk %}
                 <span class="p-lg-2">
+                {% if request.user|allowed_to:'comments.change_comment' or comment.user.pk == request.user.profile.pk %}
                     <a href="{% url 'edit-comment' course.slug course.pk comment.pk %}" class="text-decoration-none">
                         <i class="fa-solid fa-pen-to-square"  style="color: darkslategray;"></i>
                     </a>
+                {% endif %}
+                {% if request.user|allowed_to:'comments.delete_comment' or comment.user.pk == request.user.profile.pk %}
                     <a href="{% url 'delete-comment' course.slug course.pk comment.pk %}" class="text-decoration-none">
                         <i class="fa-solid fa-trash"  style="color: darkslategray;"></i>
                     </a>
-                </span>
                 {% endif %}
+                </span>
 
                 <div class="testimonial-text bg-light text-md-start p-2">
                     <span class="lh-1 mb-1" style="font-size: 0.8em">
