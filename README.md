@@ -32,7 +32,7 @@ python -m venv venv
 - [x] ProfileDetailsPage
 - [x] ProfileCreateOrEditPage
 - [x] ProfileDeletePage
-### Admin panel:
+#### Admin panel:
 - [x] Register User model
 - [x] Customize it:
   - [x] extend django base user -> UserAdmin
@@ -42,11 +42,11 @@ python -m venv venv
   - [x] add fieldsets (categories)
   - [x] optional: integrate profile info in admin panel
   - [x] Attach Profile data (is_lector) beneath each User
-### Signals.py:
+#### Signals.py:
 - [x] Upon USER creation, a PROFILE will be created too
-### Managers.py:
+#### Managers.py:
 - [x] Custom user manager
-### Forms.py:
+#### Forms.py:
 - [x] UserRegisterForm
 - [x] UserEditForm
 - [x] ProfileBaseForm
