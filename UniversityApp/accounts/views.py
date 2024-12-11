@@ -4,7 +4,6 @@ from django.contrib.auth.views import LoginView
 from django.views import generic
 from django.urls import reverse_lazy
 from UniversityApp.accounts.models import Profile, CustomUser
-from UniversityApp.courses.models import Course
 
 UserModel = get_user_model()
 
