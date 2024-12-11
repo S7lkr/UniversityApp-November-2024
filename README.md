@@ -10,14 +10,18 @@
 #### - Working resolution: 1920x1080 fullHD (not mandatory, but recommended)
 
 ## 3. Setup instructions:
-#### - Start a new (base) Django project on your PC (django system files, cores and functionalities in order to run a project)
-#### - Clone project (get it on your PC):
+#### 3.1 Start a new (base) Django project on your PC (django system files, cores and functionalities in order to run a project)
+#### 3.2 Clone project (get it on your PC):
 ```angular2html
 git clone https://github.com/S7lkr/UniversityApp-November-2024
 ```
-#### - Make sure 'venv' (virtual environment) is properly configured and installed. If not (in python console):
+#### 3.3 Make sure 'venv' (virtual environment) is properly configured and installed. If not (in python console):
 ```angular2html
 python -m venv venv
+```
+#### 3.4 Install all dependencies (required python packages):
+```angular2html
+pip install -r requirements.txt
 ```
 
 ## 4. Project architecture -> Apps:
