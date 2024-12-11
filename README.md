@@ -1,144 +1,156 @@
-# UniversityApp---DOCUMENTATION---
+# --DOCUMENTATION-- #
 
+## 1. Project description:
+#### This project aims to simulate a real university structure, principles and functionalities. It has courses with lessons and comments. Gallery with albums, containing university photos. Library with books & magazines. Users (students & lectors) can join, quit or manage (CRUD) a course, depending on their granted user permission.
 
-## 1. Create project main architecture -> Apps:
+## 2. Project requirements:
+#### - Python version: 3.11.1 or higher
+#### - db.sqlite3 (integrated in django, by default will be created after running initial migrations)
+#### - Browser: Project has been developed and tested on Brave v1.73.97 Chromium 131.0.6778.108(official build, 64-bit)
+#### - Working resolution: 1920x1080 fullHD (not mandatory, but recommended)
 
-### 1.1 Accounts (admin, lectors, students):
-- 1.1.1 Models:
-  - [x] User model (extend django default user -> AbstractBaseUser)
-  - [x] Profile model
+## 3. Setup instructions:
+#### - Start a new (base) Django project on your PC (django system files, cores and functionalities in order to run a project)
+#### - Clone project (get it on your PC):
+```angular2html
+git clone https://github.com/S7lkr/UniversityApp-November-2024
+```
+#### - Make sure 'venv' (virtual environment) is properly configured and installed. If not (in python console):
+```angular2html
+python -m venv venv
+```
 
-- 1.1.2 Views:
-  - [x] Register view
-  - [x] Login view
-  - [x] Profile Details view
-  - [x] Profile Edit view
-  - [x] Profile Delete view
+## 4. Project architecture -> Apps:
 
-- 1.1.3 Admin panel
-  - [x] Register User model
-  - [x] Customize it:
-    - [x] extend django base user -> UserAdmin
-    - [x] list display
-    - [x] ordering
-    - [x] search functionality
-    - [x] add fieldsets (categories)
-    - [x] optional: integrate profile info in admin panel
-    - [x] Attach Profile data (is_lector) beneath each User
+### 4.1 Accounts (admin, lectors, students):
+#### Models.py:
+- [x] CustomUser (extends django default user -> AbstractBaseUser)
+- [x] Profile (automatically created with 'signal' -> post_save)
+#### Views.py:
+- [x] UserRegisterPage
+- [x] UserLoginPage
+- [x] ProfileDetailsPage
+- [x] ProfileCreateOrEditPage
+- [x] ProfileDeletePage
+### Admin panel:
+- [x] Register User model
+- [x] Customize it:
+  - [x] extend django base user -> UserAdmin
+  - [x] list display
+  - [x] ordering
+  - [x] search functionality
+  - [x] add fieldsets (categories)
+  - [x] optional: integrate profile info in admin panel
+  - [x] Attach Profile data (is_lector) beneath each User
+### Signals.py:
+- [x] Upon USER creation, a PROFILE will be created too
+### Managers.py:
+- [x] Custom user manager
+### Forms.py:
+- [x] UserRegisterForm
+- [x] UserEditForm
+- [x] ProfileBaseForm
+- [x] ProfileCreateOrEditForm
+- [x] ProfileDeleteForm
 
-- 1.1.4 Urls
+### 4.2 Comments:
+#### Models.py --> Comment
+#### Views.py:
+- [x] comment_add_view
+- [x] CommentEditView
+- [x] CommentDeleteView
+#### Forms.py:
+- [x] CommentBaseForm
+- [x] CommentAddForm
+- [x] CommentEditForm
+- [x] CommentDeleteForm
 
-- 1.1.5 Signals:
-  - [x] Upon USER creation, a PROFILE will be created too
+### 4.3 Common:
+#### Views.py:
+- [x] HomePage
+- [x] course_user_add
+- [x] course_user_remove
+- [x] lector_remove
+- [x] AboutPage
+- [x] AboutTeam
+- [x] AboutStudents
 
-- 1.1.6 Managers:
-  - [x] Custom user manager 
+### 4.4 Courses:
+#### Models.py:
+- [x] Course
+#### Views.py:
+- [x] CoursesCategoriesPage
+- [x] CoursesAllPage
+- [x] CoursesFromCategoryPage
+- [x] CourseCreatePage
+- [x] CourseDetailsPage
+- [x] CourseEditPage
+- [x] CourseDeletePage
+#### Forms.py:
+- [x] CourseBaseForm
+- [x] CourseCreateForm
+- [x] CourseEditForm
+- [x] CourseDeleteForm
 
-- 1.1.7 Forms:
-  - [x] User Register Form
-  - [x] User Edit Form
-  - [x] Profile Edit Form
-  - [x] Profile Delete Form
+### 4.5 Gallery:
+#### Models.py --> Album, Photos
+#### Views.py:
+- [x] AlbumsShowPage
+- [x] AlbumAddPage
+- [x] AlbumEditPage
+- [x] AlbumDeletePage
+- [x] PhotosShowPage
+- [x] PhotoAddPage
+- [x] PhotoDeletePage
+#### Forms.py:
+- [x] AlbumBaseForm
+- [x] AlbumCreateForm
+- [x] AlbumEditForm
+- [x] AlbumDeleteForm
+- [x] PhotoBaseForm
+- [x] PhotoAddForm
+- [x] PhotoEditForm
+- [x] PhotoDeleteForm
 
-### 1.2 Common:
-- 1.2.1 Models:
-  - [x] Comment
-  
-- 1.2.2 Views: 
-    - [x] Home page
-    - [x] add user to course
-    - [x] remove user from course
-    - [x] admin remove lector from course
-    - [ ] add comment view
+### 4.6 Lessons:
+#### Models.py --> Lesson
+#### Views.py:
+- [x] lesson_add_view
+- [x] LessonEditView
+- [x] LessonDeleteView
+#### Forms.py:
+- [x] LessonBaseForm
+- [x] LessonAddForm
+- [x] LessonDeleteForm
 
-- 1.2.3 Urls
+### 4.7 Library:
+#### Models.py --> Book, Magazine
+#### Views.py:
+- [x] LibraryCategories
+- [x] BooksPage
+- [x] BookAddPage
+- [x] BookDetailsPage
+- [x] BookEditPage
+- [x] BookDeletePage
+- [x] MagazinesPage
+- [x] MagazineAddPage
+- [x] MagazineDetailsPage
+- [x] MagazineEditPage
+- [x] MagazineDeletePage
+#### Forms.py:
+- [x] BookBaseForm
+- [x] BookAddForm
+- [x] BookDeleteForm
+- [x] MagazineBaseForm
+- [x] MagazineAddForm
+- [x] MagazineDeleteForm
 
-- 1.2.1 Forms
-
-### 1.3 Courses:
-- [x] Models (Course model)
-- [x] Views
-  - [x] CoursesCategories view
-  - [x] CoursesAll view
-  - [x] CoursesFromCategory view
-  - [x] CourseCreate view
-  - [x] CourseDetails view
-  - [x] CourseEdit view
-  - [x] CourseDelete view
-- [x] Urls
-- [x] Forms
-  - [ ] Course Base Form
-  - [ ] Course Create Form
-  - [ ] Course Edit Form
-  - [ ] Course Delete Form
-
-### 1.4 Online Classes:
-- [ ] Models
-- [ ] Views
-- [ ] Urls
-- [ ] Forms
-
-### 1.5 UserPhotos:
-- [ ] Models
-- [ ] Views
-- [ ] Urls
-- [ ] Forms
-
-### 1.6 UniversityPhotos:
-- [ ] Models
-- [ ] Views
-- [ ] Urls
-- [ ] Forms
-
-### 1.7 Question & Answer Section:
-- [ ] Models
-- [ ] Views
-- [ ] Urls
-- [ ] Forms
-
-
-## 3. Add validators for models:
-- [x] Alphabetic name validator
-- [x] Password validator
-- [ ] Capitalized name validator
-
-
-## 4. Add mixins:
+### 4.8 Mixins:
 - [x] Placeholder Mixin
 - [x] ReadOnlyFields Mixin
 - [x] DisabledFields Mixin
 
-
-## 5. Create/import static files:
-- [x] CSS
-- [x] Images
-- [x] Bootstrap & min.css
-- [x] SCSS
-- [x] JS Scripts
-
-
-## 6. Create templates for the project:
-
-### 6.1 Base html (header/meta + nav + {bl.content} + footer)
-### 6.2 Index html (home)
-### 6.3 Navbar html
-
-### 6.4 Users (auth):
-- [x] register
-- [x] login
-
-### 6.5 Profile:
-- [x] profile create/edit
-- [x] profile delete
-
-### 6.6 Courses:
-- [x] Courses (all)
-- [x] Courses categories
-- [x] Create course
-- [x] Details course
-- [x] Edit course
-- [x] Delete course
-
-### 6.7 Errors:
-- [x] 403 Forbidden
-- [x] 404 Page Not found
+### 4.9 Validators:
+- [x] Alphabetic name validator
+- [x] Password validator
+- [x] Capitalized name validator
