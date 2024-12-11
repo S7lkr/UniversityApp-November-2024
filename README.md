@@ -203,17 +203,6 @@ python manage.py createsuperuser
 #### library_book, library_magazine, gallery_album & gallery_photo -> flow data by your choice
 #### NOTE: you can use pictures from 'static/img' to flow data in gallery app's tables.
 
-#### Now, AFTER FILLING DATA in all tables, in python console type:
-```angular2html
-python manage.py makemigrations
-```
-#### (this will create all migrations)
-
-
-#### And finally, migrate them (apply): 
-```angular2html
-python manage.py migrate
-```
 
 ## ----------------------------------------------------------------------------------------------------
 
