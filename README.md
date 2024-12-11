@@ -8,10 +8,10 @@
 ## ----------------------------------------------------------------------------------------------------
 
 ## 2. Project requirements:
-#### - Python version: 3.9 or higher
-#### - db.sqlite3 (integrated in django, by default will be created after running initial migrations)
-#### - Browser: Project has been developed and tested on Brave v1.73.97 Chromium 131.0.6778.108(official build, 64-bit)
-#### - Working resolution: 1920x1080 fullHD (not mandatory, but recommended)
+#### 2.1 Python version: 3.9 or higher
+#### 2.2 db.sqlite3 (integrated in django, by default will be created after running initial migrations)
+#### 2.3 Browser: Project has been developed and tested on Brave v1.73.97 Chromium 131.0.6778.108(official build, 64-bit)
+#### 2.4 Working resolution: 1920x1080 fullHD (not mandatory, but recommended)
 
 ## ----------------------------------------------------------------------------------------------------
 
@@ -34,6 +34,36 @@ pip install -r requirements.txt
 python manage.py migrate
 ```
 ##### NOTE: Doing so, sqlite3 DB will be created automatically for you.
+
+#### 3.6 (!!!) Create an .env file (at settings.py, asgi.py, etc. level) inside the project folder. Copy this code & paste it inside the .env file:
+
+#### .env:
+```angular2html
+# .env -> stores sensitive project environmental variables ( for testing purposes by SoftUni :] )
+
+
+THE_SECRET_KEY='django-insecure-k2_#2os#2q26d+!g!tz7li*3oqx*)y$efgo!t3h2^7un&+svq3'
+
+# =TRUE (only for development purposes)
+MY_DEBUG=FALSE
+
+# DATABASES:
+# NOTE: Project uses the default 'db.sqlite3' DB
+ENGINE='django.db.backends.sqlite3'
+NAME='db.sqlite3'
+
+```
+#### NOTE: Without it, project breaks, and wont even start because of the secret key, being not provided.
+
+#### 2.6 (VERY IMPORTANT) The project is configured to start, by default, at DEBUG=False (Production Environment), so make sure to start it from the console, like this:
+```angular2html
+python manage.py runserver
+```
+##### if any of the CSS breaks, then:
+```angular2html
+python manage.py runserver --insecure
+```
+##### will work for sure!!
 
 ## ----------------------------------------------------------------------------------------------------
 
