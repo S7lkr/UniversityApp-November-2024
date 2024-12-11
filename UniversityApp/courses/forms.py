@@ -30,6 +30,11 @@ class CourseEditForm(CourseBaseForm):
     pass
 
 
+class CourseLimitedEditForm(CourseBaseForm):
+    class Meta(CourseBaseForm.Meta):
+        fields = ('description',)
+
+
 class CourseDeleteForm(mixins.DisabledFieldsMixin, forms.ModelForm):
     disabled_fields_set = ('name', 'category',)
 
