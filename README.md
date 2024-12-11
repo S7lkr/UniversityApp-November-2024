@@ -3,6 +3,8 @@
 ## 1. Project description:
 #### This project aims to simulate a real university structure, principles and functionalities. It has courses with lessons and comments. Gallery with albums, containing university photos. Library with books & magazines. Users (students & lectors) can join, quit or manage (CRUD) a course, depending on their granted user permission.
 
+#### DISCLAIMER: Project uses extended Django user model -> by inheriting AbstractBaseUser & PermissionsMixin. USERNAME_FIELD is set to be an email. A custom password is created also. Django default AUTH_VALIDATORS have been replaced with custom ones.
+
 ## ----------------------------------------------------------------------------------------------------
 
 ## 2. Project requirements:
@@ -27,6 +29,11 @@ python -m venv venv
 ```angular2html
 pip install -r requirements.txt
 ```
+#### 3.5 Apply all apps' migrations into DB:
+```angular2html
+python manage.py migrate
+```
+##### NOTE: Doing so, sqlite3 DB will be created automatically for you.
 
 ## ----------------------------------------------------------------------------------------------------
 
@@ -71,7 +78,6 @@ pip install -r requirements.txt
 |           | comments-comment-Can add comment          |
 |           | comments-comment-Can view comment         |
 |           | courses-course-Can add course             |
-|           | courses-course-Can change course          |
 |           | courses-course-Can view course            |
 |           | gallery-album-Can view album              |
 |           | gallery-photo-Can view photo              |
@@ -100,6 +106,11 @@ pip install -r requirements.txt
 
 
 ### 4.3 Flow data in DB, used default sqlite3 for this project (optional step, but recommended):
+#### ADVICE: Start by creating a superuser first:
+```
+python manage.py createsuperuser
+```
+#### ADVICE 2: If you decide to flow DB with your own data (not from tables below), make sure you have at least 1 superuser, 1 moderator, 1 student & 1 lector!
 
 #### accounts_customuser:
 | id | email                   | password  | is_active | is_staff | is_superuser |
@@ -114,40 +125,65 @@ pip install -r requirements.txt
 | 8  | arthur@arthur.com       | 12admin34 | 1         | 0        | 0            |
 | 9  | kate@kate.com           | 12admin34 | 1         | 0        | 0            |
 | 10 | will@will.com           | 12admin34 | 1         | 0        | 0            |
-| 11 | moderator@moderator.com | admin     | 1         | 1        | 0            |
+| 11 | moderator@moderator.com | moderator | 1         | 1        | 0            |
 
 #### accounts_profile:
 | id | first_name | last_name   | personal_image                                  | age  | user_id | course_id | bio          | is_lector |
 |----|------------|-------------|-------------------------------------------------|------|---------|-----------|--------------|-----------|
 | 1  | Admin      | Admin       | http://127.0.0.1:8000/static/img/person1.jpg    | null | 1       | null      | null         | 0         |
-| 2  | Diyan      | Kalaydzhiev | http://127.0.0.1:8000/static/img/team-1.jpg     | 20   | 2       | 4         | Nice person. | 1         |
+| 2  | Diyan      | Kalaydzhiev | http://127.0.0.1:8000/static/img/team-1.jpg     | 20   | 2       | 6         | Nice person. | 1         |
 | 3  | Bob        | Harrison    | http://127.0.0.1:8000/static/img/team-3.jpg     | 27   | 3       | 1         | Nice person. | 1         |
-| 4  | Jasmine    | Lucas       | http://127.0.0.1:8000/static/img/team-2.jpg     | 31   | 4       | 3         | Nice person. | 1         |
-| 5  | Angelina   | Jolie       | http://127.0.0.1:8000/static/img/team-4.jpg     | 39   | 5       | 2         | Nice person. | 1         |
+| 4  | Jasmine    | Lucas       | http://127.0.0.1:8000/static/img/team-2.jpg     | 31   | 4       | 2         | Nice person. | 1         |
+| 5  | Angelina   | Jolie       | http://127.0.0.1:8000/static/img/team-4.jpg     | 39   | 5       | 7         | Nice person. | 1         |
 | 6  | John       | Doe         | http://127.0.0.1:8000/static/img/student-jd.jpg | 52   | 6       | 1         | Nice person. | 0         |
-| 7  | Jack       | Sparrow     | http://127.0.0.1:8000/static/img/student-js.jpg | 47   | 7       | 1         | Nice person. | 0         |
+| 7  | Jack       | Sparrow     | http://127.0.0.1:8000/static/img/student-js.jpg | 47   | 7       | 2         | Nice person. | 0         |
 | 8  | Arthur     | Morgan      | http://127.0.0.1:8000/static/img/student-am.jpg | 38   | 8       | 1         | Nice person. | 0         |
-| 9  | Katty      | Perry       | http://127.0.0.1:8000/static/img/student-kp.jpg | 38   | 8       | null      | Nice person. | 0         |
-| 10 | Will       | Smith       | http://127.0.0.1:8000/static/img/student-ws.jpg | 51   | 9       | 2         | Nice person. | 0         |
-| 11 | Moderator  | null        | http://127.0.0.1:8000/static/img/person-1.jpg   | 6    | 9       | null      | null         | 0         |
+| 9  | Katty      | Perry       | http://127.0.0.1:8000/static/img/student-kp.jpg | 38   | 9       | 6         | Nice person. | 0         |
+| 10 | Will       | Smith       | http://127.0.0.1:8000/static/img/student-ws.jpg | 51   | 10      | 6         | Nice person. | 0         |
+| 11 | Moderator  | null        | http://127.0.0.1:8000/static/img/person-1.jpg   | 6    | 11      | null      | null         | 0         |
 
 #### courses_course:
 | id | name                        | category         | photo                                         | description | credits | duration | lector            | slug       | start_date |
 |----|-----------------------------|------------------|-----------------------------------------------|-------------|---------|----------|-------------------|------------|------------|
 | 1  | HTML, CSS & JS              | Web Design       | http://127.0.0.1:8000/static/img/course-1.jpg | Nice course | 20      | 5        | Bob Harrison      | web-design | 24-11-20   |
 | 2  | UI/UX Design CSS            | Graphic Design   | http://127.0.0.1:8000/static/img/course-2.jpg | Nice course | 10      | 3        | Jasmine Lucas     | web-design | 24-11-20   |
-| 3  | Videos with Canva           | Video Editing    | http://127.0.0.1:8000/static/img/course-3.jpg | Nice course | 15      | 3        | Angelina Jolie    | web-design | 24-11-20   |
-| 4  | Django Advanced             | Web Design       | http://127.0.0.1:8000/static/img/course-4.jpg | Nice course | 5       | 1        | Diyan Kalaydzhiev | web-design | 24-11-20   |
-| 5  | PHP                         | Web Design       | http://127.0.0.1:8000/static/img/cat-3.jpg    | Nice course | 15      | 2        | <null>            | web-design | 24-11-20   |
-| 6  | Drop-shipping. Online Sales | Online Marketing | http://127.0.0.1:8000/static/img/course.jpg   | Nice course | 30      | 8        | <null>            | web-design | 24-11-20   |
+| 3  | Videos with Canvas          | Video Editing    | http://127.0.0.1:8000/static/img/course-3.jpg | Nice course | 15      | 3        | null              | web-design | 24-11-20   |
+| 5  | Python ORM                  | Web Design       | http://127.0.0.1:8000/static/img/course-4.jpg | Nice course | 5       | 1        | null              | web-design | 24-11-20   |
+| 6  | Django Web Framework        | Web Design       | http://127.0.0.1:8000/static/img/cat-3.jpg    | Nice course | 15      | 2        | Diyan Kalaydzhiev | web-design | 24-11-20   |
+| 7  | Drop-shipping. Online Sales | Online Marketing | http://127.0.0.1:8000/static/img/course.jpg   | Nice course | 30      | 8        | Angelina Jolie    | web-design | 24-11-20   |
+| 8  | Graphic Design Basics       | Graphic Design   | http://127.0.0.1:8000/static/img/course.jpg   | Nice course | 30      | 8        | null              | web-design | 24-11-20   |
 
 #### lessons_lesson:
 | id | title                     | description  | readme                                                      | course_id |
 |----|---------------------------|--------------|-------------------------------------------------------------|-----------|
-| 1  | Introduction to HTML      | Nice course. | ['subject 1', '   subject 2  ', ' subject 3']               | 1         |
-| 2  | Tags and elements in HTML | Nice course. | ['subject 4', '   subject 5  ', ' subject 6']               | 1         |
-| 3  | CSS Basics. Classes & IDs | Nice course. | ['subject 7 ', ' subject 8', 'subject 9', 'subject 10', ''] | 1         |
+| 1  | Introduction to HTML      | Nice lesson. | ['subject 1', '   subject 2  ', ' subject 3']               | 1         |
+| 2  | Tags and elements in HTML | Nice lesson. | ['subject 4', '   subject 5  ', ' subject 6']               | 1         |
+| 3  | CSS Basics. Classes & IDs | Nice lesson. | ['subject 7 ', ' subject 8', 'subject 9', 'subject 10', ''] | 1         |
+| 4  | What is Graphic Design ?  | Nice lesson. | ['subject 3 ', ' subject 12', 'subject 7', 'subject 4']     | 2         |
+| 4  | Drop-shipping Basics      | Nice lesson. | ['subject A ', ' subject B', 'subject C', 'subject D']      | 7         |
 
+#### comments_comment:
+| id | content                                                                                           | created_at                 | course_id | user_id |
+|----|---------------------------------------------------------------------------------------------------|----------------------------|-----------|---------|
+| 1  | Let the comments start!                                                                           | 2024-12-08 07:05:29.459    | 1         | 1       | 
+| 2  | Bravo be, admine! :P                                                                              | 2024-12-08 22:50:42.913589 | 1         | 2       | 
+| 3  | Only legends here -.-                                                                             | 2024-12-08 22:50:42.913589 | 1         | 10      | 
+| 4  | Hey, this is not a SOCIAL MEDIA here!! Stop this chit chat or I will delete all DUMB comments !!! | 2024-12-08 22:50:42.913589 | 1         | 11      | 
+
+#### library_book, library_magazine, gallery_album & gallery_photo -> flow data by your choice
+#### NOTE: you can use pictures from 'static/img' to flow data in gallery app's tables.
+
+#### Now, AFTER FILLING DATA in all tables, in python console type:
+```angular2html
+python manage.py makemigrations
+```
+#### (this will create all migrations)
+
+
+#### And finally, migrate them (apply): 
+```angular2html
+python manage.py migrate
+```
 
 ## ----------------------------------------------------------------------------------------------------
 
@@ -222,6 +258,7 @@ pip install -r requirements.txt
 - [x] CourseBaseForm
 - [x] CourseCreateForm
 - [x] CourseEditForm
+- [x] CourseLimitedEditForm
 - [x] CourseDeleteForm
 
 ### 4.5 Gallery:
