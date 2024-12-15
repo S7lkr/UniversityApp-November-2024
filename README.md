@@ -35,27 +35,7 @@ python manage.py migrate
 ```
 ##### NOTE: Doing so, sqlite3 DB will be created automatically for you.
 
-#### 3.6 (!!!) Create an .env file (at settings.py, asgi.py, etc. level) inside the project folder. Copy this code & paste it inside the .env file:
-
-#### .env:
-```angular2html
-# .env -> stores sensitive project environmental variables ( for testing purposes by SoftUni :] )
-
-
-THE_SECRET_KEY='django-insecure-k2_#2os#2q26d+!g!tz7li*3oqx*)y$efgo!t3h2^7un&+svq3'
-
-# =TRUE (only for development purposes)
-MY_DEBUG=FALSE
-
-# DATABASES:
-# NOTE: Project uses the default 'db.sqlite3' DB
-ENGINE='django.db.backends.sqlite3'
-NAME='db.sqlite3'
-
-```
-#### NOTE: Without it, project breaks, and wont even start because of the secret key, being not provided.
-
-#### 3.7 LAST STEP (VERY IMPORTANT): The project is configured to start, by default, at DEBUG=False (Production Environment), so make sure to start it from the console, like this:
+#### 3.6 LAST STEP (VERY IMPORTANT): The project is configured to start, by default, at DEBUG=False (Production Environment), so make sure to start it from the console, like this:
 ```angular2html
 python manage.py runserver
 ```
