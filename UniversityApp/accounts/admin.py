@@ -13,12 +13,6 @@ class ShowProfile(admin.StackedInline):     # allows PROFILE data (all or select
     model = Profile                         # to be showcased in admin panel
     can_delete = False
     fields = (                  # select which fields to be shown
-        # 'first_name',
-        # 'last_name',
-        # 'personal_image',
-        # 'bio',
-        # 'age',
-        # 'course',
         'is_lector',
     )
 
